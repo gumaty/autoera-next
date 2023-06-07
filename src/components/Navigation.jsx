@@ -1,10 +1,9 @@
-import {Box, Button, IconButton, Menu, MenuItem, Typography} from "@mui/material";
+import {Box, Button, IconButton, Link, Menu, MenuItem, Typography} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import AdbIcon from "@mui/icons-material/Adb";
 import {useState} from "react";
 import Logo from "@/components/Logo";
 
-const pages = ['Strona główna', 'Samochody seryjne', 'Samochody studialne', 'Mała encyklopedia', 'Kontakt', 'O nas'];
+const pages = [{id: 1, title: 'Strona główna', link: '/'}, {id: 2, title: 'Samochody seryjne', link: '/seryjne'}, {id: 3, title:'Samochody studialne', link: '/studialne'}, {id: 4, title:'Mała encyklopedia', link: '/encyklopedia'}, {id: 5, title:'Kontakt', link: '/kontakt'}, {id: 6, title:'O nas', link: '/about'}];
 
 function Navigation() {
 
@@ -53,8 +52,8 @@ function Navigation() {
                     }}
                 >
                     {pages.map((page) => (
-                        <MenuItem key={page} onClick={handleCloseNavMenu}>
-                            <Typography textAlign="center" sx={{color: '#153F1A'}}>{page}</Typography>
+                        <MenuItem key={page.id} onClick={handleCloseNavMenu}>
+                            <Link key={page.id} href={page.link} sx={{textDecoration: 'none'}}><Typography textAlign="center" sx={{color: '#153F1A'}}>{page.title}</Typography></Link>
                         </MenuItem>
                     ))}
                 </Menu>
@@ -66,13 +65,15 @@ function Navigation() {
 
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end' }}>
                 {pages.map((page) => (
-                    <Button
-                        key={page}
+                    <Link key={page.id} href={page.link} sx={{textDecoration: 'none'}}>
+                        <Button
+                        key={page.id}
                         onClick={handleCloseNavMenu}
                         sx={{ my: 2, px: '6px', color: '#99CC99', fontSize: '14px', textTransform: 'none', display: 'block', borderRight: 1, borderRadius: 0, borderColor: '#99CC99' }}
-                    >
-                        {page}
-                    </Button>
+                        >
+                        {page.title}
+                        </Button>
+                    </Link>
                 ))}
             </Box>
         </>
