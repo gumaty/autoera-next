@@ -69,7 +69,7 @@ function Navigation() {
                     <Button
                         key={page}
                         onClick={handleCloseNavMenu}
-                        sx={{ my: 2, px: '6px', color: '#99CC99', fontSize: '14px', textTransform: 'none', display: 'block' }}
+                        sx={{ my: 2, px: '6px', color: '#99CC99', fontSize: '14px', textTransform: 'none', display: 'block', borderRight: 1, borderRadius: 0, borderColor: '#99CC99' }}
                     >
                         {page}
                     </Button>
