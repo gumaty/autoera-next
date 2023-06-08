@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import {Box, Container, Typography} from "@mui/material";
+import ContactForm from "@/components/ContactForm";
 
 const title = "Kontakt";
 
@@ -19,9 +20,13 @@ export default function ContactHome() {
                     </Box>
                     <Typography sx={{color: '#153F1A', textAlign: "justify"}}>
                         Chcemy ułatwić Wam kontakt z nami, aby portal ten zawierał informacje, które Was najbardziej interesują. Jeśli macie jakieś sugestie lub propozycje to chętnie dowiemy się co chcielibyście zobaczyć lub czego się dowiedzieć.<br /><br />
-                        Będziemy się starali sprostać wszelkim prośbom lub uwagom, ponieważ chcemy aby ten portal był jak najbardziej interesujący i odpowiadający Waszym potrzebom i zainteresowaniom.<br /><br />
-                        Adres, pod który możecie pisać to: info@auto-era.pl
+                        Będziemy się starali sprostać wszelkim prośbom lub uwagom, ponieważ chcemy aby ten portal był jak najbardziej interesujący i odpowiadający Waszym potrzebom i zainteresowaniom.
                     </Typography>
+                </Box>
+                <Box sx={{p: '50px', width: 1, bgcolor: 'white'}}>
+                    <Box sx={{width: {xs: 1, sm: '500px'} , marginInline: 'auto', p: '30px', bgcolor: 'white', border: 1, borderRadius: 5, borderColor: '##153F1A', boxShadow: 10}} >
+                        <ContactForm />
+                    </Box>
                 </Box>
             </Container>
         </>

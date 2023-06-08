@@ -1,9 +1,12 @@
-import {Box, Button, IconButton, Link, Menu, MenuItem, Typography} from "@mui/material";
+import {Box, Button, IconButton, Menu, MenuItem, Typography} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import {useState} from "react";
 import Logo from "@/components/Logo";
+import Link from "next/link";
 
-const pages = [{id: 1, title: 'Strona główna', link: '/'}, {id: 2, title: 'Samochody seryjne', link: '/seryjne'}, {id: 3, title:'Samochody studialne', link: '/studialne'}, {id: 4, title:'Mała encyklopedia', link: '/encyklopedia'}, {id: 5, title:'Kontakt', link: '/kontakt'}, {id: 6, title:'O nas', link: '/about'}];
+import classes from './Navigation.module.css';
+
+const pages = [{id: 1, title: 'Strona główna', link: '/'}, {id: 2, title: 'Samochody seryjne', link: '/seryjne'}, {id: 3, title:'Samochody studialne', link: '/studialne'}, {id: 4, title:'Encyklopedia', link: '/encyklopedia'}, {id: 5, title:'Kontakt', link: '/kontakt'}, {id: 6, title:'O nas', link: '/about'}];
 
 function Navigation() {
 
@@ -53,7 +56,7 @@ function Navigation() {
                 >
                     {pages.map((page) => (
                         <MenuItem key={page.id} onClick={handleCloseNavMenu}>
-                            <Link key={page.id} href={page.link} sx={{textDecoration: 'none'}}><Typography textAlign="center" sx={{color: '#153F1A'}}>{page.title}</Typography></Link>
+                            <Link key={page.id} href={page.link} style={{textDecoration: 'none'}}><Typography textAlign="center" sx={{color: '#153F1A', textDecoration: 'none'}}>{page.title}</Typography></Link>
                         </MenuItem>
                     ))}
                 </Menu>
@@ -65,11 +68,11 @@ function Navigation() {
 
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end' }}>
                 {pages.map((page) => (
-                    <Link key={page.id} href={page.link} sx={{textDecoration: 'none'}}>
+                    <Link key={page.id} href={page.link} style={{textDecoration: 'none'}} >
                         <Button
                         key={page.id}
                         onClick={handleCloseNavMenu}
-                        sx={{ my: 2, px: '6px', color: '#99CC99', fontSize: '14px', textTransform: 'none', display: 'block', borderRight: 1, borderRadius: 0, borderColor: '#99CC99' }}
+                        sx={{ my: 2, px: '6px', color: '#99CC99', fontSize: '14px', textDecoration: 'none', textTransform: 'none', display: 'block', borderRight: 1, borderRadius: 0, borderColor: '#99CC99' }}
                         >
                         {page.title}
                         </Button>

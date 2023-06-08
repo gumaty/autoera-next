@@ -18,9 +18,9 @@ export default function EncyklopediaHome() {
                         <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{title}</Typography>
                     </Box>
                     <Typography sx={{color: '#153F1A', textAlign: "justify"}}>
-                        Chcemy ułatwić Wam kontakt z nami, aby portal ten zawierał informacje, które Was najbardziej interesują. Jeśli macie jakieś sugestie lub propozycje to chętnie dowiemy się co chcielibyście zobaczyć lub czego się dowiedzieć.<br /><br />
-                        Będziemy się starali sprostać wszelkim prośbom lub uwagom, ponieważ chcemy aby ten portal był jak najbardziej interesujący i odpowiadający Waszym potrzebom i zainteresowaniom.<br /><br />
-                        Adres, pod który możecie pisać to: info@auto-era.pl
+                        Budowa współczesnych samochodów osobowych jest dosyć skomplikowana. Aby poznać i zrozumieć działanie wszystkich mechanizmów i podzespołów tych pojazdów niezbędny jest odpowiedni zasób wiedzy. W tak złożonym wyrobie zawarte są różne materiały i technologie, tak więc niezbędna jest wiedza z wielu dziedzin.<br /><br />
+                        W celu ułatwienia naszym internautom przyswojenie technicznej wiedzy o samochodzie wprowadziliśmy dział "Mała encyklopedia samochodowa". Tutaj właśnie znajdują się krótkie opisy działania i budowy poszczególnych układów, zespołów oraz podzespołów, wyjaśnienia terminów i skrótów krajowych oraz zagranicznych stosowanych w literaturze o tematyce motoryzacyjnej. Spotkacie tu również hasła związane ze znanymi ludźmi i organizacjami pracującymi na rzecz szeroko pojętej motoryzacji.<br /><br />
+                        To kompendium wiedzy motoryzacyjnej będzie systematycznie uzupełniane o nowe hasła.
                     </Typography>
                 </Box>
             </Container>

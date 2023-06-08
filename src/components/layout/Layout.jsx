@@ -1,5 +1,6 @@
 import AppBar from "@/components/AppBar";
 import {CssBaseline} from "@mui/material";
+import Footer from "@/components/Footer";
 
 function Layout(props) {
     return (
@@ -9,6 +10,7 @@ function Layout(props) {
             <main>
                 {props.children}
             </main>
+            <Footer />
         </>
     )
 }
