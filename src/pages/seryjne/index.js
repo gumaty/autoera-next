@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import {Box, Container, Typography} from "@mui/material";
+import LogoSwiper from "@/components/LogoSwiper";
 
 const title = "Katalog samochodów seryjnych";
 
@@ -13,6 +14,9 @@ export default function SerialHome() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
+                <Box>
+                    <LogoSwiper />
+                </Box>
                 <Box sx={{p: '20px', bgcolor: 'white'}} >
                     <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>
                         <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{title}</Typography>

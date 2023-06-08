@@ -100,22 +100,26 @@ function ContactForm() {
                                 value={values.message}
                                 id="outlined-multiline-static"
                                 label="W czym możemy pomóc?"
+                                fullWidth
                                 required
                                 multiline
                                 rows={5}
-                                sx={{mt: 3, mb: (touched.message && errors.message)  ? 0 : 3, maxWidth: '300px'}}
+                                sx={{mt: 3, mb: (touched.message && errors.message)  ? 0 : 3}}
 
                             />
                             {errors.message && touched.message && (
                                 <Alert sx={{mb: '10px'}} severity="warning">{errors.message}</Alert>
                             )}
 
+                            <div>
                             <Button
+                                style={{display: 'inline-block'}}
                                 variant="contained"
                                 type="submit"
                                 disabled={isSubmitting}>
                                 Wyślij
                             </Button>
+                            </div>
                             { isSuccess && (
                                 <Alert variant="filled" severity="success" sx={{my: 2}}>
                                 Formularz został zweryfikowany poprawnie i wysłany

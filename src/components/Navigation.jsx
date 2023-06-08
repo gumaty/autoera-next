@@ -1,4 +1,4 @@
-import {Box, Button, IconButton, Menu, MenuItem, Typography} from "@mui/material";
+import {Box, Button, IconButton, Link as MuiLink, Menu, MenuItem, Typography} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import {useState} from "react";
 import Logo from "@/components/Logo";
@@ -70,12 +70,12 @@ function Navigation() {
                 {pages.map((page) => (
                     <Link key={page.id} href={page.link} style={{textDecoration: 'none'}} >
                         <Button
-                        key={page.id}
-                        onClick={handleCloseNavMenu}
-                        sx={{ my: 2, px: '6px', color: '#99CC99', fontSize: '14px', textDecoration: 'none', textTransform: 'none', display: 'block', borderRight: 1, borderRadius: 0, borderColor: '#99CC99' }}
-                        >
-                        {page.title}
-                        </Button>
+                                key={page.id}
+                                onClick={handleCloseNavMenu}
+                                sx={{ my: 2, px: '6px', color: '#99CC99', fontSize: '14px', textDecoration: 'none', textTransform: 'none', display: 'block', borderRight: 1, borderRadius: 0, borderColor: '#99CC99' }}
+                            >
+                                {page.title}
+                            </Button>
                     </Link>
                 ))}
             </Box>
