@@ -17,7 +17,7 @@
 .swiper {
     background: #FFFFFF;
     width: 100%;
-    padding-top: 30px;
+    padding-top: 15px;
     padding-bottom: 30px;
 }
 
@@ -29,6 +29,6 @@
 }
 
 .swiper-slide img {
-    display: block;
-    /*width: 100%;*/
+    display: inline-block;
+    width: 100%;
 }
