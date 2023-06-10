@@ -43,19 +43,19 @@ function AddStudioForm(props) {
 
                         if (!values.brand) {
                             errors.brand = 'Required';
-                        } else if (values.description.name < 1){
+                        } else if (values.brand.length < 1){
                             errors.brand = 'Marka powinno mieć conajmniej 2 znaki';
                         }
 
                         if (!values.name) {
                             errors.name = 'Required';
-                        } else if (values.description.name < 1){
+                        } else if (values.name.length < 1){
                             errors.name = 'Nazwa powinno mieć conajmniej 2 znaki';
                         }
 
                         if (!values.year) {
                             errors.year = 'Required';
-                        } else if (values.description.year < 3){
+                        } else if (values.year.length < 3){
                             errors.year = 'Wiadomość powinno mieć conajmniej 4 znaki';
                         }
 
@@ -67,7 +67,7 @@ function AddStudioForm(props) {
 
                         if (!values.image) {
                             errors.image = 'Required';
-                        } else if (values.description.image < 2){
+                        } else if (values.image.length < 2){
                             errors.image = 'Wiadomość powinno mieć conajmniej 3 znaki';
                         }
 

@@ -1,11 +1,15 @@
 import Head from 'next/head'
 import {Box, Container, Typography} from "@mui/material";
-import FamilySwiper from "@/components/FamilySwiper";
+import LogoSwiper from "@/components/LogoSwiper";
 import {useRouter} from "next/router";
 import React, {useEffect, useState} from "react";
 import BrandContainer from "@/components/BrandContainer";
+import {console} from "next/dist/compiled/@edge-runtime/primitives/console";
 
-export default function SerialHome() {
+
+
+
+export default function FamilyHome() {
 
     function convert(text){
 
@@ -34,13 +38,13 @@ export default function SerialHome() {
 
     const router = useRouter();
 
-    const [loadedBrands, setLoadedBrands] = useState([]);
+    const [loadedData, setLoadedData] = useState([]);
 
-    const { marki } = router.query;
+    const { marki, rodziny } = router.query;
 
     useEffect(() => {
         fetch(
-            `https://autoera-64fe0-default-rtdb.europe-west1.firebasedatabase.app/marki.json?orderBy="name"&equalTo="${marki}"`
+            `https://autoera-64fe0-default-rtdb.europe-west1.firebasedatabase.app/rodziny.json?orderBy="family"&equalTo="${rodziny}"`
         )
             .then((response) => {
                 return response.json();
@@ -52,27 +56,28 @@ export default function SerialHome() {
             })
             .then((res) => {
 
-                let {name: brand, description: describe, image: picture, years: range} = res;
+                let {brand: brandName, family: familyName, description: describe, image: picture, years: range} = res;
 
                 describe = convert(describe);
 
-                const newArray = {
-                    name: brand,
+                const newData = {
+                    brand: brandName,
+                    family: familyName,
                     description: describe,
                     image: picture,
                     years: range
                 }
 
-                return newArray;
+                return newData;
             })
             .then((data) => {
-                setLoadedBrands(data);
+                setLoadedData(data);
             });
     }, []);
 
-    const { name, description, image, years } = loadedBrands;
+    const { brand, family, description, image, years } = loadedData;
 
-    const title = `Katalog samochodów seryjnych - ${name} (${years})`;
+    const title = `Katalog samochodów seryjnych - ${brand} ${family} (${years})`;
 
     return (
         <>
@@ -83,10 +88,8 @@ export default function SerialHome() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
-                <Box>
-                    <FamilySwiper marka={marki} />
-                </Box>
-                <BrandContainer title={title} brandData={loadedBrands}/>
+
+                <BrandContainer title={title} brandData={loadedData}/>
 
             </Container>
         </>

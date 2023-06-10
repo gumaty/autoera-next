@@ -2,7 +2,7 @@ import {Alert, Box, Button, Card, TextField, Typography} from "@mui/material";
 import {Formik} from "formik";
 import {useState} from "react";
 
-function AddBrandForm(props) {
+function AddFamilyForm(props) {
 
     const [isSuccess, setIsSuccess] = useState(false);
 
@@ -11,15 +11,17 @@ function AddBrandForm(props) {
     function handleSubmit(values, { setSubmitting }) {
 
         const newData = {
-            name: values.name,
+            brand: values.brand,
+            family: values.family,
             years: values.years,
             description: values.description,
             image: values.image,
         };
 
-        props.onAddBrand(newData);
+        props.onAddFamily(newData);
 
-        values.name='';
+        values.brand='';
+        values.family='';
         values.years='';
         values.description='';
         values.image='';
@@ -35,14 +37,20 @@ function AddBrandForm(props) {
 
     return (
                <Formik
-                    initialValues={{ name: '', years: '', description: '', image: '' }}
+                    initialValues={{ brand: '', family: '', years: '', description: '', image: '' }}
                     validate={values => {
                         const errors = {};
 
-                        if (!values.name) {
-                            errors.name = 'Required';
-                        } else if (values.name.length < 2){
-                            errors.name = 'Wiadomość powinno mieć conajmniej 2 znaki';
+                        if (!values.brand) {
+                            errors.brand = 'Required';
+                        } else if (values.brand.length < 2){
+                            errors.brand = 'Wiadomość powinno mieć conajmniej 2 znaki';
+                        }
+
+                        if (!values.family) {
+                            errors.family = 'Required';
+                        } else if (values.family.length < 2){
+                            errors.family = 'Wiadomość powinno mieć conajmniej 2 znaki';
                         }
 
                         if (!values.years) {
@@ -83,17 +91,32 @@ function AddBrandForm(props) {
                             <Box sx={{p: 3, display: 'flex', flexDirection: 'column'}}>
                                 <TextField
                                     type="text"
-                                    name="name"
+                                    name="brand"
                                     onChange={handleChange}
-                                    value={values.name}
+                                    value={values.brand}
                                     fullWidth
                                     required
                                     id="outlined-required"
                                     label="Nazwa marki"
                                     sx={{mt: 3}}
                                 />
-                                {errors.name && touched.name && (
-                                    <Alert sx={{mb: '10px'}} severity="warning">{errors.name}</Alert>
+                                {errors.brand && touched.brand && (
+                                    <Alert sx={{mb: '10px'}} severity="warning">{errors.brand}</Alert>
+                                )}
+
+                                <TextField
+                                    type="text"
+                                    name="family"
+                                    onChange={handleChange}
+                                    value={values.family}
+                                    fullWidth
+                                    required
+                                    id="outlined-required"
+                                    label="Nazwa rodziny"
+                                    sx={{mt: 3}}
+                                />
+                                {errors.family && touched.family && (
+                                    <Alert sx={{mb: '10px'}} severity="warning">{errors.family}</Alert>
                                 )}
 
                                 <TextField
@@ -132,7 +155,7 @@ function AddBrandForm(props) {
                                     onChange={handleChange}
                                     value={values.description}
                                     id="outlined-multiline-static"
-                                    label="Opis marki"
+                                    label="Opis rodziny"
                                     fullWidth
                                     required
                                     multiline
@@ -168,4 +191,4 @@ function AddBrandForm(props) {
     )
 }
 
-export default AddBrandForm;
+export default AddFamilyForm;
