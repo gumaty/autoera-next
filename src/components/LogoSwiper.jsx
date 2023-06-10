@@ -98,10 +98,10 @@ export default function LogoSwiper() {
                         <SwiperSlide className={classes.swiperSlide} key={brand.name}>
                             <Link style={{ display: "flex", justifyContent: "center"}}
                                 key={brand.name}
-                                href={`http://www.auto-era.pl/nowa/index.php?action=marki&brand=${brand.name}`}
+                                href={`/seryjne/${brand.name}`}
                             >
                                 <img
-                                    src={`http://www.auto-era.pl/nowa/src/images/logos/tn/${brand.image}.jpg`}
+                                    src={`http://www.auto-era.pl/nowa/src/images/logos/tn/${brand.image}.jpg`} alt={`Logo ${brand.name}`}
                                 />
                             </Link>
                         </SwiperSlide>
