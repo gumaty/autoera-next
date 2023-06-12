@@ -45,7 +45,7 @@ export default function FamilyHome(props) {
                     for (let key in object) {
                         if (object.hasOwnProperty(key) && typeof object[key] === 'object') {
                             const subObject = object[key];
-                            for (var subKey in subObject) {
+                            for (let subKey in subObject) {
                                 if (subObject.hasOwnProperty(subKey) && subObject[subKey] === value) {
                                     return subObject;
                                 }
@@ -54,18 +54,8 @@ export default function FamilyHome(props) {
                     }
                     return null;
                 }
-
                 const family = rodziny;
-
                 const familyFound = findFamily(familyList, family);
-
-                if (familyFound) {
-                    console.log("Znaleziono obiekt:", familyFound);
-                } else {
-                    console.log("Nie znaleziono obiektu o wartości", family);
-                }
-
-                console.log(familyFound);
 
                 return familyFound;
 

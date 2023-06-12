@@ -67,7 +67,7 @@ export default function FamilySwiper(props) {
                     families.push(family);
                 }
 
-                console.log(families);
+                // console.log(families);
 
     return (
         <>
