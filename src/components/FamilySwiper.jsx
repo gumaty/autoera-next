@@ -13,6 +13,7 @@ import classes from "./LogoSwiper.module.css";
 import { EffectCoverflow, Pagination } from "swiper";
 import Link from "next/link";
 import { useMediaQuery } from 'react-responsive';
+import {Typography} from "@mui/material";
 
 export default function LogoSwiper(props) {
 
@@ -97,7 +98,7 @@ export default function LogoSwiper(props) {
                     .slice()
                     .sort((a, b) => a.family.localeCompare(b.family))
                     .map((data) => (
-                        <SwiperSlide className={classes.swiperSlide} key={data.family}>
+                        <SwiperSlide className={classes.swiperSlide} key={data.family} style={{position: "relative"}}>
                             <Link style={{ display: "flex", justifyContent: "center"}}
                                 key={data.family}
                                 href={`/seryjne/${data.brand}/${data.family}`}
@@ -105,6 +106,9 @@ export default function LogoSwiper(props) {
                                 <img
                                     src={`http://www.auto-era.pl/nowa/src/images/family/tn/${data.image}.jpg`} alt={`Miniatura ${data.brand} ${data.family}`}
                                 />
+                                <Typography sx={{position: "absolute", bottom: -15, left: 10, mb: 2, color: 'red', fontWeight: 'bold'}}>
+                                    {data.family}
+                                </Typography>
                             </Link>
                         </SwiperSlide>
                     ))}

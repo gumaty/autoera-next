@@ -56,9 +56,13 @@ export default function SerialHome() {
 
                 describe = convert(describe);
 
+                const tryArray = describe.split(/\n/g);
+
+                console.log(tryArray);
+
                 const newArray = {
                     name: brand,
-                    description: describe,
+                    description: tryArray,
                     image: picture,
                     years: range
                 }

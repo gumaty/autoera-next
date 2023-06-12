@@ -1,9 +1,11 @@
 import {Box, Typography} from "@mui/material";
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 function BrandContainer(props){
 
     const { brandData } = props;
+
+    console.log(brandData.description);
 
     return (
         <Box sx={{p: '20px', bgcolor: 'white'}} >
@@ -13,9 +15,12 @@ function BrandContainer(props){
             <img
                 src={`http://www.auto-era.pl/nowa/src/images/logos/${brandData.image}.jpg`} alt={`Logo ${brandData.name}`} style={{float: "left"}}
             />
-            <Typography sx={{color: '#153F1A', textAlign: "justify"}}>
-                {brandData.description}
-            </Typography>
+            {brandData.description && Array.isArray(brandData.description) && brandData.description.map((paragraph, index) => (
+                <Typography key={index} sx={{mb: 2, color: '#153F1A', textAlign: "justify"}}>
+                    {paragraph}
+                </Typography>
+            ))}
+
         </Box>
     )
 }
