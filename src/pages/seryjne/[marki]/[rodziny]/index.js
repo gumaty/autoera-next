@@ -1,25 +1,15 @@
 import Head from 'next/head'
 import {Box, Container, Typography} from "@mui/material";
-import LogoSwiper from "@/components/LogoSwiper";
+import FamilySwiper from "@/components/FamilySwiper";
 import {useRouter} from "next/router";
 import React, {useEffect, useState} from "react";
 import BrandContainer from "@/components/BrandContainer";
-import {console} from "next/dist/compiled/@edge-runtime/primitives/console";
+import GenerationSwiper from "@/components/GenerationSwiper";
+import FamilyContainer from "@/components/FamilyContainer";
 
-
-
-
-export default function FamilyHome() {
+export default function FamilyHome(props) {
 
     function convert(text){
-
-        // return text.replace(/\n/g, '<br><br>').replace(/\r/g, '<br /><br />').replace(/\t/g, '<br /><br />');
-
-        // const split = text.split('\r\n') //split up
-        // //logging every new line:
-        // const tempArray = split.map((item) => {`<p>${item}</p>`});
-        // console.log(tempArray);
-        // const newText = tempArray.join("")
 
         const textBefore   = ["\n\r", "\n\n", "\r\n", "\n", "\r", "m3", "CO2"];
         const textAfter = ["<br><br>", "<br><br>", "<br><br>", "<br><br>", "<br><br>", "m<sup>3</sup>", "CO<sub>2</sub>"];
@@ -28,56 +18,90 @@ export default function FamilyHome() {
         for (let i = 0; i < textBefore.length; i++) {
             newText = text.replaceAll(textBefore[i], textAfter[i]);
         }
-
-        // const newText = text.replaceAll("\r\n", "<br><br>");
-
-        // console.log(newText);
-
         return newText;
     }
 
     const router = useRouter();
 
-    const [loadedData, setLoadedData] = useState([]);
+    const [loadedBrands, setLoadedBrands] = useState([]);
 
     const { marki, rodziny } = router.query;
 
+    // console.log(marki);
+    // console.log(rodziny);
+
     useEffect(() => {
         fetch(
-            `https://autoera-64fe0-default-rtdb.europe-west1.firebasedatabase.app/rodziny.json?orderBy="family"&equalTo="${rodziny}"`
+            `https://autoera-64fe0-default-rtdb.europe-west1.firebasedatabase.app/brands.json?orderBy="name"&equalTo="${marki}"`
         )
             .then((response) => {
                 return response.json();
             })
             .then((data) => {
                 const brandKey = Object.keys(data)[0];
-                return data[brandKey];
+                const familyList = data[brandKey].families;
+
+                function findFamily(object, value) {
+                    for (let key in object) {
+                        if (object.hasOwnProperty(key) && typeof object[key] === 'object') {
+                            const subObject = object[key];
+                            for (var subKey in subObject) {
+                                if (subObject.hasOwnProperty(subKey) && subObject[subKey] === value) {
+                                    return subObject;
+                                }
+                            }
+                        }
+                    }
+                    return null;
+                }
+
+                const family = rodziny;
+
+                const familyFound = findFamily(familyList, family);
+
+                if (familyFound) {
+                    console.log("Znaleziono obiekt:", familyFound);
+                } else {
+                    console.log("Nie znaleziono obiektu o wartości", family);
+                }
+
+                console.log(familyFound);
+
+                return familyFound;
 
             })
             .then((res) => {
 
-                let {brand: brandName, family: familyName, description: describe, image: picture, years: range} = res;
+                let {brand: name, family: fam, description: describe, image: picture, years: range, galery: gal, generation: gen} = res;
 
                 describe = convert(describe);
 
-                const newData = {
-                    brand: brandName,
-                    family: familyName,
-                    description: describe,
+                const tryArray = describe.split(/\n/g);
+
+                // console.log(tryArray);
+
+                const newArray = {
+                    brand: name,
+                    family: fam,
+                    description: tryArray,
                     image: picture,
-                    years: range
+                    years: range,
+                    galery: gal,
+                    generation: gen
                 }
 
-                return newData;
+                return newArray;
             })
             .then((data) => {
-                setLoadedData(data);
+                setLoadedBrands(data);
             });
     }, []);
 
-    const { brand, family, description, image, years } = loadedData;
+    const { brand, family, description, image, years, galery, generation } = loadedBrands;
 
     const title = `Katalog samochodów seryjnych - ${brand} ${family} (${years})`;
+
+    // console.log(loadedBrands);
 
     return (
         <>
@@ -88,8 +112,10 @@ export default function FamilyHome() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
-
-                <BrandContainer title={title} brandData={loadedData}/>
+                {/*<Box>*/}
+                {/*    <GenerationSwiper rodzina={loadedBrands} />*/}
+                {/*</Box>*/}
+                <FamilyContainer title={title} familyData={loadedBrands}/>
 
             </Container>
         </>

@@ -1,0 +1,35 @@
+import {Box, Typography} from "@mui/material";
+import React, {useEffect, useState} from "react";
+
+function FamilyContainer(props){
+
+    const { familyData } = props;
+
+    // console.log(familyData);
+
+    return (
+        <Box sx={{display: "flex", flexDirection: "column", p: '20px', bgcolor: 'white'}} >
+            <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>
+                <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{props.title}</Typography>
+            </Box>
+            <Box sx={{display: "flex", mb: 2, py: 2, width: "80%", borderTop: 2, borderBottom: 2, marginInline: "auto"}}>
+                <Box sx={{marginInline: "auto"}}>
+                    <img
+                        src={`http://www.auto-era.pl/nowa/src/images/family/${familyData.image}.jpg`} alt={`Logo ${familyData.brand} ${familyData.family}`} style={{maxWidth: "500px", width: "100%"}}
+                    />
+                </Box>
+            </Box>
+            <Box>
+                {familyData.description && Array.isArray(familyData.description) && familyData.description.map((paragraph, index) => (
+                    <Typography key={index} sx={{mb: 2, color: '#153F1A', textAlign: "justify"}}>
+                        {paragraph}
+                    </Typography>
+                ))}
+            </Box>
+
+
+        </Box>
+    )
+}
+
+export default FamilyContainer;

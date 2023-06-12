@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useRef, useState} from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -15,7 +15,7 @@ import Link from "next/link";
 import { useMediaQuery } from 'react-responsive';
 import {Typography} from "@mui/material";
 
-export default function FamilySwiper(props) {
+export default function GenerationSwiper(props) {
 
     const { marka } = props;
 
@@ -67,8 +67,6 @@ export default function FamilySwiper(props) {
                     families.push(family);
                 }
 
-                console.log(families);
-
     return (
         <>
             <Swiper
@@ -105,9 +103,6 @@ export default function FamilySwiper(props) {
                             </Link>
                         </SwiperSlide>
                     ))}
-
-
-
             </Swiper>
         </>
     );

@@ -52,7 +52,7 @@ export default function LogoSwiper() {
 
     useEffect(() => {
         fetch(
-            'https://autoera-64fe0-default-rtdb.europe-west1.firebasedatabase.app/marki.json'
+            'https://autoera-64fe0-default-rtdb.europe-west1.firebasedatabase.app/brands.json'
         )
             .then((response) => {
                 return response.json();

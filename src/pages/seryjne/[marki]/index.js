@@ -9,14 +9,6 @@ export default function SerialHome() {
 
     function convert(text){
 
-        // return text.replace(/\n/g, '<br><br>').replace(/\r/g, '<br /><br />').replace(/\t/g, '<br /><br />');
-
-        // const split = text.split('\r\n') //split up
-        // //logging every new line:
-        // const tempArray = split.map((item) => {`<p>${item}</p>`});
-        // console.log(tempArray);
-        // const newText = tempArray.join("")
-
         const textBefore   = ["\n\r", "\n\n", "\r\n", "\n", "\r", "m3", "CO2"];
         const textAfter = ["<br><br>", "<br><br>", "<br><br>", "<br><br>", "<br><br>", "m<sup>3</sup>", "CO<sub>2</sub>"];
         let newText = '';
@@ -24,11 +16,6 @@ export default function SerialHome() {
         for (let i = 0; i < textBefore.length; i++) {
             newText = text.replaceAll(textBefore[i], textAfter[i]);
         }
-
-        // const newText = text.replaceAll("\r\n", "<br><br>");
-
-        // console.log(newText);
-
         return newText;
     }
 
@@ -40,7 +27,7 @@ export default function SerialHome() {
 
     useEffect(() => {
         fetch(
-            `https://autoera-64fe0-default-rtdb.europe-west1.firebasedatabase.app/marki.json?orderBy="name"&equalTo="${marki}"`
+            `https://autoera-64fe0-default-rtdb.europe-west1.firebasedatabase.app/brands.json?orderBy="name"&equalTo="${marki}"`
         )
             .then((response) => {
                 return response.json();
@@ -52,19 +39,20 @@ export default function SerialHome() {
             })
             .then((res) => {
 
-                let {name: brand, description: describe, image: picture, years: range} = res;
+                let {name: brand, description: describe, image: picture, years: range, families: rodziny} = res;
 
                 describe = convert(describe);
 
                 const tryArray = describe.split(/\n/g);
 
-                console.log(tryArray);
+                // console.log(tryArray);
 
                 const newArray = {
                     name: brand,
                     description: tryArray,
                     image: picture,
-                    years: range
+                    years: range,
+                    families: rodziny
                 }
 
                 return newArray;
@@ -74,9 +62,11 @@ export default function SerialHome() {
             });
     }, []);
 
-    const { name, description, image, years } = loadedBrands;
+    const { name, description, image, years, families } = loadedBrands;
 
     const title = `Katalog samochodów seryjnych - ${name} (${years})`;
+
+    // console.log(loadedBrands);
 
     return (
         <>
@@ -88,7 +78,7 @@ export default function SerialHome() {
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
                 <Box>
-                    <FamilySwiper marka={marki} />
+                    <FamilySwiper marka={loadedBrands} />
                 </Box>
                 <BrandContainer title={title} brandData={loadedBrands}/>
 
