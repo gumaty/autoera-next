@@ -1,5 +1,6 @@
 import {Box, Typography} from "@mui/material";
 import React, {useEffect, useState} from "react";
+import Link from "next/link";
 
 function FamilyContainer(props){
 
@@ -23,6 +24,21 @@ function FamilyContainer(props){
                     <Typography key={index} sx={{mb: 2, color: '#153F1A', textAlign: "justify"}}>
                         {paragraph}
                     </Typography>
+                ))}
+            </Box>
+            <Box sx={{display: "flex", flexDirection: "row", justifyContent: "center", flexWrap: "wrap"}}>
+                {familyData.galery && Array.isArray(familyData.galery) && familyData.galery.map((image) => (
+                    <Box sx={{margin: 1}}>
+                        <Link
+                              key={familyData.image}
+                              href={`/seryjne/${familyData.brand}/${familyData.family}`}
+                        >
+                            <img
+                                src={`http://www.auto-era.pl/nowa/src/images/wsp/${familyData.catalogue}/tn/${image}.jpg`} alt={`Miniatura ${familyData.brand} ${familyData.family}`}
+                            />
+                        </Link>
+                    </Box>
+
                 ))}
             </Box>
 

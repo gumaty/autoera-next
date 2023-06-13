@@ -62,7 +62,7 @@ export default function FamilyHome(props) {
             })
             .then((res) => {
 
-                let {brand: name, family: fam, description: describe, image: picture, years: range, galery: gal, generation: gen} = res;
+                let {brand: name, family: fam, description: describe, image: picture, years: range, catalogue: cat, galery: gal, generation: gen} = res;
 
                 describe = convert(describe);
 
@@ -76,6 +76,7 @@ export default function FamilyHome(props) {
                     description: tryArray,
                     image: picture,
                     years: range,
+                    catalogue: cat,
                     galery: gal,
                     generation: gen
                 }
@@ -87,7 +88,7 @@ export default function FamilyHome(props) {
             });
     }, []);
 
-    const { brand, family, description, image, years, galery, generation } = loadedBrands;
+    const { brand, family, description, image, years, catalogue, galery, generation } = loadedBrands;
 
     const title = `Katalog samochodów seryjnych - ${brand} ${family} (${years})`;
 
