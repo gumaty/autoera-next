@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import {Box, Container, Typography} from "@mui/material";
+import React from "react";
 
 const title = "O nas";
 
@@ -16,6 +17,13 @@ export default function AboutHome() {
                 <Box sx={{p: '20px', bgcolor: 'white'}} >
                     <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>
                         <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{title}</Typography>
+                    </Box>
+                    <Box sx={{display: "flex", mb: 2, py: 2, width: { xs: "100%", sm: "80%" }, borderTop: 2, borderBottom: 2, marginInline: "auto"}}>
+                        <Box sx={{marginInline: "auto"}}>
+                            <img
+                                src={`/images/about.jpg`} alt={`Grafika - palec wskazujący punkt na cyfrowej mapie świata `} style={{maxWidth: "500px", width: "100%"}}
+                            />
+                        </Box>
                     </Box>
                     <Typography sx={{color: '#153F1A', textAlign: "justify"}}>
                         Jesteśmy niewielkim zespołem ludzi, którzy interesują się motoryzacją, a swoje zainteresowania przelewają bądź na papier, bądź do komputera. Zdecydowaliśmy się uruchomić serwis ponieważ chcemy zapełnić lukę na rynku, czyli brak kompletnego katalogu samochodów produkowanych seryjnie. Oczywiście nie chcemy ograniczyć się tylko do tej wąskiej dziedziny.<br /><br />
