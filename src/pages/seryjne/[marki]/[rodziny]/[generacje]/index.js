@@ -1,12 +1,10 @@
 import Head from 'next/head'
 import {Box, Container, Typography} from "@mui/material";
-import FamilySwiper from "@/components/FamilySwiper";
+
 import {useRouter} from "next/router";
 import React, {useEffect, useState} from "react";
-import BrandContainer from "@/components/BrandContainer";
 import GenerationSwiper from "@/components/GenerationSwiper";
-import FamilyContainer from "@/components/FamilyContainer";
-import GenerationContainer from "@/components/GerenationContainer";
+import GenerationContainer from "@/components/GenerationContainer";
 
 export default function FamilyHome(props) {
 
@@ -63,15 +61,15 @@ export default function FamilyHome(props) {
                 }
                 const family = rodziny;
                 const familyFound = findFamily(familyList, family);
-                console.log(familyFound);
+                // console.log(familyFound);
 
                 const generList = familyFound.generation;
-                console.log(generList);
+                // console.log(generList);
 
                 const generation = generacje;
                 const generationFound = findFamily(generList, generation);
 
-                console.log(generationFound);
+                // console.log(generationFound);
 
                 return generationFound;
 
