@@ -1,6 +1,7 @@
 import {Box, Typography} from "@mui/material";
 import React, {useEffect, useState} from "react";
 import Link from "next/link";
+import GalleryModal from "@/components/GalleryModal";
 
 function GenerationContainer(props){
 
@@ -28,15 +29,8 @@ function GenerationContainer(props){
             </Box>
             <Box sx={{display: "flex", flexDirection: "row", justifyContent: "center", flexWrap: "wrap"}}>
                 {familyData.galery && Array.isArray(familyData.galery) && familyData.galery.map((image) => (
-                    <Box sx={{margin: 1}}>
-                        <Link
-                              key={familyData.image}
-                              href={`/seryjne/${familyData.brand}/${familyData.family}`}
-                        >
-                            <img
-                                src={`/images/wsp/${familyData.catalogue}/tn/${image}.jpg`} alt={`Miniatura ${familyData.brand} ${familyData.family}`}
-                            />
-                        </Link>
+                    <Box key={image} sx={{margin: 1}}>
+                        <GalleryModal familyData={familyData} image={image}/>
                     </Box>
 
                 ))}

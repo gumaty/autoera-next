@@ -40,7 +40,7 @@ export default function FamilyHome(props) {
                 const brandKey = Object.keys(data)[0];
                 const familyList = data[brandKey].families;
 
-                console.log(familyList);
+                // console.log(familyList);
 
 
 
