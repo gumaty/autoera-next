@@ -17,55 +17,42 @@ import {Typography} from "@mui/material";
 
 export default function GenerationSwiper(props) {
 
-    const { marka } = props;
+    const [numberSlidesPerView, setNumberSlidesPerView] = useState(0);
 
-    const isSmallestScreen = useMediaQuery({ query: '(max-width: 370px)' });
-    const isSmallerScreen = useMediaQuery({ query: '((min-width: 371px) and (max-width: 480px)' });
-    const isSmallScreen = useMediaQuery({ query: '(min-width: 481px) and (max-width: 600px)' });
-    const isMediumScreen = useMediaQuery({ query: '(min-width: 601px) and (max-width: 680px)' });
-    const isBigScreen = useMediaQuery({ query: '(min-width: 681px) and (max-width: 780px)' });
-    const isBiggerScreen = useMediaQuery({ query: '(min-width: 781px) and (max-width: 900px)' });
-    const isBiggestScreen = useMediaQuery({ query: '(min-width: 901px) and (max-width: 1020px)' });
-    const isHugeScreen = useMediaQuery({ query: '(min-width: 1021px) and (max-width: 1200px)' });
-    const isVeryHugeScreen = useMediaQuery({ query: '(min-width: 1201px) and (max-width: 1536px)' });
+    const { rodzina } = props;
 
-    let numberSlidesPerView = 10; // Domyślna wartość
 
-    if (isSmallestScreen) {
-        numberSlidesPerView = 1.7; // Wartość dla małego ekranu
-    } else if (isSmallerScreen) {
-        numberSlidesPerView = 2; // Wartość dla średniego ekranu
-    } else if (isSmallScreen) {
-        numberSlidesPerView = 2.7; // Wartość dla średniego ekranu
-    } else if (isMediumScreen) {
-        numberSlidesPerView = 3.3; // Wartość dla średniego ekranu
-    } else if (isBigScreen) {
-        numberSlidesPerView = 3.9; // Wartość dla średniego ekranu
-    } else if (isBiggerScreen) {
-        numberSlidesPerView = 4.5; // Wartość dla średniego ekranu
-    } else if (isBiggestScreen) {
-        numberSlidesPerView = 5.1; // Wartość dla średniego ekranu
-    } else if (isHugeScreen) {
-        numberSlidesPerView = 5.8; // Wartość dla średniego ekranu
-    }else if (isVeryHugeScreen) {
-        numberSlidesPerView = 6.3; // Wartość dla średniego ekranu
-    }
+    useEffect(() => {
+        const handleResize = () => {
+            const newResolutionDividedBy250 = window.innerWidth / 185
+            setNumberSlidesPerView(newResolutionDividedBy250);
+        };
+
+        window.addEventListener('resize', handleResize);
+        handleResize();
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     // console.log(props)
 
-            const data = marka.families;
+            const data = rodzina.generation;
 
                 // console.log(data);
-                const families = [];
+                const generations = [];
 
                 for (const key in data) {
-                    const family = {
+                    const generation = {
                         id: key,
                         ...data[key],
                     };
 
-                    families.push(family);
+                    generations.push(generation);
                 }
+
+                // console.log(generations);
 
     return (
         <>
@@ -85,20 +72,20 @@ export default function GenerationSwiper(props) {
                 modules={[EffectCoverflow, Pagination]}
                 className={classes.swiper}
             >
-                {families
+                {generations
                     .slice()
                     .sort((a, b) => a.family.localeCompare(b.family))
                     .map((data) => (
-                        <SwiperSlide className={classes.swiperSlide} key={data.family} style={{position: "relative"}}>
+                        <SwiperSlide className={classes.swiperSlide} key={data.id} style={{position: "relative"}}>
                             <Link style={{ display: "flex", justifyContent: "center"}}
-                                key={data.family}
-                                href={`/seryjne/${data.brand}/${data.family}`}
+                                key={data.id}
+                                href={`/seryjne/${data.brand}/${data.family}/${data.generation}`}
                             >
                                 <img
-                                    src={`http://www.auto-era.pl/nowa/src/images/family/tn/${data.image}.jpg`} alt={`Miniatura ${data.brand} ${data.family}`}
+                                    src={`http://www.auto-era.pl/nowa/src/images/family/tn/${data.image}.jpg`} alt={`Miniatura ${data.brand} ${data.family} ${data.generation}`}
                                 />
                                 <Typography sx={{position: "absolute", bottom: -15, left: 10, mb: 2, color: 'red', fontWeight: 'bold'}}>
-                                    {data.family}
+                                    {data.family} {data.generation}
                                 </Typography>
                             </Link>
                         </SwiperSlide>

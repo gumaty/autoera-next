@@ -102,9 +102,9 @@ export default function FamilyHome(props) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
-                {/*<Box>*/}
-                {/*    <GenerationSwiper rodzina={loadedBrands} />*/}
-                {/*</Box>*/}
+                <Box>
+                    <GenerationSwiper rodzina={loadedBrands} />
+                </Box>
                 <FamilyContainer title={title} familyData={loadedBrands}/>
 
             </Container>

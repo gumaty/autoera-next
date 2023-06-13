@@ -16,37 +16,21 @@ import { useMediaQuery } from 'react-responsive';
 
 export default function LogoSwiper() {
 
-    const isSmallestScreen = useMediaQuery({ query: '(max-width: 370px)' });
-    const isSmallerScreen = useMediaQuery({ query: '((min-width: 371px) and (max-width: 480px)' });
-    const isSmallScreen = useMediaQuery({ query: '(min-width: 481px) and (max-width: 600px)' });
-    const isMediumScreen = useMediaQuery({ query: '(min-width: 601px) and (max-width: 680px)' });
-    const isBigScreen = useMediaQuery({ query: '(min-width: 681px) and (max-width: 780px)' });
-    const isBiggerScreen = useMediaQuery({ query: '(min-width: 781px) and (max-width: 900px)' });
-    const isBiggestScreen = useMediaQuery({ query: '(min-width: 901px) and (max-width: 1020px)' });
-    const isHugeScreen = useMediaQuery({ query: '(min-width: 1021px) and (max-width: 1200px)' });
-    const isVeryHugeScreen = useMediaQuery({ query: '(min-width: 1201px) and (max-width: 1536px)' });
+    const [numberSlidesPerView, setNumberSlidesPerView] = useState(0);
 
-    let numberSlidesPerView = 10; // Domyślna wartość
+    useEffect(() => {
+        const handleResize = () => {
+            const newResolutionDividedBy250 = window.innerWidth / 120
+            setNumberSlidesPerView(newResolutionDividedBy250);
+        };
 
-    if (isSmallestScreen) {
-        numberSlidesPerView = 2.5; // Wartość dla małego ekranu
-    } else if (isSmallerScreen) {
-        numberSlidesPerView = 3; // Wartość dla średniego ekranu
-    } else if (isSmallScreen) {
-        numberSlidesPerView = 4; // Wartość dla średniego ekranu
-    } else if (isMediumScreen) {
-        numberSlidesPerView = 5; // Wartość dla średniego ekranu
-    } else if (isBigScreen) {
-        numberSlidesPerView = 6; // Wartość dla średniego ekranu
-    } else if (isBiggerScreen) {
-        numberSlidesPerView = 7; // Wartość dla średniego ekranu
-    } else if (isBiggestScreen) {
-        numberSlidesPerView = 8; // Wartość dla średniego ekranu
-    } else if (isHugeScreen) {
-        numberSlidesPerView = 9; // Wartość dla średniego ekranu
-    }else if (isVeryHugeScreen) {
-        numberSlidesPerView = 10; // Wartość dla średniego ekranu
-    }
+        window.addEventListener('resize', handleResize);
+        handleResize();
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     const [loadedBrands, setLoadedBrands] = useState([]);
 
