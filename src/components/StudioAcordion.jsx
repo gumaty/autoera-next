@@ -5,6 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {useEffect, useState} from "react";
+import Link from "next/link";
 
 export default function StudioAccordion() {
 
@@ -85,24 +86,22 @@ export default function StudioAccordion() {
                                 if (typeof value === 'object') {
                                     return (
                                         <AccordionDetails key={key}>
-                                            <Typography>
-                                                {value.brand} {value.name} ({value.year})
-                                            </Typography>
+                                            <Link style={{ display: "flex", justifyContent: "center", color: '#153F1A', textDecoration: "none"}}
+                                                  href={`/studialne/${key}`}
+                                            >
+                                                <Typography>
+                                                    {value.brand} {value.name} ({value.year})
+                                                </Typography>
+                                            </Link>
                                         </AccordionDetails>
                                     )
                                 }
-
                             })}
-
                         </Accordion>
-
                     ))
-
                     }
                 </AccordionDetails>
             </Accordion>
-
-
         </div>
     );
 
