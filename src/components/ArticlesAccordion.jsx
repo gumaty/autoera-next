@@ -47,7 +47,7 @@ export default function StudioAccordion() {
 
                     articles.push(article);
                 }
-
+                console.log(articles);
                 return articles;
 
             })
@@ -68,34 +68,29 @@ export default function StudioAccordion() {
                     <Typography variant='h6' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>Wybierz artykuł:</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    {loadedBrands.map((item) => (
-                        <Accordion key={item.id} sx={{maxWidth: 700, width: '100%', marginInline: 'auto', boxShadow: 5}} expanded={expanded === `${item.id}`} onChange={handleChange(`${item.id}`)}>
+
+                        <Accordion sx={{maxWidth: 700, width: '100%', marginInline: 'auto', boxShadow: 5}} expanded={expanded === `panel1`} onChange={handleChange(`panel1`)}>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
                                 aria-controls="panel1a-content"
                                 id="panel1a-header"
                             >
-                                <Typography variant='h6' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{item.id}</Typography>
+                                <Typography variant='h6' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>Artykuły historyczne</Typography>
                             </AccordionSummary>
-                            {Object.entries(item).map(([key, value]) => {
+                            {loadedBrands.map((item) => (
 
-                                if (typeof value === 'object') {
-                                    return (
-                                        <AccordionDetails key={key}>
-                                            <Link style={{ display: "flex", justifyContent: "center", color: '#153F1A', textDecoration: "none"}}
-                                                  href={`/studialne/${key}`}
-                                            >
-                                                <Typography>
-                                                    {value.brand} {value.name} ({value.year})
-                                                </Typography>
-                                            </Link>
-                                        </AccordionDetails>
-                                    )
-                                }
-                            })}
+                                <AccordionDetails key={item.id}>
+                                    <Link style={{ display: "flex", justifyContent: "center", color: '#153F1A', textDecoration: "none"}}
+                                          href={`/articles/${item.id}`}
+                                    >
+                                        <Typography>
+                                            {item.subject}
+                                        </Typography>
+                                    </Link>
+                                </AccordionDetails>
+                            ))
+                            }
                         </Accordion>
-                    ))
-                    }
                 </AccordionDetails>
             </Accordion>
         </div>

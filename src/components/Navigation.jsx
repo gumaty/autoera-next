@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import classes from './Navigation.module.css';
 
-const pages = [{id: 1, title: 'Strona główna', link: '/'}, {id: 2, title: 'Samochody seryjne', link: '/seryjne'}, {id: 3, title:'Samochody studialne', link: '/studialne'}, {id: 4, title:'Encyklopedia', link: '/encyklopedia'}, {id: 5, title:'Kontakt', link: '/kontakt'}, {id: 6, title:'O nas', link: '/about'}];
+const pages = [{id: 1, title: 'Strona główna', link: '/'}, {id: 2, title: 'Samochody seryjne', link: '/seryjne'}, {id: 3, title:'Samochody studialne', link: '/studialne'}, {id: 4, title:'Encyklopedia', link: '/encyklopedia'}, {id: 5, title:'Artykuły', link: '/articles'}, {id: 6, title:'Kontakt', link: '/kontakt'}];
 
 function Navigation() {
 

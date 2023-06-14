@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import {Box, Container, Typography} from "@mui/material";
-import StudioAccordion from "@/components/StudioAcordion";
+import ArticlesAccordion from "@/components/ArticlesAccordion";
 import React from "react";
 
 const title = "Artykuły motoryzacyjne";
@@ -22,13 +22,13 @@ export default function ArticlesHome() {
                     <Box sx={{display: "flex", mb: 2, py: 2, width: { xs: "100%", sm: "80%" }, borderTop: 2, borderBottom: 2, marginInline: "auto"}}>
                         <Box sx={{marginInline: "auto"}}>
                             <img
-                                src={`/images/studialne.jpg`} alt={`Szkic samochodu studialnego Nissan IMq`} style={{maxWidth: "500px", width: "100%"}}
+                                src={`/images/articles.jpg`} alt={`Laptop i notatnik`} style={{maxWidth: "500px", width: "100%"}}
                             />
                         </Box>
                     </Box>
                     <Box sx={{mb:2, px: 2, py: 1, display:'block', textAlign: 'center'}}>
 
-                        <StudioAccordion />
+                        <ArticlesAccordion />
                     </Box>
                     <Typography sx={{color: '#153F1A', textAlign: "justify"}}>
                         Oprócz seryjnych samochodów osobowych prezentowane są pojazdy, które nigdy nie były produkowane seryjnie. Pojazdy te powstały jako prototypy lub w formie samochodów studialnych (concept cars).<br /><br />
