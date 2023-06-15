@@ -47,7 +47,6 @@ export default function StudioAccordion() {
 
                     articles.push(article);
                 }
-                console.log(articles);
                 return articles;
 
             })

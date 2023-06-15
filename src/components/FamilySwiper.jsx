@@ -35,11 +35,8 @@ export default function FamilySwiper(props) {
         };
     }, []);
 
-    // console.log(props)
-
             const data = marka.families;
 
-                // console.log(data);
                 const families = [];
 
                 for (const key in data) {
@@ -50,8 +47,6 @@ export default function FamilySwiper(props) {
 
                     families.push(family);
                 }
-
-                // console.log(families);
 
     return (
         <>

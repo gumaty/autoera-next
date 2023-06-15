@@ -39,7 +39,7 @@ export default function encyItemHome() {
             .then((data) => {
                 for (const key in data) {
                     if (key === entry) {
-                            console.log(data[key])
+                            // console.log(data[key])
                             return data[key];
                         }
                     }
@@ -65,7 +65,7 @@ export default function encyItemHome() {
                 return newArray;
             })
             .then((data) => {
-                console.log(data);
+                // console.log(data);
                 setLoadedBrands(data);
             });
     }, []);

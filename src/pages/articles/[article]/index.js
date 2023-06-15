@@ -2,7 +2,6 @@ import Head from 'next/head'
 import {Box, Container, Typography} from "@mui/material";
 import {useRouter} from "next/router";
 import React, {useEffect, useState} from "react";
-import StudioModelContainer from "@/components/StudioModelContainer";
 import ArticleContainer from "@/components/ArticleContainer";
 
 export default function StudioModelHome(props) {
@@ -36,7 +35,6 @@ export default function StudioModelHome(props) {
             .then((data) => {
                 for (const key in data) {
                     if (key === article) {
-                            console.log(data[key])
                             return data[key];
                         }
                     }
@@ -44,15 +42,14 @@ export default function StudioModelHome(props) {
             })
             .then((res) => {
 
-                let {subject: topic, content: describe, author: initials} = res;
+                let { subject: topic, content: describe, author: initials} = res;
 
                 describe = convert(describe);
 
                 const tryArray = describe.split(/\n/g);
 
-                // console.log(tryArray);
-
                 const newArray = {
+                    id: article,
                     subject: topic,
                     content: tryArray,
                     author: initials
@@ -62,7 +59,6 @@ export default function StudioModelHome(props) {
                 return newArray;
             })
             .then((data) => {
-                console.log(data);
                 setLoadedBrands(data);
             });
     }, []);
@@ -71,8 +67,6 @@ export default function StudioModelHome(props) {
     const { subject, content, author } = loadedBrands;
 
     const title = `Artykuły - ${subject}`;
-
-    // console.log(loadedBrands);
 
     return (
         <>

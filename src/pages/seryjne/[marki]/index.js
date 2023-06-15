@@ -45,8 +45,6 @@ export default function SerialHome() {
 
                 const tryArray = describe.split(/\n/g);
 
-                // console.log(tryArray);
-
                 const newArray = {
                     name: brand,
                     description: tryArray,
@@ -65,8 +63,6 @@ export default function SerialHome() {
     const { name, description, image, years, families } = loadedBrands;
 
     const title = `Katalog samochodów seryjnych - ${name} (${years})`;
-
-    // console.log(loadedBrands);
 
     return (
         <>

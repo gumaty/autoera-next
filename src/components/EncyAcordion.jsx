@@ -54,8 +54,6 @@ export default function EncyAccordion(props) {
                     }
 
                 }
-                // console.log(entry);
-
                 return entry;
 
             })
@@ -88,13 +86,13 @@ export default function EncyAccordion(props) {
                                     <Box>
                                         <img
                                             src={`/images/encyk/tn/${value.image}.webp`}
-                                            alt={`Zdjęcie dohasła: ${value.tytul}`}
+                                            alt={`Zdjęcie do hasła: ${value.tytul}`}
                                         />
                                     </Box>
                                 ) : null}
 
                                     <Box>
-                                        <Typography>
+                                        <Typography sx={{ textAlign: 'justify' }}>
                                             {value.tresc}
                                         </Typography>
                                     </Box>
@@ -103,7 +101,7 @@ export default function EncyAccordion(props) {
                             </Accordion>
                         )
                     }
-                }
+                    }
 
                 )}
 

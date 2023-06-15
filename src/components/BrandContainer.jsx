@@ -5,8 +5,6 @@ function BrandContainer(props){
 
     const { brandData } = props;
 
-    // console.log(brandData.description);
-
     return (
         <Box sx={{p: '20px', bgcolor: 'white'}} >
             <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>

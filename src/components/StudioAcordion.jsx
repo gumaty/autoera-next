@@ -50,8 +50,6 @@ export default function StudioAccordion() {
                     studioCars.push(studioCar);
                 }
 
-                // console.log(studioCars);
-
                 return studioCars;
 
             })

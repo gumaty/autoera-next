@@ -36,11 +36,8 @@ export default function GenerationSwiper(props) {
         };
     }, []);
 
-    // console.log(props)
-
             const data = rodzina.generation;
 
-                // console.log(data);
                 const generations = [];
 
                 for (const key in data) {
@@ -51,8 +48,6 @@ export default function GenerationSwiper(props) {
 
                     generations.push(generation);
                 }
-
-                // console.log(generations);
 
     return (
         <>
