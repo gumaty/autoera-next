@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -13,18 +13,15 @@ import classes from "./LogoSwiper.module.css";
 import { EffectCoverflow, Pagination } from "swiper";
 import Link from "next/link";
 import { useMediaQuery } from 'react-responsive';
-import {Typography} from "@mui/material";
 
-export default function FamilySwiper(props) {
+export default function EncySwiper() {
 
     const [numberSlidesPerView, setNumberSlidesPerView] = useState(0);
 
-    const { marka } = props;
-
     useEffect(() => {
         const handleResize = () => {
-            const newResolutionDividedBy250 = window.innerWidth / 185
-            setNumberSlidesPerView(newResolutionDividedBy250);
+            const newDevidedResolution = window.innerWidth / 120
+            setNumberSlidesPerView(newDevidedResolution);
         };
 
         window.addEventListener('resize', handleResize);
@@ -35,23 +32,28 @@ export default function FamilySwiper(props) {
         };
     }, []);
 
-    // console.log(props)
+    const [loadedBrands, setLoadedBrands] = useState([]);
 
-            const data = marka.families;
-
-                // console.log(data);
-                const families = [];
+    useEffect(() => {
+        fetch(
+            'https://autoera-64fe0-default-rtdb.europe-west1.firebasedatabase.app/encyklopedia.json'
+        )
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                const allEntries = [];
 
                 for (const key in data) {
-                    const family = {
+                    const entry = {
                         id: key,
                         ...data[key],
                     };
-
-                    families.push(family);
+                    allEntries.push(entry);
                 }
-
-                // console.log(families);
+                setLoadedBrands(allEntries);
+            });
+    }, []);
 
     return (
         <>
@@ -71,21 +73,18 @@ export default function FamilySwiper(props) {
                 modules={[EffectCoverflow, Pagination]}
                 className={classes.swiper}
             >
-                {families
+                {loadedBrands
                     .slice()
-                    .sort((a, b) => a.family.localeCompare(b.family))
-                    .map((data) => (
-                        <SwiperSlide className={classes.swiperSlide} key={data.id} style={{position: "relative"}}>
+                    .sort((a, b) => a.id.localeCompare(b.id))
+                    .map((brand) => (
+                        <SwiperSlide className={classes.swiperSlide} key={brand.id}>
                             <Link style={{ display: "flex", justifyContent: "center"}}
-                                key={data.id}
-                                href={`/seryjne/${data.brand}/${data.family}`}
+                                key={brand.id}
+                                href={`/encyklopedia/${brand.id}`}
                             >
                                 <img
-                                    src={`/images/family/tn/${data.image}.jpg`} alt={`Miniatura ${data.brand} ${data.family}`}
+                                    src={`/images/letters/${brand.id.toLowerCase()}.webp`} alt={`Znak ${brand.id}`}
                                 />
-                                <Typography sx={{position: "absolute", bottom: -15, left: 10, mb: 2, color: 'red', fontWeight: 'bold'}}>
-                                    {data.family}
-                                </Typography>
                             </Link>
                         </SwiperSlide>
                     ))}

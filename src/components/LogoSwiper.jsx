@@ -85,7 +85,7 @@ export default function LogoSwiper() {
                                 href={`/seryjne/${brand.name}`}
                             >
                                 <img
-                                    src={`http://www.auto-era.pl/nowa/src/images/logos/tn/${brand.image}.jpg`} alt={`Logo ${brand.name}`}
+                                    src={`/images/logos/tn/${brand.image}.jpg`} alt={`Logo ${brand.name}`}
                                 />
                             </Link>
                         </SwiperSlide>
