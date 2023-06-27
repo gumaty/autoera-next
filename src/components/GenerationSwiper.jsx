@@ -77,7 +77,7 @@ export default function GenerationSwiper(props) {
                                 href={`/seryjne/${data.brand}/${data.family}/${data.generation}`}
                             >
                                 <img
-                                    src={`/images/family/tn/${data.image}.jpg`} alt={`Miniatura ${data.brand} ${data.family} ${data.generation}`}
+                                    src={`/images/family/tn/${data.image}.webp`} alt={`Miniatura ${data.brand} ${data.family} ${data.generation}`}
                                 />
                                 <Typography sx={{position: "absolute", bottom: -15, left: 10, mb: 2, color: 'red', fontWeight: 'bold'}}>
                                     {data.family} {data.generation}

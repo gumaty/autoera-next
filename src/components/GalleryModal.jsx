@@ -15,7 +15,7 @@ export default function GalleryModal(props) {
         <>
             <Box sx={{margin: 1}}>
                 <img onClick={() => setOpen(true)}
-                    src={`/images/wsp/${familyData.catalogue}/tn/${image}.jpg`} alt={`Miniatura ${familyData.brand} ${familyData.family}`}
+                    src={`/images/wsp/${familyData.catalogue}/tn/${image}.webp`} alt={`Miniatura ${familyData.brand} ${familyData.family}`}
                 />
             </Box>
             <Modal
@@ -47,7 +47,7 @@ export default function GalleryModal(props) {
                     <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{familyData.brand} {familyData.family}  {familyData.generation}</Typography>
                     <Box sx={{margin: 1}}>
                         <img style={{maxWidth: "700px", width: "100%"}} onClick={() => setOpen(true)}
-                             src={`/images/wsp/${familyData.catalogue}/${image}.jpg`} alt={`Miniatura ${familyData.brand} ${familyData.family}  ${familyData.generation}`}
+                             src={`/images/wsp/${familyData.catalogue}/${image}.webp`} alt={`Miniatura ${familyData.brand} ${familyData.family}  ${familyData.generation}`}
                         />
                     </Box>
                 </Sheet>

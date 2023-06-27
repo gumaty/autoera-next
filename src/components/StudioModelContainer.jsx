@@ -16,7 +16,7 @@ function StudioModelContainer(props){
             <Box sx={{display: "flex", mb: 2, py: 2, width: { xs: "100%", sm: "80%" }, borderTop: 2, borderBottom: 2, marginInline: "auto"}}>
                 <Box sx={{marginInline: "auto"}}>
                     <img
-                        src={`/images/studio/${modelData.image}.jpg`} alt={`Logo ${modelData.brand} ${modelData.name}`} style={{maxWidth: "500px", width: "100%"}}
+                        src={`/images/studio/${modelData.image}.webp`} alt={`Miniatura ${modelData.brand} ${modelData.name}`} style={{maxWidth: "500px", width: "100%"}}
                     />
                 </Box>
             </Box>
