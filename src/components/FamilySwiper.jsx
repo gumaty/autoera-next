@@ -76,7 +76,7 @@ export default function FamilySwiper(props) {
                                 href={`/seryjne/${data.brand}/${data.family}`}
                             >
                                 <img
-                                    src={`/images/family/tn/${data.image}.jpg`} alt={`Miniatura ${data.brand} ${data.family}`}
+                                    src={`/images/family/tn/${data.image}.webp`} alt={`Miniatura ${data.brand} ${data.family}`}
                                 />
                                 <Typography sx={{position: "absolute", bottom: -15, left: 10, mb: 2, color: 'red', fontWeight: 'bold'}}>
                                     {data.family}
