@@ -4,6 +4,7 @@ import FamilySwiper from "@/components/FamilySwiper";
 import {useRouter} from "next/router";
 import React, {useEffect, useState} from "react";
 import BrandContainer from "@/components/BrandContainer";
+import { getBrand } from '../../../scripts/api';
 
 export default function SerialHome() {
 
