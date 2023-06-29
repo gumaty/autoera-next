@@ -63,8 +63,6 @@ export default function FamilySwiper(props) {
                     modifier: 1,
                     slideShadows: true,
                 }}
-                preventClicks={false}
-                preventClicksPropagation={false}
                 pagination={true}
                 modules={[EffectCoverflow, Pagination]}
                 className={classes.swiper}
@@ -73,7 +71,7 @@ export default function FamilySwiper(props) {
                     .slice()
                     .sort((a, b) => a.family.localeCompare(b.family))
                     .map((data) => (
-                        <SwiperSlide onClick={data => console.log(data)} preventClicks={false} preventClicksPropagation={false} className={classes.swiperSlide} key={data.id} style={{position: "relative"}}>
+                        <SwiperSlide className={classes.swiperSlide} key={data.id} style={{position: "relative"}}>
                             <Link style={{ display: "flex", justifyContent: "center"}}
                                 key={data.id}
                                 href={`/seryjne/${data.brand}/${data.family}`}

@@ -8,18 +8,6 @@ import { getBrand } from '../../../scripts/api';
 
 export default function SerialHome() {
 
-    function convert(text){
-
-        const textBefore   = ["\n\r", "\n\n", "\r\n", "\n", "\r", "m3", "CO2"];
-        const textAfter = ["<br><br>", "<br><br>", "<br><br>", "<br><br>", "<br><br>", "m<sup>3</sup>", "CO<sub>2</sub>"];
-        let newText = '';
-
-        for (let i = 0; i < textBefore.length; i++) {
-            newText = text.replaceAll(textBefore[i], textAfter[i]);
-        }
-        return newText;
-    }
-
     const router = useRouter();
 
     const [loadedBrands, setLoadedBrands] = useState([]);
@@ -41,8 +29,6 @@ export default function SerialHome() {
             .then((res) => {
 
                 let {name: brand, description: describe, image: picture, years: range, families: rodziny} = res;
-
-                describe = convert(describe);
 
                 const tryArray = describe.split(/\n/g);
 

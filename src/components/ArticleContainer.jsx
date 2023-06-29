@@ -16,7 +16,7 @@ function ArticleContainer(props){
             <Box>
                 {article.content && Array.isArray(article.content) && article.content.map((paragraph, index) => (
                     paragraph.includes(".jpg") ? (
-                      <Box key={index} sx={{display: "flex", mb: 2, py: 2, width: { xs: "100%", sm: "80%" }, borderTop: 2, borderBottom: 2, marginInline: "auto"}}>
+                      <Box key={index} sx={{display: "flex", mb: 2, py: 2, width: { xs: "100%", sm: "80%" }, borderTop: 2, borderBottom: 2, borderColor: 'red', marginInline: "auto"}}>
                         <Box sx={{marginInline: "auto"}}>
                             <img
                                 src={`/images/articles/${paragraph}`} alt={`Zdjęcie do artykułu`} style={{maxWidth: "500px", width: "100%"}}

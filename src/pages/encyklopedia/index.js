@@ -26,7 +26,7 @@ export default function EncyklopediaHome() {
                     <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>
                         <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{title}</Typography>
                     </Box>
-                    <Box sx={{display: "flex", mb: 2, py: 2, width: { xs: "100%", sm: "80%" }, borderTop: 2, borderBottom: 2, marginInline: "auto"}}>
+                    <Box sx={{display: "flex", mb: 2, py: 2, width: { xs: "100%", sm: "80%" }, borderTop: 2, borderBottom: 2, borderColor: 'red', marginInline: "auto"}}>
                         <Box sx={{marginInline: "auto"}}>
                             <img
                                 src={`/images/encyklopedia.jpg`} alt={`Zdjęcie rentgenowskie samochody wyścigowego`} style={{maxWidth: "500px", width: "100%"}}

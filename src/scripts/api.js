@@ -1,7 +1,7 @@
 function convert(text){
 
     const textBefore   = ["\n\r", "\n\n", "\r\n", "\n", "\r", "m3", "CO2"];
-    const textAfter = ["<br><br>", "<br><br>", "<br><br>", "<br><br>", "<br><br>", "m<sup>3</sup>", "CO<sub>2</sub>"];
+    const textAfter = ["<br /><br />", "<br /><br />", "<br /><br />", "<br /><br />", "<br /><br />", "m<sup>3</sup>", "CO<sub>2</sub>"];
     let newText = '';
 
     for (let i = 0; i < textBefore.length; i++) {
@@ -11,6 +11,7 @@ function convert(text){
 }
 
 export function getBrand(marki) {
+    let newArray= {};
     fetch(
         `https://autoera-64fe0-default-rtdb.europe-west1.firebasedatabase.app/brands.json?orderBy="name"&equalTo="${marki}"`
     )
@@ -20,7 +21,6 @@ export function getBrand(marki) {
         .then((data) => {
             const brandKey = Object.keys(data)[0];
             return data[brandKey];
-
         })
         .then((res) => {
 
@@ -30,7 +30,7 @@ export function getBrand(marki) {
 
             const tryArray = describe.split(/\n/g);
 
-            const newArray = {
+            newArray = {
                 name: brand,
                 description: tryArray,
                 image: picture,
@@ -39,8 +39,6 @@ export function getBrand(marki) {
             }
 
             return newArray;
-        })
-        .then((data) => {
-            setLoadedBrands(data);
         });
+    return newArray;
 }

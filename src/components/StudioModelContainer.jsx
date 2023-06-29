@@ -13,7 +13,7 @@ function StudioModelContainer(props){
                 <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>Katalog samochodów studialnych</Typography>
                 <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{modelData.brand} {modelData.name} ({modelData.year})</Typography>
             </Box>
-            <Box sx={{display: "flex", mb: 2, py: 2, width: { xs: "100%", sm: "80%" }, borderTop: 2, borderBottom: 2, marginInline: "auto"}}>
+            <Box sx={{display: "flex", mb: 2, py: 2, width: { xs: "100%", sm: "80%" }, borderTop: 2, borderBottom: 2, borderColor: 'red', marginInline: "auto"}}>
                 <Box sx={{marginInline: "auto"}}>
                     <img
                         src={`/images/studio/${modelData.image}.webp`} alt={`Miniatura ${modelData.brand} ${modelData.name}`} style={{maxWidth: "500px", width: "100%"}}
