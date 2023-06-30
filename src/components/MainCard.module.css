@@ -9,7 +9,7 @@
     border-radius: 6px;
     box-shadow: 0 2px 20px rgba(21, 63, 26, 0.2);
     max-width: 400px;
-    min-width: 300px;
+    /*min-width: 200px;*/
     width: 100%;
     transition: all 0.2s
 }

@@ -9,7 +9,7 @@ function CardContainer(props) {
                 <h2>Samochody {category} - warto zobaczyć</h2>
                 <div  className={styles.inner}>
                     {cards.map((card) => (
-                            <MainCard card={card}/>
+                            <MainCard key={card.id} card={card}/>
                         )
                     )}
                 </div>
