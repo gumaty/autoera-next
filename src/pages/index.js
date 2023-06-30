@@ -67,7 +67,7 @@ export default function Home() {
         <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
             <Box sx={{p: '20px', bgcolor: 'white'}} >
                 <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>
-                    <Typography variant='h5' component='h1' sx={{color: 'red', fontWeight: '700', textAlign: 'center'}}>
+                    <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700', textAlign: 'center'}}>
                         Auto-era - Twój profesjonalny portal motoryzacyjny
                     </Typography>
                     <Typography variant='h5' component='h2' sx={{color: 'red', fontWeight: '700', textAlign: 'center'}}>
