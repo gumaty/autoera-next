@@ -35,7 +35,6 @@ export default function LogoSwiper() {
         }
         getPageData();
 
-
         // fetch(
         //     'https://autoera-64fe0-default-rtdb.europe-west1.firebasedatabase.app/brands.json'
         // )

@@ -45,7 +45,7 @@ export default function SerialHome() {
             .then((data) => {
                 setLoadedBrands(data);
             });
-    }, []);
+    }, [router.query.marki, router.isReady]);
 
     const { name, description, image, years, families } = loadedBrands;
 

@@ -100,7 +100,7 @@ export default function FamilyHome(props) {
             .then((data) => {
                 setLoadedBrands(data);
             });
-    }, []);
+    }, [router.query.generacje, router.isReady]);
 
     const { brand, family, description, image, years, catalogue, galery, generation } = loadedBrands;
 
