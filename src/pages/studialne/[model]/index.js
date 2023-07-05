@@ -70,7 +70,7 @@ export default function StudioModelHome(props) {
             .then((data) => {
                 setLoadedBrands(data);
             });
-    }, []);
+    }, [router.query.model, router.isReady]);
 
 
     const { brand, name, description, image, year } = loadedBrands;
