@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -6,8 +6,9 @@ import "swiper/css/pagination";
 import classes from "./LogoSwiper.module.css";
 import { EffectCoverflow, Pagination } from "swiper";
 import Link from "next/link";
+import { PrismaClient } from "@prisma/client";
 
-export default function LogoSwiper() {
+export default function LogoSwiper({brands}) {
 
     const [numberSlidesPerView, setNumberSlidesPerView] = useState(0);
 
@@ -23,41 +24,7 @@ export default function LogoSwiper() {
         return () => { window.removeEventListener('resize', handleResize); };
     }, []);
 
-    const [loadedBrands, setLoadedBrands] = useState([]);
-
-    useEffect(() => {
-
-        async function getPageData() {
-            const apiUrlEndpoint = `http://localhost:3001/api/getdata-lib`;
-            const response = await fetch(apiUrlEndpoint);
-            const res = await response.json();
-            setLoadedBrands(res.marki);
-        }
-        getPageData();
-
-        // fetch(
-        //     'https://autoera-64fe0-default-rtdb.europe-west1.firebasedatabase.app/brands.json'
-        // )
-        //     .then((response) => {
-        //         return response.json();
-        //     })
-        //     .then((data) => {
-        //         const brands = [];
-        //
-        //         for (const key in data) {
-        //             const brand = {
-        //                 id: key,
-        //                 ...data[key],
-        //             };
-        //
-        //             brands.push(brand);
-        //         }
-        //
-        //         setLoadedBrands(brands);
-        //     });
-    }, []);
-
-    console.log(loadedBrands);
+    const [loadedBrands, setLoadedBrands] = useState(brands);
 
     return (
         <>
@@ -78,8 +45,8 @@ export default function LogoSwiper() {
                 className={classes.swiper}
             >
                 {loadedBrands
-                    .slice()
-                    .sort((a, b) => a.nazwa_marka.localeCompare(b.nazwa_marka))
+                    // .slice()
+                    // .sort((a, b) => a.nazwa_marka.localeCompare(b.nazwa_marka))
                     .map((brand) => (
                         <SwiperSlide className={classes.swiperSlide} key={brand.nazwa_marka}>
                             <Link style={{ display: "flex", justifyContent: "center"}}
@@ -92,24 +59,6 @@ export default function LogoSwiper() {
                             </Link>
                         </SwiperSlide>
                     ))}
-
-                {/*{loadedBrands*/}
-                {/*    .slice()*/}
-                {/*    .sort((a, b) => a.name.localeCompare(b.name))*/}
-                {/*    .map((brand) => (*/}
-                {/*        <SwiperSlide className={classes.swiperSlide} key={brand.name}>*/}
-                {/*            <Link style={{ display: "flex", justifyContent: "center"}}*/}
-                {/*                  key={brand.name}*/}
-                {/*                  href={`/seryjne/${brand.name}`}*/}
-                {/*            >*/}
-                {/*                <img*/}
-                {/*                    src={`/images/logos/tn/${brand.image}.webp`} alt={`Logo ${brand.name}`}*/}
-                {/*                />*/}
-                {/*            </Link>*/}
-                {/*        </SwiperSlide>*/}
-                {/*    ))}*/}
-
-
 
             </Swiper>
         </>

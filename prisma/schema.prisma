@@ -1,0 +1,212 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model encyk {
+  id    Int     @id @default(autoincrement())
+  tytul String? @db.VarChar(100)
+  tresc String? @db.LongText
+  image String? @db.VarChar(50)
+  OK    String  @default("1") @db.Char(1)
+
+  @@index([id], map: "id")
+}
+
+model gallery {
+  image_ID   Int     @id @default(autoincrement()) @db.SmallInt
+  marka      String  @db.VarChar(100)
+  typ        String  @db.VarChar(100)
+  generacja  String  @db.VarChar(10)
+  katalog    String? @db.VarChar(20)
+  image_name String? @db.VarChar(40)
+  image_opis String  @default("") @db.VarChar(60)
+  gal_ID     String  @default("0") @db.VarChar(4)
+
+  @@index([image_ID], map: "image_ID")
+}
+
+model generacje {
+  gener_ID    Int    @id @default(autoincrement())
+  marka_gener String @default("") @db.VarChar(100)
+  typ_gener   String @default("") @db.VarChar(100)
+  gen_gener   String @default("") @db.VarChar(10)
+  lata        String @default("") @db.VarChar(9)
+  opis        String @db.Text
+  img_gener   String @default("") @db.VarChar(30)
+  gal         String @default("") @db.VarChar(4)
+  OK          String @default("0") @db.Char(1)
+
+  @@index([gener_ID], map: "gener_ID")
+}
+
+model marki {
+  marki_ID    Int    @id @default(autoincrement())
+  nazwa_marka String @default("") @db.VarChar(30)
+  lata_marka  String @default("") @db.VarChar(9)
+  opis_marka  String @db.Text
+  img_marka   String @default("") @db.VarChar(20)
+  OK          String @default("0") @db.Char(1)
+
+  @@index([marki_ID], map: "marki_ID")
+}
+
+model markistud {
+  id          Int    @id @default(autoincrement())
+  nazwa_marki String @db.VarChar(100)
+  opis_marki  String @db.Text
+  image       String @db.VarChar(40)
+
+  @@index([id], map: "id")
+}
+
+model seryjne {
+  model_ID                 Int     @id @default(autoincrement()) @db.SmallInt
+  marka                    String  @default("") @db.VarChar(30)
+  rodzina                  String  @default("") @db.VarChar(30)
+  generacja                String  @default("") @db.VarChar(4)
+  model                    String  @default("") @db.VarChar(60)
+  rodz_naped               String  @default("") @db.VarChar(20)
+  kod_fabr                 String  @default("") @db.VarChar(15)
+  rok_uruch                Int?    @db.SmallInt
+  rok_zakoncz              Int?    @db.SmallInt
+  kraj_producenta          String  @default("") @db.VarChar(30)
+  struktura_nosna          String  @default("") @db.VarChar(30)
+  typ_nadwozia             String  @default("") @db.VarChar(30)
+  liczba_drzwi             Int?    @db.TinyInt
+  ilosc_bryl               String? @db.VarChar(6)
+  liczba_miejsc            Int?    @db.TinyInt
+  cx                       String? @db.VarChar(6)
+  pow_czolowa              String? @db.VarChar(6)
+  kod_silnika              String  @default("") @db.VarChar(30)
+  cykl_pracy_silnika       String  @default("") @db.VarChar(30)
+  rodzaj_zaplonu           String  @default("") @db.Char(2)
+  liczba_cylindow          Int?    @db.TinyInt
+  uklad_cylindrow          String  @default("") @db.Char(2)
+  umieszczenie_silnika     String  @default("") @db.VarChar(30)
+  srednica_cyl             String? @db.VarChar(6)
+  skok_tloka               String? @db.VarChar(6)
+  pojemnosc_skokowa        Int?    @db.SmallInt
+  moc_maks                 Int?    @db.SmallInt
+  obr_mocy_maks            Int?    @db.SmallInt
+  moment_maks              Int?    @db.SmallInt
+  obr_momentu_maks         Int?    @db.SmallInt
+  stopien_sprezania        String? @db.VarChar(6)
+  liczba_lozysk_glownych   Int?    @db.TinyInt
+  rodzaj_zasilania         String  @default("") @db.VarChar(50)
+  katalizator              String  @default("") @db.Char(2)
+  doladowanie              String  @default("") @db.VarChar(50)
+  intercooler              String  @default("") @db.Char(2)
+  ukl_rozrz                String  @default("") @db.VarChar(10)
+  l_zaw_cyl                Int?    @db.TinyInt
+  chlodzenie               String  @default("") @db.VarChar(15)
+  uklad_napedowy           String  @default("") @db.VarChar(35)
+  rodzaj_skrzyni           String  @default("") @db.VarChar(35)
+  liczba_biegow            String  @default("") @db.VarChar(6)
+  przelozenie_I            String  @default("") @db.VarChar(6)
+  przelozenie_II           String  @default("") @db.VarChar(6)
+  przelozenie_III          String  @default("") @db.VarChar(6)
+  przelozenie_IV           String  @default("") @db.VarChar(6)
+  przelozenie_V            String  @default("") @db.VarChar(6)
+  przelozenie_VI           String  @default("") @db.VarChar(6)
+  przelozenie_VII          String  @default("") @db.VarChar(6)
+  przelozenie_VIII         String  @default("") @db.VarChar(6)
+  przelozenie_IX           String  @default("") @db.VarChar(6)
+  przelozenie_X            String  @default("") @db.VarChar(6)
+  przelozenie_wstecz       String  @default("") @db.VarChar(6)
+  przelozenie_przekl_gl    String  @default("") @db.VarChar(6)
+  zawieszenie_prz          String  @default("") @db.VarChar(35)
+  elementy_res_prz         String  @default("") @db.VarChar(35)
+  zawieszenie_tyl          String  @default("") @db.VarChar(35)
+  elementy_res_tyl         String  @default("") @db.VarChar(35)
+  hamulce_przed            String  @default("") @db.VarChar(35)
+  hamulce_tyl              String  @default("") @db.VarChar(35)
+  ogumienie_przed          String  @default("") @db.VarChar(35)
+  ogumienie_tyl            String  @default("") @db.VarChar(35)
+  rozstaw_osi              Int?    @db.SmallInt
+  rozstaw_k_prz            Int?    @db.SmallInt
+  rozstaw_k_tyl            Int?    @db.SmallInt
+  dlugosc_calk             Int?    @db.SmallInt
+  szerokosc_calk           Int?    @db.SmallInt
+  wysokosc_calk            Int?    @db.SmallInt
+  zwis_przedni             Int?    @db.SmallInt
+  objet_bagaz_podst        Int?    @db.SmallInt
+  objet_bagaz_maks         Int?    @db.SmallInt
+  kat_natarcia             String  @default("") @db.VarChar(6)
+  kat_zejscia              String  @default("") @db.VarChar(6)
+  kat_rampowy              String  @default("") @db.VarChar(6)
+  masa_wl                  Int?    @db.SmallInt
+  masa_dop_calk            Int?    @db.SmallInt
+  dop_obc_osi_prz          Int?    @db.SmallInt
+  dop_obc_osi_tyl          Int?    @db.SmallInt
+  dop_masa_przyczepy_z_ham Int?    @db.SmallInt
+  predkosc_maks            Int?    @db.SmallInt
+  rodzaj_paliwa            String  @default("") @db.VarChar(25)
+  zuzycie_paliwa_wg        String  @default("") @db.VarChar(10)
+  zuzycie_I                String  @default("") @db.VarChar(6)
+  zuzycie_II               String  @default("") @db.VarChar(6)
+  zuzycie_III              String  @default("") @db.VarChar(6)
+  zuzycie_sr               String  @default("") @db.VarChar(6)
+  emisja_CO2               String  @default("") @db.VarChar(6)
+  czas_rozp_0_100          String  @default("") @db.VarChar(6)
+  srednica_zawr            String  @default("") @db.VarChar(6)
+  poj_zbior_pal            String  @default("") @db.VarChar(6)
+  grupa_pojazdow           String  @default("") @db.Char(1)
+  kod_kontynentu           String  @default("") @db.Char(2)
+  liczba_siln_el           Int     @default(0) @map("liczba siln_el")
+  moc_sil_1                String  @default("") @db.VarChar(10)
+  moc_sil_2                String  @default("") @db.VarChar(10)
+  moc_sil_3                String  @default("") @db.VarChar(10)
+  moment_sil_1             String  @default("") @db.VarChar(10)
+  moment_sil_2             String  @default("") @db.VarChar(10)
+  moment_sil_3             String  @default("") @db.VarChar(10)
+  moc_system               String  @default("") @db.VarChar(10)
+  moment_system            String  @default("") @db.VarChar(10)
+  napiecie                 String  @default("") @db.VarChar(6)
+  typ_akumul               String  @default("") @db.VarChar(20)
+  poj_akumul               String  @default("") @db.VarChar(10)
+  zasieg_elekt             Int     @default(0)
+  katalog                  String  @default("") @db.VarChar(15)
+
+  @@index([model_ID], map: "model_ID")
+}
+
+model stud {
+  ID        Int    @id @default(autoincrement()) @db.SmallInt
+  marka     String @default("") @db.VarChar(100)
+  model     String @default("") @db.VarChar(100)
+  rok       Int    @default(0) @db.Year
+  opis      String @db.Text
+  dlugosc   String @default("") @db.VarChar(4)
+  szerokosc String @default("") @db.VarChar(4)
+  wysokosc  String @default("") @db.VarChar(4)
+  pojemnosc String @default("") @db.VarChar(4)
+  cx        String @default("") @db.VarChar(4)
+  rozs_osi  String @default("") @db.VarChar(4)
+  predkosc  String @default("") @db.Char(3)
+  moc       String @default("") @db.Char(3)
+  obroty    String @default("") @db.VarChar(4)
+  zuzycie   String @default("") @db.Char(3)
+  picture   String @default("") @db.VarChar(25)
+  OK        String @default("0") @db.Char(1)
+
+  @@index([ID], map: "ID")
+}
+
+model typy {
+  ID_typy       Int    @id @default(autoincrement())
+  nazwa_marka   String @default("") @db.VarChar(100)
+  nazwa_typ     String @default("") @db.VarChar(100)
+  typ_lata      String @default("") @db.VarChar(9)
+  opis_typ      String @db.Text
+  generacja_typ String @default("0") @db.Char(1)
+  img_typ       String @default("") @db.VarChar(25)
+  gal           String @default("") @db.VarChar(4)
+  OK            String @default("0") @db.Char(1)
+
+  @@index([ID_typy], map: "ID_typy")
+}

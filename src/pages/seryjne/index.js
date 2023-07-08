@@ -1,10 +1,37 @@
 import Head from 'next/head'
 import {Box, Container, Typography} from "@mui/material";
 import LogoSwiper from "@/components/LogoSwiper";
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 const title = "Katalog samochodów seryjnych";
 
-export default function SerialHome() {
+export async function getServerSideProps() {
+    const brands = await prisma.marki.findMany(
+        {
+            where: {
+                OK: '1',
+            },
+            select: {
+                marki_ID: true,
+                nazwa_marka: true,
+                lata_marka: true,
+                img_marka: true,
+            },
+            orderBy: {
+                nazwa_marka: "asc"
+            }
+        }
+    );
+    return {
+        props: { brands }
+    };
+}
+
+
+export default function SerialHome({brands}) {
+
     return (
         <>
             <Head>
@@ -15,7 +42,7 @@ export default function SerialHome() {
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
                 <Box>
-                    <LogoSwiper />
+                    <LogoSwiper brands={brands}/>
                 </Box>
                 <Box sx={{p: '20px', bgcolor: 'white'}} >
                     <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>

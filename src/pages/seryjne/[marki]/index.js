@@ -4,52 +4,37 @@ import FamilySwiper from "@/components/FamilySwiper";
 import {useRouter} from "next/router";
 import React, {useEffect, useState} from "react";
 import BrandContainer from "@/components/BrandContainer";
-import { getBrand } from '../../../scripts/api';
+import { PrismaClient } from '@prisma/client';
 
-export default function SerialHome() {
+const prisma = new PrismaClient();
+
+export async function getServerSideProps(context) {
+
+    const marka = context.params.marki;
+
+    const brand = await prisma.marki.findMany(
+        {
+            where: {
+                nazwa_marka: marka,
+            }
+        }
+    );
+    return {
+        props: { brand }
+    };
+}
+
+export default function SerialHome({brand}) {
 
     const router = useRouter();
 
-    const [loadedBrands, setLoadedBrands] = useState([]);
+    const [loadedBrands, setLoadedBrands] = useState(brand);
 
     const { marki } = router.query;
 
-    useEffect(() => {
-        fetch(
-            `https://autoera-64fe0-default-rtdb.europe-west1.firebasedatabase.app/brands.json?orderBy="name"&equalTo="${marki}"`
-        )
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                const brandKey = Object.keys(data)[0];
-                return data[brandKey];
+     const { nazwa_marka, opis_marka, img_marka, lata_marka } = loadedBrands[0];
 
-            })
-            .then((res) => {
-
-                let {name: brand, description: describe, image: picture, years: range, families: rodziny} = res;
-
-                const tryArray = describe.split(/\n/g);
-
-                const newArray = {
-                    name: brand,
-                    description: tryArray,
-                    image: picture,
-                    years: range,
-                    families: rodziny
-                }
-
-                return newArray;
-            })
-            .then((data) => {
-                setLoadedBrands(data);
-            });
-    }, [router.query.marki, router.isReady]);
-
-    const { name, description, image, years, families } = loadedBrands;
-
-    const title = `Katalog samochodów seryjnych - ${name} (${years})`;
+    const title = `Katalog samochodów seryjnych - ${nazwa_marka} (${lata_marka})`;
 
     return (
         <>
@@ -61,9 +46,9 @@ export default function SerialHome() {
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
                 <Box>
-                    <FamilySwiper marka={loadedBrands} />
+                    <FamilySwiper marka={loadedBrands[0]} />
                 </Box>
-                <BrandContainer title={title} brandData={loadedBrands}/>
+                <BrandContainer title={title} brandData={loadedBrands[0]}/>
 
             </Container>
         </>
