@@ -19,7 +19,7 @@ export default function GenerationSwiper(props) {
 
     const [numberSlidesPerView, setNumberSlidesPerView] = useState(0);
 
-    const { rodzina } = props;
+    const { generacje } = props;
 
 
     useEffect(() => {
@@ -36,18 +36,6 @@ export default function GenerationSwiper(props) {
         };
     }, []);
 
-            const data = rodzina.generation;
-
-                const generations = [];
-
-                for (const key in data) {
-                    const generation = {
-                        id: key,
-                        ...data[key],
-                    };
-
-                    generations.push(generation);
-                }
 
     return (
         <>
@@ -67,20 +55,20 @@ export default function GenerationSwiper(props) {
                 modules={[EffectCoverflow, Pagination]}
                 className={classes.swiper}
             >
-                {generations
-                    .slice()
-                    .sort((a, b) => a.family.localeCompare(b.family))
-                    .map((data) => (
-                        <SwiperSlide className={classes.swiperSlide} key={data.id} style={{position: "relative"}}>
+                {generacje
+                    // .slice()
+                    // .sort((a, b) => a.family.localeCompare(b.family))
+                    .map((generacja) => (
+                        <SwiperSlide className={classes.swiperSlide} key={generacja.gener_ID} style={{position: "relative"}}>
                             <Link style={{ display: "flex", justifyContent: "center"}}
-                                key={data.id}
-                                href={`/seryjne/${data.brand}/${data.family}/${data.generation}`}
+                                key={generacja.gener_ID}
+                                href={`/seryjne/${generacja.marka_gener}/${generacja.typ_gener}/${generacja.gen_gener}`}
                             >
                                 <img
-                                    src={`/images/family/tn/${data.image}.webp`} alt={`Miniatura ${data.brand} ${data.family} ${data.generation}`}
+                                    src={`/images/family/tn/${generacja.img_gener}.webp`} alt={`Miniatura ${generacja.marka_gener} ${generacja.typ_gener} ${generacja.gen_gener}`}
                                 />
                                 <Typography sx={{position: "absolute", bottom: -15, left: 10, mb: 2, color: 'red', fontWeight: 'bold'}}>
-                                    {data.family} {data.generation}
+                                    {generacja.typ_gener} {generacja.gen_gener}
                                 </Typography>
                             </Link>
                         </SwiperSlide>

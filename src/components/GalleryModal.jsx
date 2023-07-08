@@ -8,14 +8,14 @@ import { Box } from "@mui/material";
 
 export default function GalleryModal(props) {
 
-    const {familyData, image} = props;
+    const { image } = props;
 
     const [open, setOpen] = React.useState(false);
     return (
         <>
             <Box sx={{margin: 1}}>
                 <img onClick={() => setOpen(true)}
-                    src={`/images/wsp/${familyData.catalogue}/tn/${image}.webp`} alt={`Miniatura ${familyData.brand} ${familyData.family}`}
+                    src={`/images/wsp/${image.katalog}/tn/${image.image_name}.webp`} alt={`Miniatura ${image.marka} ${image.typ}`}
                 />
             </Box>
             <Modal
@@ -44,10 +44,10 @@ export default function GalleryModal(props) {
                             bgcolor: 'background.body',
                         }}
                     />
-                    <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{familyData.brand} {familyData.family}  {familyData.generation}</Typography>
+                    <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{image.marka} {image.typ}  {image.generacja}</Typography>
                     <Box sx={{margin: 1}}>
                         <img style={{maxWidth: "700px", width: "100%"}} onClick={() => setOpen(true)}
-                             src={`/images/wsp/${familyData.catalogue}/${image}.webp`} alt={`Miniatura ${familyData.brand} ${familyData.family}  ${familyData.generation}`}
+                             src={`/images/wsp/${image.katalog}/${image.image_name}.webp`} alt={`Miniatura ${image.marka} ${image.typ}  ${image.generacja}`}
                         />
                     </Box>
                 </Sheet>

@@ -5,32 +5,37 @@ import GalleryModal from "@/components/GalleryModal";
 
 function FamilyContainer(props){
 
-    const { familyData } = props;
+    const { familyData, gallery } = props;
 
     return (
         <Box sx={{display: "flex", flexDirection: "column", p: '20px', bgcolor: 'white'}} >
             <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>
                 <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>Katalog samochodów seryjnych</Typography>
-                <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{familyData.brand} {familyData.family} ({familyData.years})</Typography>
+                <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{familyData.nazwa_marka} {familyData.nazwa_typ} ({familyData.typ_lata})</Typography>
             </Box>
             <Box sx={{display: "flex", mb: 2, py: 2, width: { xs: "100%", sm: "80%" }, borderTop: 2, borderBottom: 2, borderColor: 'red', marginInline: "auto"}}>
                 <Box sx={{marginInline: "auto"}}>
                     <img
-                        src={`/images/family/${familyData.image}.webp`} alt={`Logo ${familyData.brand} ${familyData.family}`} style={{maxWidth: "500px", width: "100%"}}
+                        src={`/images/family/${familyData.img_typ}.webp`} alt={`Logo ${familyData.nazwa_marka} ${familyData.nazwa_typ}`} style={{maxWidth: "500px", width: "100%"}}
                     />
                 </Box>
             </Box>
             <Box>
-                {familyData.description && Array.isArray(familyData.description) && familyData.description.map((paragraph, index) => (
-                    <Typography key={index} sx={{mb: 2, color: '#153F1A', textAlign: "justify"}}>
-                        {paragraph}
-                    </Typography>
-                ))}
+                {/*{familyData.opis_typ && Array.isArray(familyData.opis_typ) && familyData.opis_typ.map((paragraph, index) => (*/}
+                {/*    <Typography key={index} sx={{mb: 2, color: '#153F1A', textAlign: "justify"}}>*/}
+                {/*        {paragraph}*/}
+                {/*    </Typography>*/}
+                {/*))}*/}
+
+                <Typography sx={{mb: 2, color: '#153F1A', textAlign: "justify"}}>
+                    {familyData.opis_typ}
+                </Typography>
+
             </Box>
             <Box sx={{display: "flex", flexDirection: "row", justifyContent: "center", flexWrap: "wrap"}}>
-                {familyData.galery && Array.isArray(familyData.galery) && familyData.galery.map((image) => (
-                    <Box key={image} sx={{margin: 1}}>
-                        <GalleryModal familyData={familyData} image={image}/>
+                {gallery && Array.isArray(gallery) && gallery.map((image) => (
+                    <Box key={image.image_ID} sx={{margin: 1}}>
+                        <GalleryModal image={image}/>
                     </Box>
 
                 ))}
