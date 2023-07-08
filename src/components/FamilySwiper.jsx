@@ -65,7 +65,7 @@ export default function FamilySwiper(props) {
                                 href={`/seryjne/${rodzina.nazwa_marka}/${rodzina.nazwa_typ}`}
                             >
                                 <img
-                                    src={`/images/family/tn/${rodzina.img_typ}.webp`} alt={`Miniatura ${rodzina.nazwa_marka} ${rodzina.nazwa_typ}`}
+                                    src={`http://server090121.nazwa.pl/images/family/tn/${rodzina.img_typ}.webp`} alt={`Miniatura ${rodzina.nazwa_marka} ${rodzina.nazwa_typ}`}
                                 />
                                 <Typography sx={{position: "absolute", bottom: -15, left: 10, mb: 2, color: 'red', fontWeight: 'bold'}}>
                                     {rodzina.nazwa_typ}

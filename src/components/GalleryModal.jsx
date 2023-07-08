@@ -15,7 +15,7 @@ export default function GalleryModal(props) {
         <>
             <Box sx={{margin: 1}}>
                 <img onClick={() => setOpen(true)}
-                    src={`/images/wsp/${image.katalog}/tn/${image.image_name}.webp`} alt={`Miniatura ${image.marka} ${image.typ}`}
+                    src={`http://server090121.nazwa.pl/images/wsp/${image.katalog}/tn/${image.image_name}.webp`} alt={`Miniatura ${image.marka} ${image.typ}`}
                 />
             </Box>
             <Modal
@@ -47,7 +47,7 @@ export default function GalleryModal(props) {
                     <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{image.marka} {image.typ}  {image.generacja}</Typography>
                     <Box sx={{margin: 1}}>
                         <img style={{maxWidth: "700px", width: "100%"}} onClick={() => setOpen(true)}
-                             src={`/images/wsp/${image.katalog}/${image.image_name}.webp`} alt={`Miniatura ${image.marka} ${image.typ}  ${image.generacja}`}
+                             src={`http://server090121.nazwa.pl/images/wsp/${image.katalog}/${image.image_name}.webp`} alt={`Miniatura ${image.marka} ${image.typ}  ${image.generacja}`}
                         />
                     </Box>
                 </Sheet>

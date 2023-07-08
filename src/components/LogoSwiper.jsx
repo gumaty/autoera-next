@@ -54,7 +54,7 @@ export default function LogoSwiper({brands}) {
                                 href={`/seryjne/${brand.nazwa_marka}`}
                             >
                                 <img
-                                    src={`/images/logos/tn/${brand.img_marka}.webp`} alt={`Logo ${brand.nazwa_marka}`}
+                                    src={`http://server090121.nazwa.pl/images/logos/tn/${brand.img_marka}.webp`} alt={`Logo ${brand.nazwa_marka}`}
                                 />
                             </Link>
                         </SwiperSlide>

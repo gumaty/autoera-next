@@ -11,7 +11,7 @@ function BrandContainer(props){
                 <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{props.title}</Typography>
             </Box>
             <img
-                src={`/images/logos/${brandData.img_marka}.webp`} alt={`Logo ${brandData.nazwa_marka}`} style={{float: "left"}}
+                src={`http://server090121.nazwa.pl/images/logos/${brandData.img_marka}.webp`} alt={`Logo ${brandData.nazwa_marka}`} style={{float: "left"}}
             />
 
             <Typography sx={{mb: 2, color: '#153F1A', textAlign: "justify"}}>

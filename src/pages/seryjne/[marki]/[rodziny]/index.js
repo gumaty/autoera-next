@@ -98,7 +98,6 @@ export default function FamilyHome({result}) {
 
     const title = `Katalog samochodów seryjnych - ${brand} ${family} (${years})`;
 
-    console.log(result);
 
     return (
         <>

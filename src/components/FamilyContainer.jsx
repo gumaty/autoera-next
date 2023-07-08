@@ -16,7 +16,7 @@ function FamilyContainer(props){
             <Box sx={{display: "flex", mb: 2, py: 2, width: { xs: "100%", sm: "80%" }, borderTop: 2, borderBottom: 2, borderColor: 'red', marginInline: "auto"}}>
                 <Box sx={{marginInline: "auto"}}>
                     <img
-                        src={`/images/family/${familyData.img_typ}.webp`} alt={`Logo ${familyData.nazwa_marka} ${familyData.nazwa_typ}`} style={{maxWidth: "500px", width: "100%"}}
+                        src={`http://server090121.nazwa.pl/images/family/${familyData.img_typ}.webp`} alt={`Logo ${familyData.nazwa_marka} ${familyData.nazwa_typ}`} style={{maxWidth: "500px", width: "100%"}}
                     />
                 </Box>
             </Box>
