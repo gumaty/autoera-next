@@ -22,8 +22,6 @@ export default function FamilySwiper(props) {
 
     const { rodziny } = props;
 
-    console.log(rodziny);
-
     useEffect(() => {
         const handleResize = () => {
             const newResolutionDividedBy250 = window.innerWidth / 185
@@ -61,7 +59,7 @@ export default function FamilySwiper(props) {
                     // .slice()
                     // .sort((a, b) => a.family.localeCompare(b.family))
                     .map((rodzina) => (
-                        <SwiperSlide className={classes.swiperSlide} key={rodzina.id} style={{position: "relative"}}>
+                        <SwiperSlide className={classes.swiperSlide} key={rodzina.ID_typy} style={{position: "relative"}}>
                             <Link style={{ display: "flex", justifyContent: "center"}}
                                 key={rodzina.ID_typy}
                                 href={`/seryjne/${rodzina.nazwa_marka}/${rodzina.nazwa_typ}`}

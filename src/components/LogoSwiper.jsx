@@ -48,7 +48,7 @@ export default function LogoSwiper({brands}) {
                     // .slice()
                     // .sort((a, b) => a.nazwa_marka.localeCompare(b.nazwa_marka))
                     .map((brand) => (
-                        <SwiperSlide className={classes.swiperSlide} key={brand.nazwa_marka}>
+                        <SwiperSlide className={classes.swiperSlide} key={brand.marki_ID}>
                             <Link style={{ display: "flex", justifyContent: "center"}}
                                 key={brand.marki_ID}
                                 href={`/seryjne/${brand.nazwa_marka}`}

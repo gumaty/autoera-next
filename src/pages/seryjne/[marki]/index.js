@@ -55,9 +55,7 @@ export default function SerialHome({result}) {
 
     const { marki } = router.query;
 
-    console.log(result);
-
-     const { nazwa_marka, opis_marka, img_marka, lata_marka } = loadedBrands[0];
+    const { nazwa_marka, opis_marka, img_marka, lata_marka } = loadedBrands[0];
 
     const title = `Katalog samochodów seryjnych - ${nazwa_marka} (${lata_marka})`;
 
