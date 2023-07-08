@@ -19,18 +19,43 @@ export async function getServerSideProps(context) {
             }
         }
     );
+
+    const types = await prisma.typy.findMany(
+        {
+            where: {
+                nazwa_marka: marka,
+                OK: '1',
+            },
+            select: {
+                ID_typy: true,
+                nazwa_marka: true,
+                nazwa_typ: true,
+                typ_lata: true,
+                img_typ: true,
+            },
+            orderBy: {
+                nazwa_typ: "asc"
+            }
+        }
+    );
+
+    const result = brand
+    result.push(types);
+
     return {
-        props: { brand }
+        props: { result }
     };
 }
 
-export default function SerialHome({brand}) {
+export default function SerialHome({result}) {
 
     const router = useRouter();
 
-    const [loadedBrands, setLoadedBrands] = useState(brand);
+    const [loadedBrands, setLoadedBrands] = useState(result);
 
     const { marki } = router.query;
+
+    console.log(result);
 
      const { nazwa_marka, opis_marka, img_marka, lata_marka } = loadedBrands[0];
 
@@ -46,7 +71,7 @@ export default function SerialHome({brand}) {
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
                 <Box>
-                    <FamilySwiper marka={loadedBrands[0]} />
+                    <FamilySwiper rodziny={loadedBrands[1]} />
                 </Box>
                 <BrandContainer title={title} brandData={loadedBrands[0]}/>
 

@@ -20,7 +20,9 @@ export default function FamilySwiper(props) {
 
     const [numberSlidesPerView, setNumberSlidesPerView] = useState(0);
 
-    const { marka } = props;
+    const { rodziny } = props;
+
+    console.log(rodziny);
 
     useEffect(() => {
         const handleResize = () => {
@@ -36,18 +38,6 @@ export default function FamilySwiper(props) {
         };
     }, []);
 
-            const data = marka.families;
-
-                const families = [];
-
-                for (const key in data) {
-                    const family = {
-                        id: key,
-                        ...data[key],
-                    };
-
-                    families.push(family);
-                }
 
     return (
         <>
@@ -67,20 +57,20 @@ export default function FamilySwiper(props) {
                 modules={[EffectCoverflow, Pagination]}
                 className={classes.swiper}
             >
-                {families
-                    .slice()
-                    .sort((a, b) => a.family.localeCompare(b.family))
-                    .map((data) => (
-                        <SwiperSlide className={classes.swiperSlide} key={data.id} style={{position: "relative"}}>
+                {rodziny
+                    // .slice()
+                    // .sort((a, b) => a.family.localeCompare(b.family))
+                    .map((rodzina) => (
+                        <SwiperSlide className={classes.swiperSlide} key={rodzina.id} style={{position: "relative"}}>
                             <Link style={{ display: "flex", justifyContent: "center"}}
-                                key={data.id}
-                                href={`/seryjne/${data.brand}/${data.family}`}
+                                key={rodzina.ID_typy}
+                                href={`/seryjne/${rodzina.nazwa_marka}/${rodzina.nazwa_typ}`}
                             >
                                 <img
-                                    src={`/images/family/tn/${data.image}.webp`} alt={`Miniatura ${data.brand} ${data.family}`}
+                                    src={`/images/family/tn/${rodzina.img_typ}.webp`} alt={`Miniatura ${rodzina.nazwa_marka} ${rodzina.nazwa_typ}`}
                                 />
                                 <Typography sx={{position: "absolute", bottom: -15, left: 10, mb: 2, color: 'red', fontWeight: 'bold'}}>
-                                    {data.family}
+                                    {rodzina.nazwa_typ}
                                 </Typography>
                             </Link>
                         </SwiperSlide>
