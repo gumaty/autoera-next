@@ -68,6 +68,9 @@ export default function SerialHome({result}) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
+                <Box sx={{pt: '20px', bgcolor: 'white'}} >
+                    <Typography variant='h6' component='h3' sx={{color: '#153F1A', fontWeight: '700', textAlign: 'center'}}>Wybierz rodzinę:</Typography>
+                </Box>
                 <Box>
                     <FamilySwiper rodziny={loadedBrands[1]} />
                 </Box>

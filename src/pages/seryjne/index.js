@@ -2,6 +2,7 @@ import Head from 'next/head'
 import {Box, Container, Typography} from "@mui/material";
 import LogoSwiper from "@/components/LogoSwiper";
 import { PrismaClient } from '@prisma/client';
+import React from "react";
 
 const prisma = new PrismaClient();
 
@@ -41,6 +42,9 @@ export default function SerialHome({brands}) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
+                <Box sx={{pt: '20px', bgcolor: 'white'}} >
+                    <Typography variant='h6' component='h3' sx={{color: '#153F1A', fontWeight: '700', textAlign: 'center'}}>Wybierz markę:</Typography>
+                </Box>
                 <Box>
                     <LogoSwiper brands={brands}/>
                 </Box>
