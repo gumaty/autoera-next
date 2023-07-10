@@ -7,9 +7,9 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {useEffect, useState} from "react";
 import Link from "next/link";
 
-export default function StudioAccordion() {
+export default function StudioAccordion({models}) {
 
-    const [loadedBrands, setLoadedBrands] = useState([]);
+    const [loadedBrands, setLoadedBrands] = useState(models);
     const [expanded, setExpanded] = useState(false);
 
     const handleChange = (panel) => (event, isExpanded) => {
@@ -28,37 +28,6 @@ export default function StudioAccordion() {
         return newText;
     }
 
-    useEffect(() => {
-        fetch(
-            `https://autoera-64fe0-default-rtdb.europe-west1.firebasedatabase.app/studio.json`
-        )
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                // const brandKey = Object.keys(data)[0];
-                // const studioList = data[brandKey];
-
-                const studioCars = [];
-
-                for (const key in data) {
-                    const studioCar = {
-                        id: key,
-                        ...data[key],
-                    };
-
-                    studioCars.push(studioCar);
-                }
-
-                return studioCars;
-
-            })
-
-            .then((data) => {
-                setLoadedBrands(data);
-            });
-    }, []);
-
     return (
         <div style={{maxWidth: 700, width: '100%', marginInline: 'auto'}}>
             <Accordion sx={{ boxShadow: 5 }}>
@@ -71,24 +40,24 @@ export default function StudioAccordion() {
                 </AccordionSummary>
                 <AccordionDetails>
                     {loadedBrands.map((item) => (
-                        <Accordion key={item.id} sx={{maxWidth: 700, width: '100%', marginInline: 'auto', boxShadow: 5}} expanded={expanded === `${item.id}`} onChange={handleChange(`${item.id}`)}>
+                        <Accordion key={item.marka} sx={{maxWidth: 700, width: '100%', marginInline: 'auto', boxShadow: 5}} expanded={expanded === `${item.marka}`} onChange={handleChange(`${item.marka}`)}>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
                                 aria-controls="panel1a-content"
                                 id="panel1a-header"
                             >
-                                <Typography variant='h6' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{item.id}</Typography>
+                                <Typography variant='h6' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{item.marka}</Typography>
                             </AccordionSummary>
-                            {Object.entries(item).map(([key, value]) => {
+                            {Object.entries(item.models).map(([key, value]) => {
 
                                 if (typeof value === 'object') {
                                     return (
                                         <AccordionDetails key={key}>
                                             <Link style={{ display: "flex", justifyContent: "center", color: '#153F1A', textDecoration: "none"}}
-                                                  href={`/studialne/${key}`}
+                                                  href={`/studialne/${value.marka}/${value.model}`}
                                             >
                                                 <Typography>
-                                                    {value.brand} {value.name} ({value.year})
+                                                    {value.marka} {value.model} ({value.rok})
                                                 </Typography>
                                             </Link>
                                         </AccordionDetails>

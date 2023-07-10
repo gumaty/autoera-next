@@ -3,9 +3,68 @@ import {Box, Container, Typography} from "@mui/material";
 import StudioAccordion from "@/components/StudioAcordion";
 import React from "react";
 
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+
+export async function getServerSideProps(context) {
+
+
+    const brands = await prisma.stud.groupBy(
+        {
+            by: ['marka'],
+            orderBy: {
+                marka: 'asc',
+            },
+        }
+    );
+
+    const cars = await prisma.stud.findMany(
+        {
+            select: {
+                marka: true,
+                model: true,
+                rok: true,
+                opis: true,
+                picture: true,
+            },
+            orderBy: [
+                {
+                    marka: "asc",
+                },
+                {
+                    model: "asc",
+                },
+            ],
+        }
+    );
+
+    const tempArray = [];
+
+    for (let i = 0; i < brands.length; i++) {
+        const obj = {};
+        obj['marka'] = brands[i].marka;
+        obj['models'] = [];
+        for (let j = 0; j < cars.length; j++) {
+            if (cars[j].marka === brands[i].marka) {
+                obj['models'].push(cars[j]);
+            }
+        }
+        tempArray.push(obj);
+    }
+
+
+    const result = tempArray;
+
+    return {
+        props: { result }
+    };
+}
+
 const title = "Pojazdy studialne i prototypowe";
 
-export default function StudioHome() {
+export default function StudioHome({result}) {
+
     return (
         <>
             <Head>
@@ -22,13 +81,13 @@ export default function StudioHome() {
                     <Box sx={{display: "flex", mb: 2, py: 2, width: { xs: "100%", sm: "80%" }, borderTop: 2, borderBottom: 2, marginInline: "auto"}}>
                         <Box sx={{marginInline: "auto"}}>
                             <img
-                                src={`/images/studialne.jpg`} alt={`Szkic samochodu studialnego Nissan IMq`} style={{maxWidth: "500px", width: "100%"}}
+                                src={`http://server090121.nazwa.pl/images/studialne.webp`} alt={`Szkic samochodu studialnego Nissan IMq`} style={{maxWidth: "500px", width: "100%"}}
                             />
                         </Box>
                     </Box>
                     <Box sx={{mb:2, px: 2, py: 1, display:'block', textAlign: 'center'}}>
 
-                        <StudioAccordion />
+                        <StudioAccordion models={result}/>
                     </Box>
                     <Typography sx={{color: '#153F1A', textAlign: "justify"}}>
                         Oprócz seryjnych samochodów osobowych prezentowane są pojazdy, które nigdy nie były produkowane seryjnie. Pojazdy te powstały jako prototypy lub w formie samochodów studialnych (concept cars).<br /><br />

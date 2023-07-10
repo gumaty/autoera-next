@@ -22,7 +22,7 @@ export default function ContactHome() {
                     <Box sx={{display: "flex", mb: 2, py: 2, width: { xs: "100%", sm: "80%" }, borderTop: 2, borderBottom: 2, marginInline: "auto"}}>
                         <Box sx={{marginInline: "auto"}}>
                             <img
-                                src={`/images/email.jpg`} alt={`Zdjęcie rentgenowskie samochody wyścigowego`} style={{maxWidth: "500px", width: "100%"}}
+                                src={`http://server090121.nazwa.pl/images/email.webp`} alt={`Zdjęcie rentgenowskie samochody wyścigowego`} style={{maxWidth: "500px", width: "100%"}}
                             />
                         </Box>
                     </Box>
