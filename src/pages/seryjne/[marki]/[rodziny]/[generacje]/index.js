@@ -5,8 +5,100 @@ import {useRouter} from "next/router";
 import React, {useEffect, useState} from "react";
 import GenerationSwiper from "@/components/GenerationSwiper";
 import GenerationContainer from "@/components/GenerationContainer";
+import { PrismaClient } from '@prisma/client';
 
-export default function FamilyHome(props) {
+const prisma = new PrismaClient();
+
+export async function getServerSideProps(context) {
+
+    const marka = context.params.marki;
+    const rodzina = context.params.rodziny;
+    const generacja = context.params.generacje;
+
+    const generations = await prisma.generacje.findMany(
+        {
+            where: {
+                marka_gener: marka,
+                typ_gener: rodzina,
+                OK: '1',
+            },
+            select: {
+                gener_ID: true,
+                marka_gener: true,
+                typ_gener: true,
+                gen_gener: true,
+                lata: true,
+                img_gener: true,
+            },
+            orderBy: {
+                gen_gener: "asc"
+            }
+        }
+    );
+
+    const generation = await prisma.generacje.findMany(
+        {
+            where: {
+                marka_gener: marka,
+                typ_gener: rodzina,
+                gen_gener: generacja,
+                OK: '1',
+            },
+            select: {
+                gener_ID: true,
+                marka_gener: true,
+                typ_gener: true,
+                gen_gener: true,
+                lata: true,
+                opis: true,
+                img_gener: true,
+            }
+        }
+    );
+
+    const galeria = await prisma.gallery.findMany(
+        {
+            where: {
+                marka: marka,
+                typ: rodzina,
+                generacja: generacja
+            },
+            orderBy: {
+                image_name: "asc"
+            }
+        }
+    );
+
+    const types = await prisma.typy.findMany(
+        {
+            where: {
+                nazwa_marka: marka,
+                OK: '1',
+            },
+            select: {
+                ID_typy: true,
+                nazwa_marka: true,
+                nazwa_typ: true,
+                typ_lata: true,
+                img_typ: true,
+            },
+            orderBy: {
+                nazwa_typ: "asc"
+            }
+        }
+    );
+
+    const result = generation;
+    result.push(generations);
+    result.push(galeria);
+    result.push(types);
+
+    return {
+        props: { result }
+    };
+}
+
+export default function FamilyHome({result}) {
 
     function convert(text){
 
@@ -22,85 +114,12 @@ export default function FamilyHome(props) {
 
     const router = useRouter();
 
-    const [loadedBrands, setLoadedBrands] = useState([]);
+    const [loadedBrands, setLoadedBrands] = useState(result);
 
     const { marki, rodziny, generacje } = router.query;
 
     // console.log(marki);
     // console.log(rodziny);
-
-    useEffect(() => {
-        fetch(
-            `https://autoera-64fe0-default-rtdb.europe-west1.firebasedatabase.app/brands.json?orderBy="name"&equalTo="${marki}"`
-        )
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                const brandKey = Object.keys(data)[0];
-                const familyList = data[brandKey].families;
-
-                // console.log(familyList);
-
-
-
-
-
-                function findFamily(object, value) {
-                    for (let key in object) {
-                        if (object.hasOwnProperty(key) && typeof object[key] === 'object') {
-                            const subObject = object[key];
-                            for (let subKey in subObject) {
-                                if (subObject.hasOwnProperty(subKey) && subObject[subKey] === value) {
-                                    return subObject;
-                                }
-                            }
-                        }
-                    }
-                    return null;
-                }
-                const family = rodziny;
-                const familyFound = findFamily(familyList, family);
-                // console.log(familyFound);
-
-                const generList = familyFound.generation;
-                // console.log(generList);
-
-                const generation = generacje;
-                const generationFound = findFamily(generList, generation);
-
-                // console.log(generationFound);
-
-                return generationFound;
-
-            })
-            .then((res) => {
-
-                let {brand: name, family: fam, description: describe, image: picture, years: range, catalogue: cat, galery: gal, generation: gen} = res;
-
-                describe = convert(describe);
-
-                const tryArray = describe.split(/\n/g);
-
-                // console.log(tryArray);
-
-                const newArray = {
-                    brand: name,
-                    family: fam,
-                    description: tryArray,
-                    image: picture,
-                    years: range,
-                    catalogue: cat,
-                    galery: gal,
-                    generation: gen
-                }
-
-                return newArray;
-            })
-            .then((data) => {
-                setLoadedBrands(data);
-            });
-    }, [router.query.generacje, router.isReady]);
 
     const { brand, family, description, image, years, catalogue, galery, generation } = loadedBrands;
 
@@ -120,7 +139,7 @@ export default function FamilyHome(props) {
                 {/*<Box>*/}
                 {/*    <GenerationSwiper rodzina={loadedBrands} />*/}
                 {/*</Box>*/}
-                <GenerationContainer title={title} familyData={loadedBrands}/>
+                <GenerationContainer title={title} familyData={loadedBrands[0]} gallery={loadedBrands[2]}/>
 
             </Container>
         </>
