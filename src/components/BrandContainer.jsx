@@ -5,6 +5,8 @@ function BrandContainer(props){
 
     const { brandData } = props;
 
+    const descriptionArray = brandData.opis_marka.split(/\n/g);
+
     return (
         <Box sx={{p: '20px', bgcolor: 'white'}} >
             <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>
@@ -14,10 +16,11 @@ function BrandContainer(props){
                 src={`http://server090121.nazwa.pl/images/logos/${brandData.img_marka}.webp`} alt={`Logo ${brandData.nazwa_marka}`} style={{float: "left"}}
             />
 
-            <Typography sx={{mb: 2, color: '#153F1A', textAlign: "justify"}}>
-                {brandData.opis_marka}
-            </Typography>
-
+            {descriptionArray && Array.isArray(descriptionArray) && descriptionArray.map((paragraph, index) => (
+                <Typography key={index} sx={{mb: 2, color: '#153F1A', textAlign: "justify"}}>
+                        {paragraph}
+                </Typography>
+            ))}
         </Box>
     )
 }

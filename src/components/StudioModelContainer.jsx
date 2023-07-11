@@ -7,6 +7,8 @@ function StudioModelContainer(props){
 
     const { modelData } = props;
 
+    const descriptionArray = modelData.opis.split(/\n/g);
+
     return (
         <Box sx={{display: "flex", flexDirection: "column", p: '20px', bgcolor: 'white'}} >
             <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>
@@ -21,15 +23,12 @@ function StudioModelContainer(props){
                 </Box>
             </Box>
             <Box>
-                <Typography sx={{mb: 2, color: '#153F1A', textAlign: "justify"}}>
-                    {modelData.opis}
-                </Typography>
-
-                {/*{modelData.description && Array.isArray(modelData.opis) && modelData.opis.map((paragraph, index) => (*/}
-                {/*    <Typography key={index} sx={{mb: 2, color: '#153F1A', textAlign: "justify"}}>*/}
-                {/*        {paragraph}*/}
-                {/*    </Typography>*/}
-                {/*))}*/}
+                {
+                    descriptionArray && Array.isArray(descriptionArray) && descriptionArray.map((paragraph, index) => (
+                    <Typography key={index} sx={{mb: 2, color: '#153F1A', textAlign: "justify"}}>
+                        {paragraph}
+                    </Typography>
+                ))}
             </Box>
         </Box>
     )

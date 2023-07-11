@@ -7,6 +7,8 @@ function FamilyContainer(props){
 
     const { familyData, gallery } = props;
 
+    const descriptionArray = familyData.opis_typ.split(/\n/g);
+
     return (
         <Box sx={{display: "flex", flexDirection: "column", p: '20px', bgcolor: 'white'}} >
             <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>
@@ -21,16 +23,11 @@ function FamilyContainer(props){
                 </Box>
             </Box>
             <Box>
-                {/*{familyData.opis_typ && Array.isArray(familyData.opis_typ) && familyData.opis_typ.map((paragraph, index) => (*/}
-                {/*    <Typography key={index} sx={{mb: 2, color: '#153F1A', textAlign: "justify"}}>*/}
-                {/*        {paragraph}*/}
-                {/*    </Typography>*/}
-                {/*))}*/}
-
-                <Typography sx={{mb: 2, color: '#153F1A', textAlign: "justify"}}>
-                    {familyData.opis_typ}
-                </Typography>
-
+                {descriptionArray && Array.isArray(descriptionArray) && descriptionArray.map((paragraph, index) => (
+                    <Typography key={index} sx={{mb: 2, color: '#153F1A', textAlign: "justify"}}>
+                        {paragraph}
+                    </Typography>
+                ))}
             </Box>
             <Box sx={{display: "flex", flexDirection: "row", justifyContent: "center", flexWrap: "wrap"}}>
                 {gallery && Array.isArray(gallery) && gallery.map((image) => (

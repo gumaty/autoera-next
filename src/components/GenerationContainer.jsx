@@ -7,6 +7,8 @@ function GenerationContainer(props){
 
     const { familyData, gallery } = props;
 
+    const descriptionArray = familyData.opis.split(/\n/g);
+
     return (
         <Box sx={{display: "flex", flexDirection: "column", p: '20px', bgcolor: 'white'}} >
             <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>
@@ -21,16 +23,11 @@ function GenerationContainer(props){
                 </Box>
             </Box>
             <Box>
-            {/*    {familyData.description && Array.isArray(familyData.description) && familyData.description.map((paragraph, index) => (*/}
-            {/*        <Typography key={index} sx={{mb: 2, color: '#153F1A', textAlign: "justify"}}>*/}
-            {/*            {paragraph}*/}
-            {/*        </Typography>*/}
-            {/*    ))}*/}
-
-                <Typography sx={{mb: 2, color: '#153F1A', textAlign: "justify"}}>
-                    {familyData.opis}
-                </Typography>
-
+                {descriptionArray && Array.isArray(descriptionArray) && descriptionArray.map((paragraph, index) => (
+                    <Typography key={index} sx={{mb: 2, color: '#153F1A', textAlign: "justify"}}>
+                        {paragraph}
+                    </Typography>
+                ))}
             </Box>
             <Box sx={{display: "flex", flexDirection: "row", justifyContent: "center", flexWrap: "wrap"}}>
                 {gallery && Array.isArray(gallery) && gallery.map((image) => (
