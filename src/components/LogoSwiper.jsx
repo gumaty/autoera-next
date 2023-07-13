@@ -34,11 +34,11 @@ export default function LogoSwiper({brands}) {
                 centeredSlides={true}
                 slidesPerView={numberSlidesPerView}
                 coverflowEffect={{
-                    rotate: 50,
+                    rotate: 0,
                     stretch: 0,
-                    depth: 100,
+                    depth: 300,
                     modifier: 1,
-                    slideShadows: true,
+                    slideShadows: false,
                 }}
                 pagination={true}
                 modules={[EffectCoverflow, Pagination]}

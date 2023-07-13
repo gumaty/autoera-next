@@ -136,9 +136,12 @@ export default function FamilyHome({result}) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
-                {/*<Box>*/}
-                {/*    <GenerationSwiper rodzina={loadedBrands} />*/}
-                {/*</Box>*/}
+                <Box sx={{pt: '20px', bgcolor: 'white'}} >
+                    <Typography variant='h6' component='h3' sx={{color: '#153F1A', fontWeight: '700', textAlign: 'center'}}>Wybierz generację:</Typography>
+                </Box>
+                <Box>
+                    <GenerationSwiper generacje={loadedBrands[1]} />
+                </Box>
                 <GenerationContainer title={title} familyData={loadedBrands[0]} gallery={loadedBrands[2]}/>
 
             </Container>

@@ -3,9 +3,6 @@ import {Box, Container, Typography} from "@mui/material";
 import MainCard from "@/components/MainCard";
 import CardContainer from "@/components/CardContainer";
 
-
-const title = "Strona główna";
-
 export default function Home() {
 
     const prod = [

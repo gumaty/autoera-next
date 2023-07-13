@@ -45,11 +45,11 @@ export default function GenerationSwiper(props) {
                 centeredSlides={true}
                 slidesPerView={numberSlidesPerView}
                 coverflowEffect={{
-                    rotate: 50,
+                    rotate: 0,
                     stretch: 0,
-                    depth: 100,
+                    depth: 300,
                     modifier: 1,
-                    slideShadows: true,
+                    slideShadows: false,
                 }}
                 pagination={true}
                 modules={[EffectCoverflow, Pagination]}
@@ -60,8 +60,7 @@ export default function GenerationSwiper(props) {
                     // .sort((a, b) => a.family.localeCompare(b.family))
                     .map((generacja) => (
                         <SwiperSlide className={classes.swiperSlide} key={generacja.gener_ID} style={{position: "relative"}}>
-                            <Link style={{ display: "flex", justifyContent: "center"}}
-                                key={generacja.gener_ID}
+                            <a style={{ display: "flex", justifyContent: "center"}}
                                 href={`/seryjne/${generacja.marka_gener}/${generacja.typ_gener}/${generacja.gen_gener}`}
                             >
                                 <img
@@ -70,7 +69,7 @@ export default function GenerationSwiper(props) {
                                 <Typography sx={{position: "absolute", bottom: -15, left: 10, mb: 2, color: 'red', fontWeight: 'bold'}}>
                                     {generacja.typ_gener} {generacja.gen_gener}
                                 </Typography>
-                            </Link>
+                            </a>
                         </SwiperSlide>
                     ))}
             </Swiper>

@@ -1,21 +1,23 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCoverflow, Pagination } from "swiper";
+// Import Swiper React components
+// import { register } from 'swiper/element/bundle';
 
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
+import "swiper/element/css";
+import "swiper/element/css/effect-coverflow";
+import "swiper/element/css/pagination";
 
 import classes from "./LogoSwiper.module.css";
 
 // import required modules
-import { EffectCoverflow, Pagination } from "swiper";
-import Link from "next/link";
-import { useMediaQuery } from 'react-responsive';
-import {Typography} from "@mui/material";
-import {log} from "next/dist/server/typescript/utils";
 
+import Link from "next/link";
+import {Typography} from "@mui/material";
+
+// register();
 export default function FamilySwiper(props) {
 
     const [numberSlidesPerView, setNumberSlidesPerView] = useState(0);
@@ -45,11 +47,11 @@ export default function FamilySwiper(props) {
                 centeredSlides={true}
                 slidesPerView={numberSlidesPerView}
                 coverflowEffect={{
-                    rotate: 50,
+                    rotate: 0,
                     stretch: 0,
-                    depth: 100,
+                    depth: 300,
                     modifier: 1,
-                    slideShadows: true,
+                    slideShadows: false,
                 }}
                 pagination={true}
                 modules={[EffectCoverflow, Pagination]}
@@ -60,8 +62,7 @@ export default function FamilySwiper(props) {
                     // .sort((a, b) => a.family.localeCompare(b.family))
                     .map((rodzina) => (
                         <SwiperSlide className={classes.swiperSlide} key={rodzina.ID_typy} style={{position: "relative"}}>
-                            <Link style={{ display: "flex", justifyContent: "center"}}
-                                key={rodzina.ID_typy}
+                            <a style={{ display: "flex", justifyContent: "center"}}
                                 href={`/seryjne/${rodzina.nazwa_marka}/${rodzina.nazwa_typ}`}
                             >
                                 <img
@@ -70,13 +71,12 @@ export default function FamilySwiper(props) {
                                 <Typography sx={{position: "absolute", bottom: -15, left: 10, mb: 2, color: 'red', fontWeight: 'bold'}}>
                                     {rodzina.nazwa_typ}
                                 </Typography>
-                            </Link>
+                            </a>
                         </SwiperSlide>
                     ))}
-
-
-
             </Swiper>
         </>
     );
+
+
 }

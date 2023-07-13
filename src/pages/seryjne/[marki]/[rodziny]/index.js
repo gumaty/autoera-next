@@ -94,27 +94,26 @@ export default function FamilyHome({result}) {
 
     const { marki, rodziny } = router.query;
 
-   const { brand, family, description, image, years, catalogue, galery, generation } = loadedBrands;
+   const { nazwa_marka, nazwa_typ, typ_lata, generacja_typ } = loadedBrands[0];
 
-    const title = `Katalog samochodów seryjnych - ${brand} ${family} (${years})`;
+    const mainText = `AUTO-ERA - Twój profesjonalny portal motoryzacyjny - Katalog samochodów seryjnych - ${nazwa_marka} ${nazwa_typ} (${typ_lata})`;
 
 
     return (
         <>
             <Head>
-                <title>AUTO-ERA - Twój profesjonalny portal motoryzacyjny - {title}</title>
+                <title>{mainText}</title>
                 <meta name="description" content="Portal AUTO-ERA to motoryzacyjny serwis, zawierający najważniejsze wiadomości z dziedziny motoryzacji, katalog samochodów produkcyjnych, katalog samochodów studialnych oraz encyklopedię pojęć motoryzacyjnych bogato ilustrowane zdjęciami." />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
-
-                {/*<Box sx={{pt: '20px', bgcolor: 'white'}} >*/}
-                {/*    <Typography variant='h6' component='h3' sx={{color: '#153F1A', fontWeight: '700', textAlign: 'center'}}>Wybierz rodzinę:</Typography>*/}
-                {/*</Box>*/}
-                {/*<Box>*/}
-                {/*    <FamilySwiper rodziny={loadedBrands[3]} />*/}
-                {/*</Box>*/}
+                <Box sx={{pt: '20px', bgcolor: 'white'}} >
+                    <Typography variant='h6' component='h3' sx={{color: '#153F1A', fontWeight: '700', textAlign: 'center'}}>Wybierz rodzinę:</Typography>
+                </Box>
+                <Box>
+                    <FamilySwiper rodziny={loadedBrands[3]} />
+                </Box>
 
                 <Box sx={{pt: '20px', bgcolor: 'white'}} >
                     <Typography variant='h6' component='h3' sx={{color: '#153F1A', fontWeight: '700', textAlign: 'center'}}>Wybierz generację:</Typography>
@@ -122,7 +121,7 @@ export default function FamilyHome({result}) {
                 <Box>
                     <GenerationSwiper generacje={loadedBrands[1]} />
                 </Box>
-                <FamilyContainer title={title} familyData={loadedBrands[0]} gallery={loadedBrands[2]}/>
+                <FamilyContainer familyData={loadedBrands[0]} gallery={loadedBrands[2]}/>
 
             </Container>
         </>
