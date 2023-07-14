@@ -13,61 +13,18 @@ export default function EncyAccordion(props) {
 
     const { letter } = props;
 
-    const [loadedBrands, setLoadedBrands] = useState([]);
+    const [loadedBrands, setLoadedBrands] = useState(letter);
     const [expanded, setExpanded] = useState(false);
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
 
-    function convert(text){
-
-        const textBefore   = ["\n\r", "\n\n", "\r\n", "\n", "\r", "m3", "CO2"];
-        const textAfter = ["<br><br>", "<br><br>", "<br><br>", "<br><br>", "<br><br>", "m<sup>3</sup>", "CO<sub>2</sub>"];
-        let newText = '';
-
-        for (let i = 0; i < textBefore.length; i++) {
-            newText = text.replaceAll(textBefore[i], textAfter[i]);
-        }
-        return newText;
-    }
-
-    useEffect(() => {
-        fetch(
-            `https://autoera-64fe0-default-rtdb.europe-west1.firebasedatabase.app/encyklopedia.json`
-        )
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-
-                const allEntries = [];
-
-                for (const key in data) {
-                    if (key === letter) {
-                        const entry = {
-                            id: key,
-                            ...data[key],
-                        };
-                        return entry;
-
-                    }
-
-                }
-                return entry;
-
-            })
-
-            .then((data) => {
-                setLoadedBrands(data);
-            });
-    }, []);
-
     return (
         <div style={{maxWidth: 700, width: '100%', marginInline: 'auto'}}>
 
-                {Object.entries(loadedBrands)
-                    .map(([key, value]) => {
+                {letter
+                    .map((value) => {
                     if (typeof value === 'object') {
                         return (
                             <Accordion key={value.tytul} expanded={expanded === `${value.tytul}`} onChange={handleChange(`${value.tytul}`)}>
@@ -85,7 +42,7 @@ export default function EncyAccordion(props) {
                                     {value.image !== '' ? (
                                     <Box>
                                         <img
-                                            src={`/images/encyk/tn/${value.image}.webp`}
+                                            src={`http://server090121.nazwa.pl/images/encyk/tn/${value.image}.webp`}
                                             alt={`Zdjęcie do hasła: ${value.tytul}`}
                                         />
                                     </Box>

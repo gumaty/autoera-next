@@ -2,80 +2,55 @@ import Head from 'next/head'
 import {Box, Container, Typography} from "@mui/material";
 import {useRouter} from "next/router";
 import React, {useEffect, useState} from "react";
-import StudioModelContainer from "@/components/StudioModelContainer";
-import ArticleContainer from "@/components/ArticleContainer";
-import EncyAccordion from "@/components/EncyAcordion";
 import EncyContainer from "@/components/EncyContainer";
-import EncySwiper from "@/components/EncySwiper";
 
-export default function encyItemHome() {
 
-    function convert(text){
+import { PrismaClient } from '@prisma/client';
 
-        const textBefore   = ["\n\r", "\n\n", "\r\n", "\n", "\r", "m3", "CO2"];
-        const textAfter = ["<br><br>", "<br><br>", "<br><br>", "<br><br>", "<br><br>", "m<sup>3</sup>", "CO<sub>2</sub>"];
-        let newText = '';
+const prisma = new PrismaClient();
 
-        for (let i = 0; i < textBefore.length; i++) {
-            newText = text.replaceAll(textBefore[i], textAfter[i]);
+export async function getServerSideProps(context) {
+
+    const sign = context.params.entry;
+
+    const result = await prisma.encyk.findMany(
+        {
+            where: {
+                tytul: {
+                    startsWith: sign,
+                },
+                OK: '1',
+            },
+            select: {
+                id: true,
+                tytul: true,
+                tresc: true,
+                image: true,
+            },
+            orderBy: [
+                {
+                    tytul: "asc",
+                },
+            ],
         }
-        return newText;
-    }
+    );
 
-    const [loadedBrands, setLoadedBrands] = useState([]);
+    return {
+        props: { result }
+    };
+}
+
+export default function encyItemHome({ result }) {
+
+    const [loadedBrands, setLoadedBrands] = useState(result);
 
     const router = useRouter();
 
     const { entry } = router.query;
 
-    useEffect(() => {
-        fetch(
-            `https://autoera-64fe0-default-rtdb.europe-west1.firebasedatabase.app/encyklopedia.json`
-        )
-            .then((response) => {
-
-                return response.json();
-            })
-            .then((data) => {
-                for (const key in data) {
-                    if (key === entry) {
-                            // console.log(data[key])
-                            return data[key];
-                        }
-                    }
-
-            })
-            .then((res) => {
-
-                let {tytul: topic, tresc: describe, image: picture} = res;
-
-                // describe = convert(describe);
-
-                // const tryArray = describe.split(/\n/g);
-
-                // console.log(tryArray);
-
-                const newArray = {
-                    tytul: topic,
-                    tresc: describe,
-                    image: picture
-
-                }
-
-                return newArray;
-            })
-            .then((data) => {
-                // console.log(data);
-                setLoadedBrands(data);
-            });
-    }, []);
-
-
-    const { tytul, tresc, image } = loadedBrands;
+    const { tytul, tresc, image } = loadedBrands[0];
 
     const title = `Hasła encyklopedii - ${tytul}`;
-
-    // console.log(loadedBrands);
 
     return (
         <>
@@ -87,7 +62,7 @@ export default function encyItemHome() {
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
 
-                <EncyContainer />
+                <EncyContainer entries={result}/>
 
             </Container>
         </>

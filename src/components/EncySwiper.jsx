@@ -12,9 +12,10 @@ import classes from "./LogoSwiper.module.css";
 // import required modules
 import { EffectCoverflow, Pagination } from "swiper";
 import Link from "next/link";
-import { useMediaQuery } from 'react-responsive';
 
-export default function EncySwiper() {
+
+
+export default function EncySwiper({ letters }) {
 
     const [numberSlidesPerView, setNumberSlidesPerView] = useState(0);
 
@@ -34,27 +35,6 @@ export default function EncySwiper() {
 
     const [loadedBrands, setLoadedBrands] = useState([]);
 
-    useEffect(() => {
-        fetch(
-            'https://autoera-64fe0-default-rtdb.europe-west1.firebasedatabase.app/encyklopedia.json'
-        )
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                const allEntries = [];
-
-                for (const key in data) {
-                    const entry = {
-                        id: key,
-                        ...data[key],
-                    };
-                    allEntries.push(entry);
-                }
-                setLoadedBrands(allEntries);
-            });
-    }, []);
-
     return (
         <>
             <Swiper
@@ -63,27 +43,26 @@ export default function EncySwiper() {
                 centeredSlides={true}
                 slidesPerView={numberSlidesPerView}
                 coverflowEffect={{
-                    rotate: 50,
-                    stretch: 0,
-                    depth: 100,
+                    rotate: 0,
+                    stretch: -10,
+                    depth: 300,
                     modifier: 1,
-                    slideShadows: true,
+                    slideShadows: false,
                 }}
                 pagination={true}
                 modules={[EffectCoverflow, Pagination]}
                 className={classes.swiper}
             >
-                {loadedBrands
-                    .slice()
-                    .sort((a, b) => a.id.localeCompare(b.id))
+                {letters
+                    // .slice()
+                    // .sort((a, b) => a.id.localeCompare(b.id))
                     .map((brand) => (
-                        <SwiperSlide className={classes.swiperSlide} key={brand.id}>
+                        <SwiperSlide className={classes.swiperSlide} key={brand}>
                             <Link style={{ display: "flex", justifyContent: "center"}}
-                                key={brand.id}
-                                href={`/encyklopedia/${brand.id}`}
+                                href={`/encyklopedia/${brand}`}
                             >
                                 <img
-                                    src={`/images/letters/${brand.id.toLowerCase()}.webp`} alt={`Znak ${brand.id}`}
+                                    src={`http://server090121.nazwa.pl/images/letters/${brand.toLowerCase()}.webp`} alt={`Znak ${brand}`}
                                 />
                             </Link>
                         </SwiperSlide>

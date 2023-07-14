@@ -4,9 +4,40 @@ import React from "react";
 import EncyAccordion from "@/components/EncyAcordion";
 import EncySwiper from "@/components/EncySwiper";
 
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+
+export async function getServerSideProps() {
+
+
+    const entries = await prisma.encyk.findMany(
+        {
+            select: {
+                tytul: true,
+            },
+            orderBy: [
+                {
+                    tytul: "asc",
+                },
+            ],
+        }
+    );
+    let tempArray = [];
+    for (let i = 0; i < entries.length; i++) {
+        tempArray.push(entries[i].tytul.substring(0, 1));
+    }
+    const result = [...new Set(tempArray)];
+
+    return {
+        props: { result }
+    };
+}
+
 const title = "Encyklopedia";
 
-export default function EncyklopediaHome() {
+export default function EncyklopediaHome({result}) {
+
     return (
         <>
             <Head>
@@ -20,7 +51,7 @@ export default function EncyklopediaHome() {
                     <Typography variant='h6' component='h3' sx={{color: '#153F1A', fontWeight: '700', textAlign: 'center'}}>Wybierz pierwszą literę hasła:</Typography>
                 </Box>
                 <Box>
-                    <EncySwiper />
+                    <EncySwiper letters={result}/>
                 </Box>
                 <Box sx={{p: '20px', bgcolor: 'white'}} >
                     <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>

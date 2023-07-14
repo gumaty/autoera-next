@@ -5,7 +5,7 @@ import GalleryModal from "@/components/GalleryModal";
 import {useRouter} from "next/router";
 import EncyAccordion from "@/components/EncyAcordion";
 
-function EncyContainer(){
+function EncyContainer({ entries }){
 
     const router = useRouter();
 
@@ -17,7 +17,7 @@ function EncyContainer(){
                 <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>Encyklopedia samochodu</Typography>
                 <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>Hasła na: {entry}</Typography>
             </Box>
-                    <EncyAccordion letter={entry}/>
+                    <EncyAccordion letter={entries}/>
         </Box>
     )
 }
