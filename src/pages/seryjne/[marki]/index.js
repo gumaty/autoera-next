@@ -31,6 +31,7 @@ export async function getServerSideProps(context) {
                 nazwa_marka: true,
                 nazwa_typ: true,
                 typ_lata: true,
+                generacja_typ: true,
                 img_typ: true,
             },
             orderBy: {
@@ -55,9 +56,9 @@ export default function SerialHome({result}) {
 
     const { marki } = router.query;
 
-    const { nazwa_marka, opis_marka, img_marka, lata_marka } = loadedBrands[0];
+    const { nazwa_marka, img_typ, typ_lata, generacja_typ } = loadedBrands[0];
 
-    const title = `Katalog samochodów seryjnych - ${nazwa_marka} (${lata_marka})`;
+    const title = `Katalog samochodów seryjnych - ${nazwa_marka} (${typ_lata})`;
 
     return (
         <>
@@ -68,12 +69,7 @@ export default function SerialHome({result}) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
-                <Box sx={{pt: '20px', bgcolor: 'white'}} >
-                    <Typography variant='h6' component='h3' sx={{color: '#153F1A', fontWeight: '700', textAlign: 'center'}}>Wybierz rodzinę:</Typography>
-                </Box>
-                <Box>
-                    <FamilySwiper rodziny={loadedBrands[1]} />
-                </Box>
+                <FamilySwiper rodziny={loadedBrands[1]} />
                 <BrandContainer title={title} brandData={loadedBrands[0]}/>
 
             </Container>

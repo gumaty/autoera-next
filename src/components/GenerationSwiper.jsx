@@ -13,7 +13,7 @@ import classes from "./LogoSwiper.module.css";
 import { EffectCoverflow, Pagination } from "swiper";
 import Link from "next/link";
 import { useMediaQuery } from 'react-responsive';
-import {Typography} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 
 export default function GenerationSwiper(props) {
 
@@ -39,6 +39,10 @@ export default function GenerationSwiper(props) {
 
     return (
         <>
+            <Box sx={{pt: '20px', bgcolor: 'white'}} >
+                <Typography variant='h6' component='h3' sx={{color: '#153F1A', fontWeight: '700', textAlign: 'center'}}>Wybierz generację:</Typography>
+            </Box>
+            <Box>
             <Swiper
                 effect={"coverflow"}
                 grabCursor={true}
@@ -46,8 +50,8 @@ export default function GenerationSwiper(props) {
                 slidesPerView={numberSlidesPerView}
                 coverflowEffect={{
                     rotate: 0,
-                    stretch: 0,
-                    depth: 300,
+                    stretch: -10,
+                    depth: 0,
                     modifier: 1,
                     slideShadows: false,
                 }}
@@ -73,6 +77,7 @@ export default function GenerationSwiper(props) {
                         </SwiperSlide>
                     ))}
             </Swiper>
+            </Box>
         </>
     );
 }

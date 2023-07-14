@@ -7,6 +7,7 @@ import classes from "./LogoSwiper.module.css";
 import { EffectCoverflow, Pagination } from "swiper";
 import Link from "next/link";
 import { PrismaClient } from "@prisma/client";
+import {Box, Typography} from "@mui/material";
 
 export default function LogoSwiper({brands}) {
 
@@ -28,6 +29,11 @@ export default function LogoSwiper({brands}) {
 
     return (
         <>
+            <Box sx={{pt: '20px', bgcolor: 'white'}} >
+                <Typography variant='h6' component='h3' sx={{color: '#153F1A', fontWeight: '700', textAlign: 'center'}}>Wybierz markę:</Typography>
+            </Box>
+            <Box>
+
             <Swiper
                 effect={"coverflow"}
                 grabCursor={true}
@@ -35,8 +41,8 @@ export default function LogoSwiper({brands}) {
                 slidesPerView={numberSlidesPerView}
                 coverflowEffect={{
                     rotate: 0,
-                    stretch: 0,
-                    depth: 300,
+                    stretch: -10,
+                    depth: 0,
                     modifier: 1,
                     slideShadows: false,
                 }}
@@ -61,6 +67,7 @@ export default function LogoSwiper({brands}) {
                     ))}
 
             </Swiper>
+            </Box>
         </>
     );
 }

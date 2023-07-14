@@ -100,48 +100,27 @@ export async function getServerSideProps(context) {
 
 export default function FamilyHome({result}) {
 
-    function convert(text){
-
-        const textBefore   = ["\n\r", "\n\n", "\r\n", "\n", "\r", "m3", "CO2"];
-        const textAfter = ["<br><br>", "<br><br>", "<br><br>", "<br><br>", "<br><br>", "m<sup>3</sup>", "CO<sub>2</sub>"];
-        let newText = '';
-
-        for (let i = 0; i < textBefore.length; i++) {
-            newText = text.replaceAll(textBefore[i], textAfter[i]);
-        }
-        return newText;
-    }
-
     const router = useRouter();
 
     const [loadedBrands, setLoadedBrands] = useState(result);
 
     const { marki, rodziny, generacje } = router.query;
 
-    // console.log(marki);
-    // console.log(rodziny);
+    const { marka_gener, typ_gener, lata, gen_gener } = loadedBrands[0];
 
-    const { brand, family, description, image, years, catalogue, galery, generation } = loadedBrands;
-
-    const title = `Katalog samochodów seryjnych - ${brand} ${family} ${generation} (${years})`;
-
-    // console.log(loadedBrands);
+    const title = `AUTO-ERA - Twój profesjonalny portal motoryzacyjny - Katalog samochodów seryjnych - ${marka_gener} ${typ_gener} ${gen_gener} (${lata})`;
 
     return (
         <>
             <Head>
-                <title>AUTO-ERA - Twój profesjonalny portal motoryzacyjny - {title}</title>
+                <title>{title}</title>
                 <meta name="description" content="Portal AUTO-ERA to motoryzacyjny serwis, zawierający najważniejsze wiadomości z dziedziny motoryzacji, katalog samochodów produkcyjnych, katalog samochodów studialnych oraz encyklopedię pojęć motoryzacyjnych bogato ilustrowane zdjęciami." />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
-                <Box sx={{pt: '20px', bgcolor: 'white'}} >
-                    <Typography variant='h6' component='h3' sx={{color: '#153F1A', fontWeight: '700', textAlign: 'center'}}>Wybierz generację:</Typography>
-                </Box>
-                <Box>
-                    <GenerationSwiper generacje={loadedBrands[1]} />
-                </Box>
+
+                <GenerationSwiper generacje={loadedBrands[1]} />
                 <GenerationContainer title={title} familyData={loadedBrands[0]} gallery={loadedBrands[2]}/>
 
             </Container>

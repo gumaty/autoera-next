@@ -15,7 +15,7 @@ import classes from "./LogoSwiper.module.css";
 // import required modules
 
 import Link from "next/link";
-import {Typography} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 
 // register();
 export default function FamilySwiper(props) {
@@ -41,6 +41,11 @@ export default function FamilySwiper(props) {
 
     return (
         <>
+            <Box sx={{pt: '20px', bgcolor: 'white'}} >
+                <Typography variant='h6' component='h3' sx={{color: '#153F1A', fontWeight: '700', textAlign: 'center'}}>Wybierz rodzinę:</Typography>
+            </Box>
+            <Box>
+
             <Swiper
                 effect={"coverflow"}
                 grabCursor={true}
@@ -48,8 +53,8 @@ export default function FamilySwiper(props) {
                 slidesPerView={numberSlidesPerView}
                 coverflowEffect={{
                     rotate: 0,
-                    stretch: 0,
-                    depth: 300,
+                    stretch: -20,
+                    depth: 0,
                     modifier: 1,
                     slideShadows: false,
                 }}
@@ -75,6 +80,7 @@ export default function FamilySwiper(props) {
                         </SwiperSlide>
                     ))}
             </Swiper>
+            </Box>
         </>
     );
 

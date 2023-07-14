@@ -68,6 +68,7 @@ export async function getServerSideProps(context) {
                 nazwa_marka: true,
                 nazwa_typ: true,
                 typ_lata: true,
+                generacja_typ: true,
                 img_typ: true,
             },
             orderBy: {
@@ -108,21 +109,8 @@ export default function FamilyHome({result}) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
-                <Box sx={{pt: '20px', bgcolor: 'white'}} >
-                    <Typography variant='h6' component='h3' sx={{color: '#153F1A', fontWeight: '700', textAlign: 'center'}}>Wybierz rodzinę:</Typography>
-                </Box>
-                <Box>
-                    <FamilySwiper rodziny={loadedBrands[3]} />
-                </Box>
-
-                <Box sx={{pt: '20px', bgcolor: 'white'}} >
-                    <Typography variant='h6' component='h3' sx={{color: '#153F1A', fontWeight: '700', textAlign: 'center'}}>Wybierz generację:</Typography>
-                </Box>
-                <Box>
-                    <GenerationSwiper generacje={loadedBrands[1]} />
-                </Box>
+                {generacja_typ === "0" ? <FamilySwiper rodziny={loadedBrands[3]} /> : <GenerationSwiper generacje={loadedBrands[1]} />}
                 <FamilyContainer familyData={loadedBrands[0]} gallery={loadedBrands[2]}/>
-
             </Container>
         </>
     )
