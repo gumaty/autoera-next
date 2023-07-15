@@ -2,10 +2,11 @@ import {Box, Typography} from "@mui/material";
 import React, {useEffect, useState} from "react";
 import Link from "next/link";
 import GalleryModal from "@/components/GalleryModal";
+import ModelsAccordion from "@/components/ModelsAcordion";
 
 function GenerationContainer(props){
 
-    const { familyData, gallery } = props;
+    const { familyData, gallery, models } = props;
 
     const descriptionArray = familyData.opis.split(/\n/g);
 
@@ -21,6 +22,9 @@ function GenerationContainer(props){
                         src={`/images/family/${familyData.img_gener}.webp`} alt={`Miniatura ${familyData.marka_gener} ${familyData.typ_gener}`} style={{maxWidth: "500px", width: "100%"}}
                     />
                 </Box>
+            </Box>
+            <Box>
+                <ModelsAccordion models={models }/>
             </Box>
             <Box>
                 {descriptionArray && Array.isArray(descriptionArray) && descriptionArray.map((paragraph, index) => (

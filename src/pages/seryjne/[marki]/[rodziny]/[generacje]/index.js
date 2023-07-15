@@ -88,17 +88,81 @@ export async function getServerSideProps(context) {
         }
     );
 
+    const nadwozia = await prisma.seryjne.findMany(
+        {
+            where: {
+                marka: marka,
+                rodzina: rodzina,
+                generacja: generacja,
+            },
+            select: {
+                typ_nadwozia: true,
+                liczba_drzwi: true,
+            },
+            orderBy: [
+                {
+                    typ_nadwozia: "asc"
+                },
+                {
+                    liczba_drzwi: "asc"
+                }
+            ]
+
+        }
+    );
+
+    const modele = await prisma.seryjne.findMany(
+        {
+            where: {
+                marka: marka,
+                rodzina: rodzina,
+                generacja: generacja,
+            },
+            select: {
+                model_ID: true,
+                marka: true,
+                rodzina: true,
+                generacja: true,
+                model: true,
+                typ_nadwozia: true,
+                liczba_drzwi: true,
+            },
+            orderBy: {
+                model: "asc"
+            }
+
+        }
+    );
+
+    const uniqueCarBodies = [...new Set(nadwozia.map((object) =>  JSON.stringify(object))),].map((string) => JSON.parse(string))
+
+    const models = uniqueCarBodies.map((carBody, index) => {
+        const modelsArray = [];
+        const carItem = {...carBody, index};
+        modelsArray.push(carItem);
+        modelsArray.push([]);
+        for (let i = 0; i < modele.length; i++) {
+            if (modele[i].typ_nadwozia === carBody.typ_nadwozia && modele[i].liczba_drzwi === carBody.liczba_drzwi) {
+                modelsArray[1].push(modele[i])
+            }
+        }
+        return modelsArray;
+    })
+
     const result = generation;
     result.push(generations);
     result.push(galeria);
     result.push(types);
+    // result.push(uniqueCarBodies);
+    // result.push(modele);
+    result.push(models);
 
     return {
         props: { result }
     };
 }
 
-export default function FamilyHome({result}) {
+export default function GenerationHome({result}) {
 
     const router = useRouter();
 
@@ -121,7 +185,7 @@ export default function FamilyHome({result}) {
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
 
                 <GenerationSwiper generacje={loadedBrands[1]} />
-                <GenerationContainer title={title} familyData={loadedBrands[0]} gallery={loadedBrands[2]}/>
+                <GenerationContainer title={title} familyData={loadedBrands[0]} gallery={loadedBrands[2]} models={loadedBrands[4]}/>
 
             </Container>
         </>

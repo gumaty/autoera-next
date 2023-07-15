@@ -65,6 +65,8 @@ const title = "Pojazdy studialne i prototypowe";
 
 export default function StudioHome({result}) {
 
+    console.log(result);
+
     return (
         <>
             <Head>
