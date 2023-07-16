@@ -7,7 +7,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {useEffect, useState} from "react";
 import Link from "next/link";
 
-export default function ModelsAccordion({models}) {
+export default function FamilyModelsAccordion({models}) {
 
     const [loadedBrands, setLoadedBrands] = useState(models);
     const [expanded, setExpanded] = useState(false);
@@ -46,7 +46,7 @@ export default function ModelsAccordion({models}) {
                                                 color: '#153F1A',
                                                 textDecoration: "none"
                                             }}
-                                                  href={`/seryjne/${value.marka}/${value.rodzina}/${value.generacja}/${value.typ_nadwozia}/${value.liczba_drzwi}/${value.model}`}
+                                                  href={`/seryjne/${value.marka}/${value.rodzina}/${value.typ_nadwozia}/${value.liczba_drzwi}/${value.model}`}
                                             >
                                                 <Typography>
                                                     {value.model} ({value.rok_uruch}-{value.rok_zakoncz})

@@ -2,10 +2,11 @@ import {Box, Typography} from "@mui/material";
 import React, {useEffect, useState} from "react";
 import Link from "next/link";
 import GalleryModal from "@/components/GalleryModal";
+import ModelsAccordion from "@/components/ModelsAcordion";
 
 function FamilyContainer(props){
 
-    const { familyData, gallery } = props;
+    const { familyData, gallery, models } = props;
 
     const descriptionArray = familyData.opis_typ.split(/\n/g);
 
@@ -21,6 +22,9 @@ function FamilyContainer(props){
                         src={`http://server090121.nazwa.pl/images/family/${familyData.img_typ}.webp`} alt={`Logo ${familyData.nazwa_marka} ${familyData.nazwa_typ}`} style={{maxWidth: "500px", width: "100%"}}
                     />
                 </Box>
+            </Box>
+            <Box>
+                <ModelsAccordion models={ models }/>
             </Box>
             <Box>
                 {descriptionArray && Array.isArray(descriptionArray) && descriptionArray.map((paragraph, index) => (

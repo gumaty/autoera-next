@@ -49,7 +49,6 @@ export async function getServerSideProps(context) {
             where: {
                 marka: marka,
                 typ: rodzina,
-                generacja: ''
             },
             orderBy: {
                 image_name: "asc"
@@ -77,10 +76,74 @@ export async function getServerSideProps(context) {
         }
     );
 
+    const nadwozia = await prisma.seryjne.findMany(
+        {
+            where: {
+                marka: marka,
+                rodzina: rodzina,
+            },
+            select: {
+                typ_nadwozia: true,
+                liczba_drzwi: true,
+            },
+            orderBy: [
+                {
+                    typ_nadwozia: "asc"
+                },
+                {
+                    liczba_drzwi: "asc"
+                }
+            ]
+
+        }
+    );
+
+    const modele = await prisma.seryjne.findMany(
+        {
+            where: {
+                marka: marka,
+                rodzina: rodzina,
+            },
+            select: {
+                model_ID: true,
+                marka: true,
+                rodzina: true,
+                generacja: true,
+                model: true,
+                typ_nadwozia: true,
+                liczba_drzwi: true,
+                rok_uruch: true,
+                rok_zakoncz: true,
+                moc_maks: true,
+            },
+            orderBy: {
+                model: "asc"
+            }
+
+        }
+    );
+
+    const uniqueCarBodies = [...new Set(nadwozia.map((object) =>  JSON.stringify(object))),].map((string) => JSON.parse(string))
+
+    const models = uniqueCarBodies.map((carBody, index) => {
+        const body = [];
+        let models = [];
+        for (let i = 0; i < modele.length; i++) {
+            if (modele[i].typ_nadwozia === carBody.typ_nadwozia && modele[i].liczba_drzwi === carBody.liczba_drzwi) {
+                models.push(modele[i])
+            }
+        }
+        const carItem = {...carBody, index, models};
+        body.push(carItem);
+
+        return body;
+    })
+
     const result = type;
     result.push(generations);
     result.push(galeria);
     result.push(types);
+    result.push(models);
 
     return {
         props: { result }
@@ -95,10 +158,9 @@ export default function FamilyHome({result}) {
 
     const { marki, rodziny } = router.query;
 
-   const { nazwa_marka, nazwa_typ, typ_lata, generacja_typ } = loadedBrands[0];
+    const { nazwa_marka, nazwa_typ, typ_lata, generacja_typ } = loadedBrands[0];
 
     const mainText = `AUTO-ERA - Twój profesjonalny portal motoryzacyjny - Katalog samochodów seryjnych - ${nazwa_marka} ${nazwa_typ} (${typ_lata})`;
-
 
     return (
         <>
@@ -110,7 +172,7 @@ export default function FamilyHome({result}) {
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
                 {generacja_typ === "0" ? <FamilySwiper rodziny={loadedBrands[3]} /> : <GenerationSwiper generacje={loadedBrands[1]} />}
-                <FamilyContainer familyData={loadedBrands[0]} gallery={loadedBrands[2]}/>
+                <FamilyContainer familyData={loadedBrands[0]} gallery={loadedBrands[2]} models={loadedBrands[4]}/>
             </Container>
         </>
     )
