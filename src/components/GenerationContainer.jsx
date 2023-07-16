@@ -24,7 +24,7 @@ function GenerationContainer(props){
                 </Box>
             </Box>
             <Box>
-                <ModelsAccordion models={models }/>
+                <ModelsAccordion models={ models }/>
             </Box>
             <Box>
                 {descriptionArray && Array.isArray(descriptionArray) && descriptionArray.map((paragraph, index) => (

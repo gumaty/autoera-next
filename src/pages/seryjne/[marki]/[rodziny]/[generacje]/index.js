@@ -137,16 +137,17 @@ export async function getServerSideProps(context) {
     const uniqueCarBodies = [...new Set(nadwozia.map((object) =>  JSON.stringify(object))),].map((string) => JSON.parse(string))
 
     const models = uniqueCarBodies.map((carBody, index) => {
-        const modelsArray = [];
-        const carItem = {...carBody, index};
-        modelsArray.push(carItem);
-        modelsArray.push([]);
+        const body = [];
+        let models = [];
         for (let i = 0; i < modele.length; i++) {
             if (modele[i].typ_nadwozia === carBody.typ_nadwozia && modele[i].liczba_drzwi === carBody.liczba_drzwi) {
-                modelsArray[1].push(modele[i])
+                models.push(modele[i])
             }
         }
-        return modelsArray;
+        const carItem = {...carBody, index, models};
+        body.push(carItem);
+
+        return body;
     })
 
     const result = generation;

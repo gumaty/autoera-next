@@ -16,8 +16,6 @@ export default function ModelsAccordion({models}) {
         setExpanded(isExpanded ? panel : false);
     };
 
-    console.log(models)
-
     return (
         <div style={{maxWidth: 700, width: '100%', marginInline: 'auto'}}>
             <Accordion sx={{ boxShadow: 5 }}>
@@ -30,7 +28,7 @@ export default function ModelsAccordion({models}) {
                 </AccordionSummary>
                 <AccordionDetails>
                     {loadedBrands.map((item) => (
-                        <Accordion key={item[0].index} sx={{maxWidth: 700, width: '100%', marginInline: 'auto', boxShadow: 5}} expanded={expanded === `${item[0].index}`} onChange={handleChange(`$${item[0].index}`)}>
+                        <Accordion key={item[0].index} sx={{maxWidth: 700, width: '100%', marginInline: 'auto', boxShadow: 5}} expanded={expanded === `${item[0].index}`} onChange={handleChange(`${item[0].index}`)}>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
                                 aria-controls="panel1a-content"
@@ -38,18 +36,25 @@ export default function ModelsAccordion({models}) {
                             >
                                 <Typography variant='h6' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{item[0].typ_nadwozia} {item[0].liczba_drzwi}dw</Typography>
                             </AccordionSummary>
-                            {item[1].map((model) => {
+                            {Object.entries(item[0].models).map(([key, value]) => {
+                                if (typeof value === 'object') {
                                     return (
-                                        <AccordionDetails key={model.model_ID}>
-                                            <Link style={{ display: "flex", justifyContent: "center", color: '#153F1A', textDecoration: "none"}}
-                                                  href={`/seryjne/${model.marka}/${model.rodzina}/${model.generacja}`}
+                                        <AccordionDetails key={value.model_ID}>
+                                            <Link style={{
+                                                display: "flex",
+                                                justifyContent: "center",
+                                                color: '#153F1A',
+                                                textDecoration: "none"
+                                            }}
+                                                  href={`/seryjne/${value.marka}/${value.rodzina}/${value.generacja}/${value.typ_nadwozia}/${value.liczba_drzwi}/${value.model}`}
                                             >
                                                 <Typography>
-                                                    {model.model}
+                                                    {value.model}
                                                 </Typography>
                                             </Link>
                                         </AccordionDetails>
                                     )
+                                }
                                 }
                             )}
                         </Accordion>
