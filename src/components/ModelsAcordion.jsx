@@ -34,7 +34,7 @@ export default function ModelsAccordion({models}) {
                                 aria-controls="panel1a-content"
                                 id="panel1a-header"
                             >
-                                <Typography variant='h6' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{item[0].typ_nadwozia} {item[0].liczba_drzwi}dw</Typography>
+                                <Typography variant='h6' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{item[0].typ_nadwozia} {item[0].liczba_drzwi}-drzwiowy</Typography>
                             </AccordionSummary>
                             {Object.entries(item[0].models).map(([key, value]) => {
                                 if (typeof value === 'object') {
