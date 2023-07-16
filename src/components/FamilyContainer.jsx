@@ -6,7 +6,9 @@ import ModelsAccordion from "@/components/ModelsAcordion";
 
 function FamilyContainer(props){
 
-    const { familyData, gallery, models } = props;
+    let { familyData, gallery, models } = props;
+
+    if (familyData.generacja_typ === "1") gallery = [];
 
     const descriptionArray = familyData.opis_typ.split(/\n/g);
 
@@ -24,7 +26,7 @@ function FamilyContainer(props){
                 </Box>
             </Box>
             <Box>
-                <ModelsAccordion models={ models }/>
+                {familyData.generacja_typ === "0" ? <ModelsAccordion models={ models }/> : null}
             </Box>
             <Box>
                 {descriptionArray && Array.isArray(descriptionArray) && descriptionArray.map((paragraph, index) => (
@@ -41,8 +43,6 @@ function FamilyContainer(props){
 
                 ))}
             </Box>
-
-
         </Box>
     )
 }

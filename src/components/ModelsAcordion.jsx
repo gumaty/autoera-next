@@ -38,6 +38,7 @@ export default function ModelsAccordion({models}) {
                             </AccordionSummary>
                             {Object.entries(item[0].models).map(([key, value]) => {
                                 if (typeof value === 'object') {
+                                    if (value.generacja === "") value.generacja = "I";
                                     return (
                                         <AccordionDetails key={value.model_ID}>
                                             <Link style={{
@@ -46,6 +47,7 @@ export default function ModelsAccordion({models}) {
                                                 color: '#153F1A',
                                                 textDecoration: "none"
                                             }}
+
                                                   href={`/seryjne/${value.marka}/${value.rodzina}/${value.generacja}/${value.typ_nadwozia}/${value.liczba_drzwi}/${value.model}`}
                                             >
                                                 <Typography>
