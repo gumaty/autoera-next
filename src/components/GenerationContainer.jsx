@@ -33,7 +33,7 @@ function GenerationContainer(props){
                     </Typography>
                 ))}
             </Box>
-            <Box sx={{display: "flex", flexDirection: "row", justifyContent: "center", flexWrap: "wrap"}}>
+            <Box sx={{display: "flex", flexDirection: "row", justifyContent: "center", flexWrap: "wrap", borderTop: 2, borderBottom: 2, borderColor: 'red', marginInline: "auto"}}>
                 {gallery && Array.isArray(gallery) && gallery.map((image) => (
                     <Box key={image.image_ID} sx={{margin: 1}}>
                         <GalleryModal image={image}/>

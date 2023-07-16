@@ -56,21 +56,21 @@ export default function SerialHome({result}) {
 
     const { marki } = router.query;
 
-    const { nazwa_marka, img_typ, typ_lata, generacja_typ } = loadedBrands[0];
+    const { nazwa_marka, lata_marka } = loadedBrands[0];
 
-    const title = `Katalog samochodów seryjnych - ${nazwa_marka} (${typ_lata})`;
+    const title = `AUTO-ERA - Twój profesjonalny portal motoryzacyjny - Katalog samochodów seryjnych - ${nazwa_marka} (${lata_marka})`;
 
     return (
         <>
             <Head>
-                <title>AUTO-ERA - Twój profesjonalny portal motoryzacyjny - {title}</title>
+                <title>{title}</title>
                 <meta name="description" content="Portal AUTO-ERA to motoryzacyjny serwis, zawierający najważniejsze wiadomości z dziedziny motoryzacji, katalog samochodów produkcyjnych, katalog samochodów studialnych oraz encyklopedię pojęć motoryzacyjnych bogato ilustrowane zdjęciami." />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
                 <FamilySwiper rodziny={loadedBrands[1]} />
-                <BrandContainer title={title} brandData={loadedBrands[0]}/>
+                <BrandContainer brandData={loadedBrands[0]}/>
 
             </Container>
         </>

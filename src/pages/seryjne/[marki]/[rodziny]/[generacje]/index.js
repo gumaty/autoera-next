@@ -126,6 +126,9 @@ export async function getServerSideProps(context) {
                 model: true,
                 typ_nadwozia: true,
                 liczba_drzwi: true,
+                rok_uruch: true,
+                rok_zakoncz: true,
+                moc_maks: true,
             },
             orderBy: {
                 model: "asc"

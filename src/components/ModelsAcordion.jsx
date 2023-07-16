@@ -49,7 +49,7 @@ export default function ModelsAccordion({models}) {
                                                   href={`/seryjne/${value.marka}/${value.rodzina}/${value.generacja}/${value.typ_nadwozia}/${value.liczba_drzwi}/${value.model}`}
                                             >
                                                 <Typography>
-                                                    {value.model}
+                                                    {value.model} ({value.rok_uruch}-{value.rok_zakoncz})
                                                 </Typography>
                                             </Link>
                                         </AccordionDetails>

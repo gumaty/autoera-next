@@ -30,6 +30,7 @@ export async function getServerSideProps(context) {
                 model: model
             },
             select:{
+                model_ID: true,
                 marka: true,
                 rodzina: true,
                 generacja: true,
@@ -72,6 +73,21 @@ export async function getServerSideProps(context) {
         }
     );
 
+    const galeria = await prisma.gallery.findMany(
+        {
+            where: {
+                marka: marka,
+                typ: rodzina,
+                generacja: generacja
+            },
+            orderBy: {
+                image_name: "asc"
+            }
+        }
+    );
+
+    result.push(galeria);
+
     return {
         props: { result }
     };
@@ -84,8 +100,6 @@ export default function ModelHome({result}) {
     const [loadedBrands, setLoadedBrands] = useState(result);
 
     const { marki, rodziny, generacje } = router.query;
-
-    console.log(result)
 
     const { marka, rodzina, generacja, model, typ_nadwozia, liczba_drzwi, rok_uruch, rok_zakoncz} = loadedBrands[0];
 
@@ -101,7 +115,7 @@ export default function ModelHome({result}) {
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
 
-                <ModelContainer model={loadedBrands[0]}/>
+                <ModelContainer model={loadedBrands[0]} gallery={loadedBrands[1]}/>
 
             </Container>
         </>

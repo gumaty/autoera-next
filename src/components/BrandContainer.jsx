@@ -10,7 +10,7 @@ function BrandContainer(props){
     return (
         <Box sx={{p: '20px', bgcolor: 'white'}} >
             <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>
-                <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{props.title}</Typography>
+                <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>Katalog samochodów seryjnych - {brandData.nazwa_marka} ({brandData.lata_marka})</Typography>
             </Box>
             <img
                 src={`http://server090121.nazwa.pl/images/logos/${brandData.img_marka}.webp`} alt={`Logo ${brandData.nazwa_marka}`} style={{float: "left"}}
