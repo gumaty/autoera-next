@@ -70,7 +70,7 @@ export default function GenerationSwiper(props) {
                                 <img
                                     src={`http://server090121.nazwa.pl/images/family/tn/${generacja.img_gener}.webp`} alt={`Miniatura ${generacja.marka_gener} ${generacja.typ_gener} ${generacja.gen_gener}`}
                                 />
-                                <Typography sx={{position: "absolute", bottom: -15, left: 10, mb: 2, color: 'red', fontWeight: 'bold'}}>
+                                <Typography sx={{position: "absolute", bottom: 70, left: 10, mb: 2, color: 'red', fontWeight: 'bold'}}>
                                     {generacja.typ_gener} {generacja.gen_gener}
                                 </Typography>
                             </a>

@@ -12,8 +12,8 @@ function DataTable({ model }) {
                 <div className={styles.tableRowData}>{model.cykl_pracy_silnika} / {model.rodzaj_zaplonu}</div>
             </div>
             <div className={styles.tableRow}>
-                <div className={styles.tableRowLabel}>Liczba cylindrów:</div>
-                <div className={styles.tableRowData}>{model.liczba_cylindow}</div>
+                <div className={styles.tableRowLabel}>Układ / liczba cylindrów:</div>
+                <div className={styles.tableRowData}>{model.uklad_cylindrow} / {model.liczba_cylindow}</div>
             </div>
             <div className={styles.tableRow}>
                 <div className={styles.tableRowLabel}>Objętość skokowa:</div>
@@ -102,6 +102,10 @@ function DataTable({ model }) {
             <div className={styles.tableHeader}>Nadwozie</div>
 
             <div className={styles.tableRow}>
+                <div className={styles.tableRowLabel}>Struktura nośna:</div>
+                <div className={styles.tableRowData}>{model.struktura_nosna}</div>
+            </div>
+            <div className={styles.tableRow}>
                 <div className={styles.tableRowLabel}>Typ nadwozia:</div>
                 <div className={styles.tableRowData}>{model.typ_nadwozia}</div>
             </div>
@@ -148,6 +152,10 @@ function DataTable({ model }) {
             <div className={styles.tableHeader}>Wymiary i masy</div>
 
             <div className={styles.tableRow}>
+                <div className={styles.tableRowLabel}>Rozstaw osi:</div>
+                <div className={styles.tableRowData}>{model.rozstaw_osi} mm</div>
+            </div>
+            <div className={styles.tableRow}>
                 <div className={styles.tableRowLabel}>Długość całkowita:</div>
                 <div className={styles.tableRowData}>{model.dlugosc_calk} mm</div>
             </div>
@@ -168,19 +176,18 @@ function DataTable({ model }) {
 
             <div className={styles.tableRow}>
                 <div className={styles.tableRowLabel}>Prędkość maksymalna:</div>
-                <div className={styles.tableRowData}>{model.dlugosc_calk} km/h</div>
+                <div className={styles.tableRowData}>{model.predkosc_maks} km/h</div>
             </div>
             <div className={styles.tableRow}>
                 <div className={styles.tableRowLabel}>Czas rozpędzania 0-100 km/h</div>
-                <div className={styles.tableRowData}>{model.czas_rozp_0_100
-                } s</div>
+                <div className={styles.tableRowData}>{model.czas_rozp_0_100} s</div>
             </div>
             <div className={styles.tableRow}>
                 <div className={styles.tableRowLabel}>Średnie zużycie paliwa / wg:</div>
                 <div className={styles.tableRowData}>{model.zuzycie_sr} l/100km / wg {model.zuzycie_paliwa_wg}</div>
             </div>
             <div className={styles.tableRow}>
-                <div className={styles.tableRowLabel}>Zbiornik paliwa:</div>
+                <div className={styles.tableRowLabel}>Pojemność zbiornika paliwa:</div>
                 <div className={styles.tableRowData}>{model.poj_zbior_pal} dm3</div>
             </div>
         </div>

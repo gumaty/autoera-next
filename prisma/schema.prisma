@@ -8,11 +8,11 @@ datasource db {
 }
 
 model encyk {
-  id    Int     @id @default(autoincrement())
-  tytul String? @db.VarChar(100)
-  tresc String? @db.LongText
-  image String? @db.VarChar(50)
-  OK    String  @default("1") @db.Char(1)
+  id    Int    @id @default(autoincrement())
+  tytul String @db.VarChar(100)
+  tresc String @db.LongText
+  image String @db.VarChar(50)
+  OK    String @default("1") @db.Char(1)
 
   @@index([id], map: "id")
 }
@@ -209,4 +209,22 @@ model typy {
   OK            String @default("0") @db.Char(1)
 
   @@index([ID_typy], map: "ID_typy")
+}
+
+model articles {
+  art_id      Int      @id @default(autoincrement())
+  art_title   String   @db.VarChar(150)
+  art_content String   @db.Text
+  art_type    String   @db.VarChar(50)
+  art_author  String   @db.VarChar(50)
+  art_date    DateTime @default(now()) @db.DateTime(0)
+}
+
+model updatesy {
+  update_ID     Int      @id @default(autoincrement())
+  update_tresc  String   @db.Text
+  update_image  String   @db.VarChar(25)
+  update_link   String   @db.VarChar(100)
+  update_data   DateTime @default(dbgenerated("('0000-00-00')")) @db.Date
+  update_strona String   @default("") @db.VarChar(20)
 }

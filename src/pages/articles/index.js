@@ -5,7 +5,32 @@ import React from "react";
 
 const title = "Artykuły motoryzacyjne";
 
-export default function ArticlesHome() {
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+
+export async function getServerSideProps() {
+
+
+    const result = await prisma.articles.findMany({
+        select: {
+            art_title: true,
+        },
+        sortBy: {
+            art_type: asc,
+            art_title : asc,
+        },
+    });
+
+    return {
+        props: { result },
+    };
+}
+
+export default function ArticlesHome( { result } ) {
+
+    console.log(result)
+
     return (
         <>
             <Head>

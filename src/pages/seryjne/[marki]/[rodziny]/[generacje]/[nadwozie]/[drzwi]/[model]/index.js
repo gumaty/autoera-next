@@ -48,9 +48,11 @@ export async function getServerSideProps(context) {
             rok_uruch: true,
             rok_zakoncz: true,
             kraj_producenta: true,
+            struktura_nosna: true,
             cykl_pracy_silnika: true,
             rodzaj_zaplonu: true,
             liczba_cylindow: true,
+            uklad_cylindrow: true,
             pojemnosc_skokowa: true,
             moc_maks: true,
             obr_mocy_maks: true,
@@ -66,6 +68,7 @@ export async function getServerSideProps(context) {
             hamulce_tyl: true,
             ogumienie_przed: true,
             ogumienie_tyl: true,
+            rozstaw_osi: true,
             dlugosc_calk: true,
             szerokosc_calk: true,
             wysokosc_calk: true,
@@ -113,101 +116,6 @@ export async function getServerSideProps(context) {
         props: { result },
     };
 }
-
-// export async function getServerSideProps(context) {
-//
-//     const marka = context.params.marki;
-//     const rodzina = context.params.rodziny;
-//     let generacja = context.params.generacje;
-//     const nadwozie = context.params.nadwozie;
-//     const drzwi = parseInt(context.params.drzwi);
-//     const model = context.params.model;
-//
-//     const type = await prisma.typy.findMany(
-//         {
-//             where: {
-//                 nazwa_marka: marka,
-//                 nazwa_typ: rodzina,
-//             }
-//         }
-//     );
-//
-//     if (await type[0].generacja_typ === "0") generacja = ""
-//
-//     const result = await prisma.seryjne.findMany(
-//         {
-//             where: {
-//                 marka: marka,
-//                 rodzina: rodzina,
-//                 generacja: generacja,
-//                 typ_nadwozia: nadwozie,
-//                 liczba_drzwi: drzwi,
-//                 model: model
-//             },
-//             select:{
-//                 model_ID: true,
-//                 marka: true,
-//                 rodzina: true,
-//                 generacja: true,
-//                 model: true,
-//                 typ_nadwozia: true,
-//                 liczba_drzwi: true,
-//                 liczba_miejsc: true,
-//                 rok_uruch: true,
-//                 rok_zakoncz: true,
-//                 kraj_producenta: true,
-//                 cykl_pracy_silnika: true,
-//                 rodzaj_zaplonu: true,
-//                 liczba_cylindow: true,
-//                 pojemnosc_skokowa: true,
-//                 moc_maks: true,
-//                 obr_mocy_maks: true,
-//                 moment_maks: true,
-//                 obr_momentu_maks: true,
-//                 rodzaj_zasilania: true,
-//                 katalizator: true,
-//                 doladowanie: true,
-//                 uklad_napedowy: true,
-//                 rodzaj_skrzyni: true,
-//                 liczba_biegow: true,
-//                 hamulce_przed: true,
-//                 hamulce_tyl: true,
-//                 ogumienie_przed: true,
-//                 ogumienie_tyl: true,
-//                 dlugosc_calk: true,
-//                 szerokosc_calk: true,
-//                 wysokosc_calk: true,
-//                 masa_wl: true,
-//                 predkosc_maks: true,
-//                 czas_rozp_0_100: true,
-//                 zuzycie_sr: true,
-//                 zuzycie_paliwa_wg: true,
-//                 poj_zbior_pal: true,
-//
-//             }
-//         }
-//     );
-//
-//     const galeria = await prisma.gallery.findMany(
-//         {
-//             where: {
-//                 marka: marka,
-//                 typ: rodzina,
-//                 generacja: generacja
-//             },
-//             orderBy: {
-//                 image_name: "asc"
-//             }
-//         }
-//     );
-//
-//     result.push(galeria);
-//     result.push(type);
-//
-//     return {
-//         props: { result }
-//     };
-// }
 
 export default function ModelHome({result}) {
 

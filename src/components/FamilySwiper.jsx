@@ -73,7 +73,7 @@ export default function FamilySwiper(props) {
                                 <img
                                     src={`http://server090121.nazwa.pl/images/family/tn/${rodzina.img_typ}.webp`} alt={`Miniatura ${rodzina.nazwa_marka} ${rodzina.nazwa_typ}`}
                                 />
-                                <Typography sx={{position: "absolute", bottom: -15, left: 10, mb: 2, color: 'red', fontWeight: 'bold'}}>
+                                <Typography sx={{position: "absolute", bottom: 70, left: 10, mb: 2, color: 'red', fontWeight: 'bold'}}>
                                     {rodzina.nazwa_typ}
                                 </Typography>
                             </a>
