@@ -1,9 +1,21 @@
 -- CreateTable
+CREATE TABLE `articles` (
+    `art_id` INTEGER NOT NULL AUTO_INCREMENT,
+    `art_title` VARCHAR(150) NOT NULL,
+    `art_content` TEXT NOT NULL,
+    `art_type` VARCHAR(50) NOT NULL,
+    `art_author` VARCHAR(50) NOT NULL,
+    `art_date` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+
+    PRIMARY KEY (`art_id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `encyk` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `tytul` VARCHAR(100) NULL,
-    `tresc` LONGTEXT NULL,
-    `image` VARCHAR(50) NULL,
+    `tytul` VARCHAR(100) NOT NULL,
+    `tresc` LONGTEXT NOT NULL,
+    `image` VARCHAR(50) NOT NULL,
     `OK` CHAR(1) NOT NULL DEFAULT '1',
 
     INDEX `id`(`id`),
@@ -216,5 +228,17 @@ CREATE TABLE `typy` (
 
     INDEX `ID_typy`(`ID_typy`),
     PRIMARY KEY (`ID_typy`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `updatesy` (
+    `update_ID` INTEGER NOT NULL AUTO_INCREMENT,
+    `update_tresc` TEXT NOT NULL,
+    `update_image` VARCHAR(25) NOT NULL,
+    `update_link` VARCHAR(100) NOT NULL,
+    `update_data` DATE NOT NULL DEFAULT ('0000-00-00'),
+    `update_strona` VARCHAR(20) NOT NULL DEFAULT '',
+
+    PRIMARY KEY (`update_ID`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

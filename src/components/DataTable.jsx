@@ -13,7 +13,7 @@ function DataTable({ model }) {
             </div>
             <div className={styles.tableRow}>
                 <div className={styles.tableRowLabel}>Układ / liczba cylindrów:</div>
-                <div className={styles.tableRowData}>{model.uklad_cylindrow} / {model.liczba_cylindow}</div>
+                <div className={styles.tableRowData}>{model.uklad_cylindrow === "R" ? "RZĘDOWY" : model.uklad_cylindrow === "V" ? "WIDLASTY" : model.uklad_cylindrow === "B" ? "BOKSER" : model.uklad_cylindrow === "RH" ? "RZĘDOWY POZIOMY" : model.uklad_cylindrow === "H" ? "RZĘDOWY POZIOMY" : model.uklad_cylindrow} / {model.liczba_cylindow}</div>
             </div>
             <div className={styles.tableRow}>
                 <div className={styles.tableRowLabel}>Objętość skokowa:</div>

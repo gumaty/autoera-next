@@ -5,27 +5,31 @@ import React from "react";
 
 const title = "Artykuły motoryzacyjne";
 
-// import { PrismaClient } from '@prisma/client';
-//
-// const prisma = new PrismaClient();
+import { PrismaClient } from '@prisma/client';
 
-// export async function getServerSideProps() {
-//
-//
-//     const result = await prisma.articles.findMany({
-//         select: {
-//             art_title: true,
-//         },
-//         sortBy: {
-//             art_type: asc,
-//             art_title : asc,
-//         },
-//     });
-//
-//     return {
-//         props: { result },
-//     };
-// }
+const prisma = new PrismaClient();
+
+export async function getServerSideProps() {
+
+
+    const result = await prisma.articles.findMany({
+        select: {
+            art_title: true,
+        },
+        orderBy:[
+            {
+                art_type: "asc",
+            },
+            {
+                art_title: "asc",
+            },
+        ]
+    });
+
+    return {
+        props: { result },
+    };
+}
 
 export default function ArticlesHome( { result } ) {
 
