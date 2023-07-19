@@ -11,24 +11,63 @@ const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
 
+    const types = await prisma.articles.findMany({
+        select: {
+            art_type: true,
+            },
+        orderBy:{
+                art_type: "asc",
+            },
+    });
 
-    const result = await prisma.articles.findMany({
+    const articles = await prisma.articles.findMany({
         select: {
             art_id: true,
             art_title: true,
             art_content: true,
             art_type: true,
             art_author: true,
-            art_date: false,
+            art_date: true,
         },
         orderBy:[
             {
                 art_type: "asc",
             },
             {
-                art_title: "asc",
+                art_id: "desc",
             },
         ]
+    });
+
+    const articlesArray = articles.map((article) => {
+        let date = new Date(article.art_date)
+        article.art_date = date.toLocaleDateString('pl-PL', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+        });
+        return article;
+    });
+
+    const result = types.map((type) => {
+        const types = [];
+
+        if (type.art_type === "hist") {
+            types.push("Artykuły historyczne");
+        } else if (type.art_type === "org") {
+            types.push("Artykuły ogólne");
+        }  else if (type.art_type === "tech") {
+            types.push("Artykuły techniczne");
+        }
+
+        const articles = [];
+        types.push(articles);
+        for (let i = 0; i < articlesArray.length; i++) {
+            if (type.art_type === articlesArray[i].art_type) {
+                articles.push(articlesArray[i]);
+            }
+        }
+        return types;
     });
 
     return {
@@ -37,8 +76,6 @@ export async function getServerSideProps() {
 }
 
 export default function ArticlesHome( { result } ) {
-
-    console.log(result)
 
     return (
         <>
@@ -62,7 +99,7 @@ export default function ArticlesHome( { result } ) {
                     </Box>
                     <Box sx={{mb:2, px: 2, py: 1, display:'block', textAlign: 'center'}}>
 
-                        <ArticlesAccordion />
+                        <ArticlesAccordion articles={ result }/>
                     </Box>
                     <Typography sx={{color: '#153F1A', textAlign: "justify"}}>
                         Oprócz seryjnych samochodów osobowych prezentowane są pojazdy, które nigdy nie były produkowane seryjnie. Pojazdy te powstały jako prototypy lub w formie samochodów studialnych (concept cars).<br /><br />

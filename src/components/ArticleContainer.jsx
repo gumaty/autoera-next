@@ -6,15 +6,16 @@ function ArticleContainer(props){
 
     const { article } = props;
 
+    const descriptionArray = article.art_content.split(/\n/g);
 
     return (
         <Box sx={{display: "flex", flexDirection: "column", p: '20px', bgcolor: 'white'}} >
             <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>
-                <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{article.subject}</Typography>
+                <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{article.art_title}</Typography>
             </Box>
 
             <Box>
-                {article.content && Array.isArray(article.content) && article.content.map((paragraph, index) => (
+                {descriptionArray && Array.isArray(descriptionArray) && descriptionArray.map((paragraph, index) => (
                     paragraph.includes(".jpg") ? (
                       <Box key={index} sx={{display: "flex", mb: 2, py: 2, width: { xs: "100%", sm: "80%" }, borderTop: 2, borderBottom: 2, borderColor: 'red', marginInline: "auto"}}>
                         <Box sx={{marginInline: "auto"}}>

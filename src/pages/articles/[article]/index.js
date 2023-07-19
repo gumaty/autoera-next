@@ -4,81 +4,70 @@ import {useRouter} from "next/router";
 import React, {useEffect, useState} from "react";
 import ArticleContainer from "@/components/ArticleContainer";
 
-export default function StudioModelHome(props) {
+import { PrismaClient } from '@prisma/client';
 
-    function convert(text){
+const prisma = new PrismaClient();
 
-        const textBefore   = ["\n\r", "\n\n", "\r\n", "\n", "\r", "m3", "CO2"];
-        const textAfter = ["<br><br>", "<br><br>", "<br><br>", "<br><br>", "<br><br>", "m<sup>3</sup>", "CO<sub>2</sub>"];
-        let newText = '';
+export async function getServerSideProps(context) {
 
-        for (let i = 0; i < textBefore.length; i++) {
-            newText = text.replaceAll(textBefore[i], textAfter[i]);
+    const article = context.params.article;
+    const model = context.params.typ;
+
+    const articles = await prisma.articles.findMany(
+        {
+            where: {
+                art_title: article,
+            },
+            select: {
+                art_id: true,
+                art_title: true,
+                art_content: true,
+                art_type: true,
+                art_author: true,
+                art_date: true,
+            },
         }
-        return newText;
-    }
 
-    const [loadedBrands, setLoadedBrands] = useState([]);
+    );
+
+    const result = articles.map((article) => {
+        let date = new Date(article.art_date)
+        article.art_date = date.toLocaleDateString('pl-PL', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+        });
+        return article;
+    });
+
+    return {
+        props: { result }
+    };
+}
+
+export default function StudioModelHome( { result } ) {
+
+    const [loadedBrands, setLoadedBrands] = useState(result);
 
     const router = useRouter();
 
     const { article } = router.query;
 
-    useEffect(() => {
-        fetch(
-            `https://autoera-64fe0-default-rtdb.europe-west1.firebasedatabase.app/articles.json`
-        )
-            .then((response) => {
+    const { art_title, art_content, art_author } = loadedBrands[0];
 
-                return response.json();
-            })
-            .then((data) => {
-                for (const key in data) {
-                    if (key === article) {
-                            return data[key];
-                        }
-                    }
-
-            })
-            .then((res) => {
-
-                let { subject: topic, content: describe, author: initials} = res;
-
-                describe = convert(describe);
-
-                const tryArray = describe.split(/\n/g);
-
-                const newArray = {
-                    id: article,
-                    subject: topic,
-                    content: tryArray,
-                    author: initials
-
-                }
-
-                return newArray;
-            })
-            .then((data) => {
-                setLoadedBrands(data);
-            });
-    }, []);
-
-
-    const { subject, content, author } = loadedBrands;
-
-    const title = `Artykuły - ${subject}`;
+    const title = `AUTO-ERA - Twój profesjonalny portal motoryzacyjny - Artykuły - ${art_title}`;
 
     return (
         <>
             <Head>
-                <title>AUTO-ERA - Twój profesjonalny portal motoryzacyjny - {title}</title>
+                <title>{title}</title>
                 <meta name="description" content="Portal AUTO-ERA to motoryzacyjny serwis, zawierający najważniejsze wiadomości z dziedziny motoryzacji, katalog samochodów produkcyjnych, katalog samochodów studialnych oraz encyklopedię pojęć motoryzacyjnych bogato ilustrowane zdjęciami." />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
 
-                <ArticleContainer title={title} article={loadedBrands}/>
+                <ArticleContainer title={title} article={loadedBrands[0]}/>
 
             </Container>
         </>
