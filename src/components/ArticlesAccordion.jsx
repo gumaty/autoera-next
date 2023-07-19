@@ -7,7 +7,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {useEffect, useState} from "react";
 import Link from "next/link";
 
-export default function StudioAccordion() {
+export default function ArticleAccordion() {
 
     const [loadedBrands, setLoadedBrands] = useState([]);
     const [expanded, setExpanded] = useState(false);
@@ -16,19 +16,7 @@ export default function StudioAccordion() {
         setExpanded(isExpanded ? panel : false);
     };
 
-    function convert(text){
-
-        const textBefore   = ["\n\r", "\n\n", "\r\n", "\n", "\r", "m3", "CO2"];
-        const textAfter = ["<br><br>", "<br><br>", "<br><br>", "<br><br>", "<br><br>", "m<sup>3</sup>", "CO<sub>2</sub>"];
-        let newText = '';
-
-        for (let i = 0; i < textBefore.length; i++) {
-            newText = text.replaceAll(textBefore[i], textAfter[i]);
-        }
-        return newText;
-    }
-
-    useEffect(() => {
+        useEffect(() => {
         fetch(
             `https://autoera-64fe0-default-rtdb.europe-west1.firebasedatabase.app/articles.json`
         )

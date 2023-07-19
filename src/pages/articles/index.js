@@ -14,7 +14,12 @@ export async function getServerSideProps() {
 
     const result = await prisma.articles.findMany({
         select: {
+            art_id: true,
             art_title: true,
+            art_content: true,
+            art_type: true,
+            art_author: true,
+            art_date: false,
         },
         orderBy:[
             {
