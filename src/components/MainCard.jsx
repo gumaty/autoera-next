@@ -1,16 +1,30 @@
 import styles from "./MainCard.module.css";
+import Link from "next/link";
 
 function MainCard(props) {
 
-    const {card} =props;
+    const {cardSql} =props;
+
+
+
+    const titleArray = cardSql.update_link.split("/");
+
+    let updateTitle = titleArray[2];
+    for (let i = 3; i < titleArray.length; i++) {
+        updateTitle += ` ${titleArray[i]}`
+    }
 
     return (
-        <div className={styles.cardContainer}>{
-            card.category === "prod" ? (<img src={`/images/family/${card.picture}.webp`} alt={card.title} />) : card.category === "stud" ? (<img src={`/images/studio/${card.picture}.webp`} alt={card.title} />) : ''
-        }
-           <h2>{card.title}</h2>
-            <p>{card.description}</p>
-        </div>
+        <>
+            <Link className={styles.cardLink} href={`${cardSql.update_link}`}>
+                <div className={styles.cardContainer}>
+                    <img src={`http://server090121.nazwa.pl/images/updatesy/${cardSql.update_image}.webp`} alt={updateTitle} />
+                    <h2>{updateTitle}</h2>
+                    <p>{cardSql.update_tresc}</p>
+                    <p className={styles.cardData}>{cardSql.update_data}</p>
+                </div>
+            </Link>
+        </>
     );
 }
 

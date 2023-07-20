@@ -36,3 +36,14 @@
     text-align: center;
     font-size: 0.85rem;
 }
+
+.cardLink {
+    text-decoration: none;
+    color: #153F1A;
+    margin: 0;
+    font-size: 0.85rem;
+}
+.cardData p {
+    text-align: right;
+    font-weight: bold;
+}

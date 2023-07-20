@@ -2,56 +2,70 @@ import Head from 'next/head'
 import {Box, Container, Typography} from "@mui/material";
 import MainCard from "@/components/MainCard";
 import CardContainer from "@/components/CardContainer";
+import { PrismaClient } from '@prisma/client';
 
-export default function Home() {
+const prisma = new PrismaClient();
 
-    const prod = [
-        {
-            id: 1,
-            title: "AUDI A3",
-            description: "Model A3 wprowadzono na rynek w połowie 1996 roku i był to wówczas najmniejszy model firmy...",
-            picture: "aua3_3_fam",
-            category: "prod"
-        },
-        {
-            id: 2,
-            title: "ALFA ROMEO BRERA",
-            description: "Pod nazwą Brera kryje się pełnokrwisty samochód sportowy z nadwoziem typu coupe...",
-            picture: "al_brera_fam",
-            category: "prod"
-        },
-        {
-            id: 3,
-            title: "FORD FOCUS",
-            description: "Kompaktowy model o nazwie Focus miał swoją prezentację podczas Salonu Samochodowego w Genewie w marcu 1998 roku...",
-            picture: "ford_focus_4_fam",
-            category: "prod"
-        }
-    ];
+export async function getServerSideProps() {
 
-    const stud = [
-        {
-            id: 1,
-            title: "BMW xActivity",
-            description: "Studialny samochód firmy BMW o nazwie xActivity został zaprezentowany podczas Salonu Samochodowego w Detroit w 2003 roku...",
-            picture: "bmxactiv",
-            category: "stud"
+    const prods = await prisma.updatesy.findMany({
+        where: {
+            update_strona: "prod"
         },
-        {
-            id: 2,
-            title: "ALFA ROMEO KAMAL",
-            description: "Studialny model o nazwie Kamal prezentowany był w stoisku Alfy Romeo podczas Salonu Samochodowego w Genewie w 2003 roku...",
-            picture: "al_kamal",
-            category: "stud"
+        select: {
+            update_ID: true,
+            update_tresc: true,
+            update_image: true,
+            update_link: true,
+            update_data: true,
+            update_strona: true,
         },
-        {
-            id: 3,
-            title: "FORD VISOS",
-            description: "Studialny pojazd o nazwie Visos stanowił wizję przyszłościowego samochodu sportowego, jakiego brakuje od pewnego czasu w gamie modelowej europejskiego Forda...",
-            picture: "fovisos",
-            category: "stud"
-        }
-    ];
+        orderBy:{
+            update_data: "desc",
+        },
+        take: 3,
+    });
+
+    const studs = await prisma.updatesy.findMany({
+        where: {
+            update_strona: "stud"
+        },
+        select: {
+            update_ID: true,
+            update_tresc: true,
+            update_image: true,
+            update_link: true,
+            update_data: true,
+            update_strona: true,
+        },
+        orderBy:{
+            update_data: "desc",
+        },
+        take: 3,
+    });
+
+    const prodsArray = prods.map((item) => {
+        let date = new Date(item.update_data)
+        item.update_data = date.toLocaleDateString('pl-PL',);
+        return item;
+    });
+
+    const studsArray = studs.map((item) => {
+        let date = new Date(item.update_data)
+        item.update_data = date.toLocaleDateString('pl-PL',);
+        return item;
+    });
+
+    const result = [];
+
+    result.push(prodsArray);
+    result.push(studsArray);
+
+    return {
+        props: { result },
+    };
+}
+export default function Home( { result} ) {
 
   return (
     <>
@@ -74,8 +88,8 @@ export default function Home() {
                         Nasza misja: INFORMACJA I EDUKACJA
                     </Typography>
                 </Box>
-                <CardContainer category={'seryjne'} cards={prod} />
-                <CardContainer category={'studialne'} cards={stud} />
+                <CardContainer category={'seryjne'} cardsSql={result[0]} />
+                <CardContainer category={'studialne'} cardsSql={result[1]} />
             </Box>
         </Container>
     </>
