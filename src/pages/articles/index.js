@@ -6,12 +6,13 @@ import React from "react";
 const title = "Artykuły motoryzacyjne";
 
 import { PrismaClient } from '@prisma/client';
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
 
-    const types = await prisma.articles.findMany({
+    let types = await prisma.articles.findMany({
         select: {
             art_type: true,
             },
@@ -39,31 +40,33 @@ export async function getServerSideProps() {
         ]
     });
 
-    const articlesArray = articles.map((article) => {
+    let articlesArray = articles.map((article) => {
         let date = new Date(article.art_date)
-        article.art_date = date.toLocaleDateString('pl-PL', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric',
-        });
+        article.art_date = date.toLocaleDateString('pl-PL');
         return article;
     });
 
-    const result = types.map((type) => {
+    let newTypes = types.map((type) => {
+        return type.art_type
+    });
+
+    newTypes = [...new Set(newTypes)];
+
+    const result = newTypes.map((type) => {
         const types = [];
 
-        if (type.art_type === "hist") {
+        if (type === "hist") {
             types.push("Artykuły historyczne");
-        } else if (type.art_type === "org") {
+        } else if (type === "org") {
             types.push("Artykuły ogólne");
-        }  else if (type.art_type === "tech") {
+        }  else if (type === "tech") {
             types.push("Artykuły techniczne");
         }
 
         const articles = [];
         types.push(articles);
         for (let i = 0; i < articlesArray.length; i++) {
-            if (type.art_type === articlesArray[i].art_type) {
+            if (type === articlesArray[i].art_type) {
                 articles.push(articlesArray[i]);
             }
         }
@@ -86,6 +89,7 @@ export default function ArticlesHome( { result } ) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
+                <Breadcrumbs />
                 <Box sx={{p: '20px', bgcolor: 'white'}} >
                     <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>
                         <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{title}</Typography>

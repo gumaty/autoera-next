@@ -14,6 +14,23 @@ function Breadcrumbs({generacja}) {
     let link = {};
 
     for (let i = 0; i < routesArray.length; i++){
+        let name = routesArray[i]
+            .replaceAll("%20", " ")
+            .replaceAll("%C4%86", "Ć")
+            .replaceAll("%C5%81", "Ł")
+            .replaceAll("%C3%93", "Ó")
+            .replaceAll("%C5%9A", "Ś")
+            .replaceAll("%C5%BB", "Ż")
+            .replaceAll("%C5%B9", "Ź")
+            .replaceAll("%C4%85", "ą")
+            .replaceAll("%C4%87", "ć")
+            .replaceAll("%C4%99", "ę")
+            .replaceAll("%C5%82", "ł")
+            .replaceAll("%C5%84", "ń")
+            .replaceAll("%C3%B3", "ó")
+            .replaceAll("%C5%9B", "ś")
+            .replaceAll("%C5%BC", "ż")
+            .replaceAll("%C5%BA", "ź");
         if (i === 0) {
             link = {
                 name: `Główna`,
@@ -21,13 +38,13 @@ function Breadcrumbs({generacja}) {
             }
         } else if (i === 1) {
             link = {
-                name: `${routesArray[i].replaceAll("%20", " ")}`,
+                name: `${name}`,
                 anchor: `/${routesArray[i]}`
         }
 
         } else {
             link = {
-                name: `${routesArray[i].replaceAll("%20", " ")}`,
+                name: `${name}`,
                 anchor: `${linksArray[i - 1].anchor}/${routesArray[i]}`
             }
 

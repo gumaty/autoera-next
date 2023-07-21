@@ -5,6 +5,7 @@ import React, {useEffect, useState} from "react";
 import ArticleContainer from "@/components/ArticleContainer";
 
 import { PrismaClient } from '@prisma/client';
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const prisma = new PrismaClient();
 
@@ -67,6 +68,7 @@ export default function StudioModelHome( { result } ) {
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
 
+                <Breadcrumbs />
                 <ArticleContainer title={title} article={loadedBrands[0]}/>
 
             </Container>
