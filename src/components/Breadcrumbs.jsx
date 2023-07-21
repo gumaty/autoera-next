@@ -7,7 +7,7 @@ function Breadcrumbs() {
     const router = useRouter();
 
     const routes = router.asPath;
-    const routesArray = routes.split("/")
+    const routesArray = routes.length === 1 ? [""] : routes.split("/");
 
     const linksArray = [];
     let link = {};
@@ -34,8 +34,11 @@ function Breadcrumbs() {
         linksArray.push(link)
 
     }
+    if (linksArray.length > 5) {
+        linksArray[5].anchor = linksArray[4].anchor;
+        linksArray[6].anchor = linksArray[4].anchor;
+    }
 
-    console.log(linksArray)
 
     return (
         <div className={styles.container}>
