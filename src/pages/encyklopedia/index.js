@@ -5,6 +5,7 @@ import EncyAccordion from "@/components/EncyAcordion";
 import EncySwiper from "@/components/EncySwiper";
 
 import { PrismaClient } from '@prisma/client';
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const prisma = new PrismaClient();
 
@@ -25,7 +26,11 @@ export async function getServerSideProps() {
     );
     let tempArray = [];
     for (let i = 0; i < entries.length; i++) {
-        tempArray.push(entries[i].tytul.substring(0, 1));
+        const letter = entries[i].tytul.substring(0, 1).toUpperCase();
+        if (letter !== "Ć" && letter !== "Ł" && letter !== "Ś" && letter !== "Ż" && letter !== "Ź") {
+            tempArray.push(letter);
+        }
+
     }
     const result = [...new Set(tempArray)];
 
@@ -47,6 +52,7 @@ export default function EncyklopediaHome({result}) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
+                <Breadcrumbs />
                 <Box sx={{pt: '20px', bgcolor: 'white'}} >
                     <Typography variant='h6' component='h3' sx={{color: '#153F1A', fontWeight: '700', textAlign: 'center'}}>Wybierz pierwszą literę hasła:</Typography>
                 </Box>

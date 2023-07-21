@@ -5,6 +5,7 @@ import React, {useEffect, useState} from "react";
 import StudioModelContainer from "@/components/StudioModelContainer";
 
 import { PrismaClient } from '@prisma/client';
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const prisma = new PrismaClient();
 
@@ -68,7 +69,7 @@ export default function StudioModelHome({result}) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
-
+                <Breadcrumbs />
                 <StudioModelContainer title={title} modelData={loadedBrands[0]}/>
 
             </Container>

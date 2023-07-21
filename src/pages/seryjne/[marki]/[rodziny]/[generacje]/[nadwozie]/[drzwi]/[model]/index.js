@@ -139,7 +139,7 @@ export default function ModelHome({result}) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
-                <Breadcrumbs />
+                <Breadcrumbs generacja={generacja}/>
                 <ModelContainer model={loadedBrands[0]} gallery={loadedBrands[1]}/>
             </Container>
         </>

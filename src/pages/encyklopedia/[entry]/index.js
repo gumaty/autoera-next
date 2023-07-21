@@ -6,6 +6,7 @@ import EncyContainer from "@/components/EncyContainer";
 
 
 import { PrismaClient } from '@prisma/client';
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const prisma = new PrismaClient();
 
@@ -62,6 +63,7 @@ export default function encyItemHome({ result }) {
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
 
+                <Breadcrumbs />
                 <EncyContainer entries={result}/>
 
             </Container>

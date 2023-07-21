@@ -2,11 +2,12 @@ import {useRouter} from "next/router";
 import styles from "./Breadcrumbs.module.css";
 import Link from "next/link";
 
-function Breadcrumbs() {
+function Breadcrumbs({generacja}) {
 
     const router = useRouter();
 
     const routes = router.asPath;
+
     const routesArray = routes.length === 1 ? [""] : routes.split("/");
 
     const linksArray = [];
@@ -34,10 +35,24 @@ function Breadcrumbs() {
         linksArray.push(link)
 
     }
-    if (linksArray.length > 5) {
-        linksArray[5].anchor = linksArray[4].anchor;
-        linksArray[6].anchor = linksArray[4].anchor;
+
+
+    if (routesArray[1] === "seryjne" ) {
+        if (linksArray.length > 5 && generacja && generacja !== "") {
+            linksArray[5].anchor = linksArray[4].anchor;
+            linksArray[6].anchor = linksArray[4].anchor;
+        } else if (linksArray.length > 4 && generacja === ""){
+            linksArray[4].anchor = linksArray[3].anchor;
+            linksArray[5].anchor = linksArray[3].anchor;
+            linksArray[6].anchor = linksArray[3].anchor;
+        }
+    } else if (routesArray[1] === "studialne") {
+        if (linksArray.length > 2) {
+            linksArray[2].anchor = linksArray[1].anchor;
+            linksArray[3].anchor = linksArray[1].anchor;
+        }
     }
+
 
 
     return (

@@ -4,6 +4,7 @@ import StudioAccordion from "@/components/StudioAcordion";
 import React from "react";
 
 import { PrismaClient } from '@prisma/client';
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const prisma = new PrismaClient();
 
@@ -74,6 +75,7 @@ export default function StudioHome({result}) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
+                <Breadcrumbs />
                 <Box sx={{p: '20px', bgcolor: 'white'}} >
                     <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>
                         <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{title}</Typography>
