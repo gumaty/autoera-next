@@ -5,6 +5,7 @@ import {useRouter} from "next/router";
 import React, {useEffect, useState} from "react";
 import BrandContainer from "@/components/BrandContainer";
 import { PrismaClient } from '@prisma/client';
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const prisma = new PrismaClient();
 
@@ -69,6 +70,7 @@ export default function SerialHome({result}) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
+                <Breadcrumbs />
                 <FamilySwiper rodziny={loadedBrands[1]} />
                 <BrandContainer brandData={loadedBrands[0]}/>
 

@@ -3,6 +3,7 @@ import {Box, Container, Typography} from "@mui/material";
 import LogoSwiper from "@/components/LogoSwiper";
 import { PrismaClient } from '@prisma/client';
 import React from "react";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const prisma = new PrismaClient();
 
@@ -42,6 +43,7 @@ export default function SerialHome({brands}) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
+                <Breadcrumbs />
                 <LogoSwiper brands={brands}/>
                 <Box sx={{p: '20px', bgcolor: 'white'}} >
                     <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>

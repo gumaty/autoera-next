@@ -7,6 +7,7 @@ import GenerationSwiper from "@/components/GenerationSwiper";
 import GenerationContainer from "@/components/GenerationContainer";
 import { PrismaClient } from '@prisma/client';
 import ModelContainer from "@/components/ModelContainer";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const prisma = new PrismaClient();
 
@@ -138,9 +139,8 @@ export default function ModelHome({result}) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
-
+                <Breadcrumbs />
                 <ModelContainer model={loadedBrands[0]} gallery={loadedBrands[1]}/>
-
             </Container>
         </>
     )

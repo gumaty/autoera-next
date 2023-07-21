@@ -3,6 +3,8 @@ import {Box, Container, Typography} from "@mui/material";
 import MainCard from "@/components/MainCard";
 import CardContainer from "@/components/CardContainer";
 import { PrismaClient } from '@prisma/client';
+import Breadcrumbs from "@/components/Breadcrumbs";
+import React from "react";
 
 const prisma = new PrismaClient();
 
@@ -76,6 +78,7 @@ export default function Home( { result} ) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
         <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
+            <Breadcrumbs />
             <Box sx={{p: '20px', bgcolor: 'white'}} >
                 <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>
                     <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700', textAlign: 'center'}}>
