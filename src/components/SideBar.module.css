@@ -1,0 +1,27 @@
+.container {
+    width: 100%;
+    padding: 12px;
+}
+.outer {
+    max-width: 1400px;
+    /*margin: 1rem auto;*/
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    /*border-top: 2px solid red;*/
+    /*border-bottom: 2px solid red;*/
+}
+
+.outer h2 {
+    margin: 0;
+}
+
+.inner {
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /*flex-wrap: wrap;*/
+    gap: 2rem;
+    padding-top: 10px;
+}

@@ -28,7 +28,7 @@ export default function LogoSwiper({brands}) {
     const [loadedBrands, setLoadedBrands] = useState(brands);
 
     return (
-        <>
+        <div className={classes.container}>
             <Box sx={{pt: '20px', bgcolor: 'white'}} >
                 <Typography variant='h6' component='h3' sx={{color: '#153F1A', fontWeight: '700', textAlign: 'center'}}>Wybierz markę:</Typography>
             </Box>
@@ -68,6 +68,6 @@ export default function LogoSwiper({brands}) {
 
             </Swiper>
             </Box>
-        </>
+        </div>
     );
 }
