@@ -6,6 +6,7 @@ import React, {useEffect, useState} from "react";
 import BrandContainer from "@/components/BrandContainer";
 import { PrismaClient } from '@prisma/client';
 import Breadcrumbs from "@/components/Breadcrumbs";
+import BrandMain from "@/components/BrandMain";
 
 const prisma = new PrismaClient();
 
@@ -41,8 +42,29 @@ export async function getServerSideProps(context) {
         }
     );
 
+    const prods = await prisma.typy.findMany({
+        where: {
+            OK: '1',
+        },
+        select: {
+            ID_typy: true,
+            nazwa_marka: true,
+            nazwa_typ: true,
+            typ_lata: true,
+            img_typ: true,
+        },
+    });
+
+    const prodsArray = [];
+
+    for (let i = 0; i < 4; i++) {
+        const number = Math.round(Math.random() * prods.length);
+        prodsArray.push(prods[number]);
+    }
+
     const result = brand
     result.push(types);
+    result.push(prodsArray);
 
     return {
         props: { result }
@@ -70,9 +92,8 @@ export default function SerialHome({result}) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
-                <Breadcrumbs />
-                <FamilySwiper rodziny={loadedBrands[1]} />
-                <BrandContainer brandData={loadedBrands[0]}/>
+
+                <BrandMain results={result}/>
 
             </Container>
         </>

@@ -29,6 +29,9 @@ export async function getServerSideProps() {
     );
 
     const prods = await prisma.typy.findMany({
+        where: {
+            OK: '1',
+        },
         select: {
             ID_typy: true,
             nazwa_marka: true,
@@ -37,6 +40,13 @@ export async function getServerSideProps() {
             img_typ: true,
         },
     });
+
+    const prodsArray = [];
+
+    for (let i = 0; i < 4; i++) {
+        const number = Math.round(Math.random() * prods.length);
+        prodsArray.push(prods[number]);
+    }
 
 
 
@@ -50,13 +60,20 @@ export async function getServerSideProps() {
         },
     });
 
+    const studsArray = [];
+
+    for (let i = 0; i < 4; i++) {
+        const number = Math.round(Math.random() * studs.length);
+        studsArray.push(studs[number]);
+    }
+
 
 
     const result = [];
 
     result.push(brands);
-    result.push(prods);
-    result.push(studs);
+    result.push(prodsArray);
+    result.push(studsArray);
 
     return {
         props: { result }
@@ -65,6 +82,8 @@ export async function getServerSideProps() {
 
 
 export default function SerialHome( {result} ) {
+
+    console.log(result)
 
     return (
         <>

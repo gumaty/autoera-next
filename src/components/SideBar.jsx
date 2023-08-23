@@ -4,15 +4,13 @@ import SideCard from "@/components/SideCard";
 
 function SideBar( {sides} ) {
 
-    console.log(sides)
-
     return(
         <div className={styles.container}>
             <div className={styles.outer}>
                 <div  className={styles.inner}>
-
+                    <h2>Zobacz również:</h2>
                     {sides.map((item) => (
-                            <SideCard key={item.update_ID} cardSql={item}/>
+                            <SideCard key={item.ID} cardSql={item}/>
                         )
                     )}
                 </div>

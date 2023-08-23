@@ -11,7 +11,8 @@ function SideCard( {cardSql} ) {
             <Link className={styles.cardLink} href={`/seryjne/${cardSql.nazwa_marka}/${cardSql.nazwa_typ}`}>
                 <div className={styles.cardContainer}>
                     <img src={`http://server090121.nazwa.pl/images/family/${cardSql.img_typ}.webp`} alt={updateTitle} />
-                    <h2>{updateTitle}</h2>
+                    <h2>{cardSql.nazwa_marka} {cardSql.nazwa_typ}</h2>
+                    <h2>({cardSql.typ_lata})</h2>
                 </div>
             </Link>
         </>
