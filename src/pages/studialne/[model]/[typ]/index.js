@@ -6,6 +6,8 @@ import StudioModelContainer from "@/components/StudioModelContainer";
 
 import { PrismaClient } from '@prisma/client';
 import Breadcrumbs from "@/components/Breadcrumbs";
+import StudioMain from "@/components/StudioMain";
+import StudioModelMain from "@/components/StudioModelMain";
 
 const prisma = new PrismaClient();
 
@@ -14,7 +16,7 @@ export async function getServerSideProps(context) {
     const marka = context.params.model;
     const model = context.params.typ;
 
-    const result = await prisma.stud.findMany(
+    const models = await prisma.stud.findMany(
         {
             where: {
                 marka: marka,
@@ -30,6 +32,27 @@ export async function getServerSideProps(context) {
         }
 
     );
+
+    const studs = await prisma.stud.findMany({
+        select: {
+            ID: true,
+            marka: true,
+            model: true,
+            rok: true,
+            picture: true,
+        },
+    });
+
+    const studsArray = [];
+
+    for (let i = 0; i < 4; i++) {
+        const number = Math.round(Math.random() * studs.length);
+        studsArray.push(studs[number]);
+    }
+
+    const result = [];
+    result.push(models);
+    result.push(studsArray);
 
     return {
         props: { result }
@@ -50,7 +73,7 @@ export default function StudioModelHome({result}) {
         return newText;
     }
 
-    const [loadedBrands, setLoadedBrands] = useState(result);
+    const [loadedBrands, setLoadedBrands] = useState(result[0]);
 
     // const router = useRouter();
     //
@@ -69,8 +92,8 @@ export default function StudioModelHome({result}) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
-                <Breadcrumbs />
-                <StudioModelContainer title={title} modelData={loadedBrands[0]}/>
+
+                <StudioModelMain results={result} title={title}/>
 
             </Container>
         </>

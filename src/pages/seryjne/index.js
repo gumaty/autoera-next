@@ -48,32 +48,10 @@ export async function getServerSideProps() {
         prodsArray.push(prods[number]);
     }
 
-
-
-    const studs = await prisma.stud.findMany({
-        select: {
-            ID: true,
-            marka: true,
-            model: true,
-            rok: true,
-            picture: true,
-        },
-    });
-
-    const studsArray = [];
-
-    for (let i = 0; i < 4; i++) {
-        const number = Math.round(Math.random() * studs.length);
-        studsArray.push(studs[number]);
-    }
-
-
-
     const result = [];
 
     result.push(brands);
     result.push(prodsArray);
-    result.push(studsArray);
 
     return {
         props: { result }
