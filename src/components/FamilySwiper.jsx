@@ -40,7 +40,7 @@ export default function FamilySwiper(props) {
 
 
     return (
-        <>
+        <div className={classes.container}>
             <Box sx={{pt: '20px', bgcolor: 'white'}} >
                 <Typography variant='h6' component='h3' sx={{color: '#153F1A', fontWeight: '700', textAlign: 'center'}}>Wybierz rodzinę:</Typography>
             </Box>
@@ -81,7 +81,7 @@ export default function FamilySwiper(props) {
                     ))}
             </Swiper>
             </Box>
-        </>
+        </div>
     );
 
 

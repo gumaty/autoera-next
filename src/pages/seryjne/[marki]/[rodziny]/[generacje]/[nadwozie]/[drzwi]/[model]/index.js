@@ -8,6 +8,8 @@ import GenerationContainer from "@/components/GenerationContainer";
 import { PrismaClient } from '@prisma/client';
 import ModelContainer from "@/components/ModelContainer";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import GenerationMain from "@/components/GenerationMain";
+import ModelMain from "@/components/ModelMain";
 
 const prisma = new PrismaClient();
 
@@ -110,8 +112,29 @@ export async function getServerSideProps(context) {
     const result = await prisma.seryjne.findMany(resultQuery);
     const galeria = await prisma.gallery.findMany(galeriaQuery);
 
+    const prods = await prisma.typy.findMany({
+        where: {
+            OK: '1',
+        },
+        select: {
+            ID_typy: true,
+            nazwa_marka: true,
+            nazwa_typ: true,
+            typ_lata: true,
+            img_typ: true,
+        },
+    });
+
+    const prodsArray = [];
+
+    for (let i = 0; i < 4; i++) {
+        const number = Math.round(Math.random() * prods.length);
+        prodsArray.push(prods[number]);
+    }
+
     result.push(galeria);
     result.push(type);
+    result.push(prodsArray);
 
     return {
         props: { result },
@@ -139,8 +162,7 @@ export default function ModelHome({result}) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
-                <Breadcrumbs generacja={generacja}/>
-                <ModelContainer model={loadedBrands[0]} gallery={loadedBrands[1]}/>
+                <ModelMain results={result}/>
             </Container>
         </>
     )

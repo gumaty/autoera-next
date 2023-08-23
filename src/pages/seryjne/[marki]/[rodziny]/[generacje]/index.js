@@ -7,6 +7,8 @@ import GenerationSwiper from "@/components/GenerationSwiper";
 import GenerationContainer from "@/components/GenerationContainer";
 import { PrismaClient } from '@prisma/client';
 import Breadcrumbs from "@/components/Breadcrumbs";
+import FamilyMain from "@/components/FamilyMain";
+import GenerationMain from "@/components/GenerationMain";
 
 const prisma = new PrismaClient();
 
@@ -154,13 +156,32 @@ export async function getServerSideProps(context) {
         return body;
     })
 
+    const prods = await prisma.typy.findMany({
+        where: {
+            OK: '1',
+        },
+        select: {
+            ID_typy: true,
+            nazwa_marka: true,
+            nazwa_typ: true,
+            typ_lata: true,
+            img_typ: true,
+        },
+    });
+
+    const prodsArray = [];
+
+    for (let i = 0; i < 4; i++) {
+        const number = Math.round(Math.random() * prods.length);
+        prodsArray.push(prods[number]);
+    }
+
     const result = generation;
     result.push(generations);
     result.push(galeria);
     result.push(types);
-    // result.push(uniqueCarBodies);
-    // result.push(modele);
     result.push(models);
+    result.push(prodsArray);
 
     return {
         props: { result }
@@ -188,9 +209,7 @@ export default function GenerationHome({result}) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
-                <Breadcrumbs />
-                <GenerationSwiper generacje={loadedBrands[1]} />
-                <GenerationContainer title={title} familyData={loadedBrands[0]} gallery={loadedBrands[2]} models={loadedBrands[4]}/>
+                <GenerationMain results={result} title={title}/>
             </Container>
         </>
     )

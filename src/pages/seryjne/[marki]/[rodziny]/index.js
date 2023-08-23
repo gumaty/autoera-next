@@ -7,6 +7,7 @@ import FamilyContainer from "@/components/FamilyContainer";
 import { PrismaClient } from '@prisma/client';
 import FamilySwiper from "@/components/FamilySwiper";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import FamilyMain from "@/components/FamilyMain";
 
 const prisma = new PrismaClient();
 
@@ -140,11 +141,32 @@ export async function getServerSideProps(context) {
         return body;
     })
 
+    const prods = await prisma.typy.findMany({
+        where: {
+            OK: '1',
+        },
+        select: {
+            ID_typy: true,
+            nazwa_marka: true,
+            nazwa_typ: true,
+            typ_lata: true,
+            img_typ: true,
+        },
+    });
+
+    const prodsArray = [];
+
+    for (let i = 0; i < 4; i++) {
+        const number = Math.round(Math.random() * prods.length);
+        prodsArray.push(prods[number]);
+    }
+
     const result = type;
     result.push(generations);
     result.push(galeria);
     result.push(types);
     result.push(models);
+    result.push(prodsArray);
 
     return {
         props: { result }
@@ -172,9 +194,7 @@ export default function FamilyHome({result}) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
-                <Breadcrumbs />
-                {generacja_typ === "0" ? <FamilySwiper rodziny={loadedBrands[3]} /> : <GenerationSwiper generacje={loadedBrands[1]} />}
-                <FamilyContainer familyData={loadedBrands[0]} gallery={loadedBrands[2]} models={loadedBrands[4]}/>
+                <FamilyMain results={result}/>
             </Container>
         </>
     )
