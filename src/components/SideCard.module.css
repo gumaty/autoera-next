@@ -34,6 +34,18 @@
     text-transform: uppercase;
 }
 
+.cardContainer h3 {
+    margin: 0;
+    padding-left: 0;
+    width: 100%;
+    font-size: 0.9rem;
+    font-weight: 200;
+    line-height: 1;
+    text-align: left;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
 .cardContainer p {
     margin: 0;
     text-align: center;

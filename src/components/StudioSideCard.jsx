@@ -10,6 +10,7 @@ function StudioSideCard( {cardSql} ) {
         <>
             <Link className={styles.cardLink} href={`/studialne/${cardSql.marka}/${cardSql.model}`}>
                 <div className={styles.cardContainer}>
+                    <h3>Studialne</h3>
                     <img src={`http://server090121.nazwa.pl/images/studio/${cardSql.picture}.webp`} alt={updateTitle} />
                     <h2>{cardSql.marka} {cardSql.model}</h2>
                     <h2>({cardSql.rok})</h2>

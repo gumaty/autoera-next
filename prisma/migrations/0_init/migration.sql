@@ -3,6 +3,7 @@ CREATE TABLE `articles` (
     `art_id` INTEGER NOT NULL AUTO_INCREMENT,
     `art_title` VARCHAR(150) NOT NULL,
     `art_content` TEXT NOT NULL,
+    `art_picture` VARCHAR(50) NOT NULL,
     `art_type` VARCHAR(50) NOT NULL,
     `art_author` VARCHAR(50) NOT NULL,
     `art_date` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
@@ -64,17 +65,6 @@ CREATE TABLE `marki` (
 
     INDEX `marki_ID`(`marki_ID`),
     PRIMARY KEY (`marki_ID`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- CreateTable
-CREATE TABLE `markistud` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `nazwa_marki` VARCHAR(100) NOT NULL,
-    `opis_marki` TEXT NOT NULL,
-    `image` VARCHAR(40) NOT NULL,
-
-    INDEX `id`(`id`),
-    PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable

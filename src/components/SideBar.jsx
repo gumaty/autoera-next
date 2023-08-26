@@ -8,7 +8,7 @@ function SideBar( {sides} ) {
         <div className={styles.container}>
             <div className={styles.outer}>
                 <div  className={styles.inner}>
-                    <h2>Zobacz również:</h2>
+                    <h2>Polecamy również:</h2>
                     {sides.map((item) => (
                             <SideCard key={item.ID} cardSql={item}/>
                         )

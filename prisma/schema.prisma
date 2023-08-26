@@ -11,6 +11,7 @@ model articles {
   art_id      Int      @id @default(autoincrement())
   art_title   String   @db.VarChar(150)
   art_content String   @db.Text
+  art_picture String   @db.VarChar(50)
   art_type    String   @db.VarChar(50)
   art_author  String   @db.VarChar(50)
   art_date    DateTime @default(now()) @db.DateTime(0)
@@ -62,15 +63,6 @@ model marki {
   OK          String @default("0") @db.Char(1)
 
   @@index([marki_ID], map: "marki_ID")
-}
-
-model markistud {
-  id          Int    @id @default(autoincrement())
-  nazwa_marki String @db.VarChar(100)
-  opis_marki  String @db.Text
-  image       String @db.VarChar(40)
-
-  @@index([id], map: "id")
 }
 
 model seryjne {
