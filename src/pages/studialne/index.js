@@ -83,9 +83,7 @@ export async function getServerSideProps(context) {
 
 const title = "Pojazdy studialne i prototypowe";
 
-export default function StudioHome({result}) {
-
-    console.log(result)
+export default function StudioHome( {result} ) {
 
     return (
         <>

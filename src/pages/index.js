@@ -5,6 +5,7 @@ import CardContainer from "@/components/CardContainer";
 import { PrismaClient } from '@prisma/client';
 import Breadcrumbs from "@/components/Breadcrumbs";
 import React from "react";
+import HomeMain from "@/components/HomeMain";
 
 const prisma = new PrismaClient();
 
@@ -58,16 +59,80 @@ export async function getServerSideProps() {
         return item;
     });
 
+    const prodsTeaser = await prisma.typy.findMany({
+        where: {
+            OK: '1',
+        },
+        select: {
+            ID_typy: true,
+            nazwa_marka: true,
+            nazwa_typ: true,
+            typ_lata: true,
+            img_typ: true,
+        },
+    });
+
+    const prodsTeaserArray = [];
+
+    for (let i = 0; i < 2; i++) {
+        const number = Math.round(Math.random() * prodsTeaser.length);
+        prodsTeaserArray.push(prodsTeaser[number]);
+    }
+
+    const studsTeaser = await prisma.stud.findMany({
+        select: {
+            ID: true,
+            marka: true,
+            model: true,
+            rok: true,
+            picture: true,
+        },
+    });
+
+    const studsTeaserArray = [];
+
+    for (let i = 0; i < 2; i++) {
+        const number = Math.round(Math.random() * studsTeaser.length);
+        studsTeaserArray.push(studsTeaser[number]);
+    }
+
+
+    const articlesTeaser = await prisma.articles.findMany({
+        select: {
+            art_id: true,
+            art_title: true,
+            art_picture: true,
+            art_author: true,
+            art_date: true,
+        },
+    });
+
+    const articlesTempArray = [];
+
+    for (let i = 0; i < 2; i++) {
+        const number = Math.round(Math.random() * articlesTeaser.length);
+        articlesTempArray.push(articlesTeaser[number]);
+    }
+
+    const articlesTeaserArray = articlesTempArray.map((item) => {
+        let date = new Date(item.art_date)
+        item.art_date = date.toLocaleDateString('pl-PL',);
+        return item;
+    });
+
     const result = [];
 
     result.push(prodsArray);
     result.push(studsArray);
+    result.push(prodsTeaserArray);
+    result.push(studsTeaserArray);
+    result.push(articlesTeaserArray);
 
     return {
         props: { result },
     };
 }
-export default function Home( { result} ) {
+export default function Home( { result } ) {
 
   return (
     <>
@@ -78,22 +143,7 @@ export default function Home( { result} ) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
         <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
-            <Breadcrumbs />
-            <Box sx={{p: '20px', bgcolor: 'white'}} >
-                <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>
-                    <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700', textAlign: 'center'}}>
-                        Auto-era - Twój profesjonalny portal motoryzacyjny
-                    </Typography>
-                    <Typography variant='h5' component='h2' sx={{color: 'red', fontWeight: '700', textAlign: 'center'}}>
-                        WSZYSTKIE AUTA ŚWIATA
-                    </Typography>
-                    <Typography variant='h5' component='h2' sx={{color: 'red', fontWeight: '700', textAlign: 'center'}}>
-                        Nasza misja: INFORMACJA I EDUKACJA
-                    </Typography>
-                </Box>
-                <CardContainer category={'seryjne'} cardsSql={result[0]} />
-                <CardContainer category={'studialne'} cardsSql={result[1]} />
-            </Box>
+            <HomeMain results={result}/>
         </Container>
     </>
   )
