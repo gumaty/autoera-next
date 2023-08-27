@@ -132,7 +132,7 @@ export async function getServerSideProps() {
         props: { result },
     };
 }
-export default function Home( { result } ) {
+export default function Home( {result} ) {
 
   return (
     <>
