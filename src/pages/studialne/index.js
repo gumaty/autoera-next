@@ -55,7 +55,27 @@ export async function getServerSideProps(context) {
         tempArray.push(obj);
     }
 
-    const studs = await prisma.stud.findMany({
+    const prodsTeaser = await prisma.typy.findMany({
+        where: {
+            OK: '1',
+        },
+        select: {
+            ID_typy: true,
+            nazwa_marka: true,
+            nazwa_typ: true,
+            typ_lata: true,
+            img_typ: true,
+        },
+    });
+
+    const prodsTeaserArray = [];
+
+    for (let i = 0; i < 2; i++) {
+        const number = Math.round(Math.random() * prodsTeaser.length);
+        prodsTeaserArray.push(prodsTeaser[number]);
+    }
+
+    const studsTeaser = await prisma.stud.findMany({
         select: {
             ID: true,
             marka: true,
@@ -65,16 +85,42 @@ export async function getServerSideProps(context) {
         },
     });
 
-    const studsArray = [];
+    const studsTeaserArray = [];
 
-    for (let i = 0; i < 4; i++) {
-        const number = Math.round(Math.random() * studs.length);
-        studsArray.push(studs[number]);
+    for (let i = 0; i < 2; i++) {
+        const number = Math.round(Math.random() * studsTeaser.length);
+        studsTeaserArray.push(studsTeaser[number]);
     }
+
+
+    const articlesTeaser = await prisma.articles.findMany({
+        select: {
+            art_id: true,
+            art_title: true,
+            art_picture: true,
+            art_author: true,
+            art_date: true,
+        },
+    });
+
+    const articlesTempArray = [];
+
+    for (let i = 0; i < 2; i++) {
+        const number = Math.round(Math.random() * articlesTeaser.length);
+        articlesTempArray.push(articlesTeaser[number]);
+    }
+
+    const articlesTeaserArray = articlesTempArray.map((item) => {
+        let date = new Date(item.art_date)
+        item.art_date = date.toLocaleDateString('pl-PL',);
+        return item;
+    });
 
     const result = [];
     result.push(tempArray);
-    result.push(studsArray);
+    result.push(prodsTeaserArray);
+    result.push(studsTeaserArray);
+    result.push(articlesTeaserArray);
 
     return {
         props: { result }

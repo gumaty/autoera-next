@@ -13,6 +13,7 @@ import ModelContainer from "@/components/ModelContainer";
 import StudioAccordion from "@/components/StudioAcordion";
 import StudioSideBar from "@/components/StudioSideBar";
 import StudioModelContainer from "@/components/StudioModelContainer";
+import SideBarMix from "@/components/SideBarMix";
 
 function StudioModelMain({results, title}) {
 
@@ -25,7 +26,7 @@ function StudioModelMain({results, title}) {
                 <StudioModelContainer title={title} modelData={result[0]}/>
             </div>
             <div className={styles.sidebar}>
-                <StudioSideBar sides={results[1]}/>
+                <SideBarMix prods={results[1]} studs={results[2]} articles={results[3]} />
             </div>
         </div>
     )

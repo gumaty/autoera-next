@@ -12,6 +12,7 @@ import GenerationContainer from "@/components/GenerationContainer";
 import ModelContainer from "@/components/ModelContainer";
 import StudioAccordion from "@/components/StudioAcordion";
 import StudioSideBar from "@/components/StudioSideBar";
+import SideBarMix from "@/components/SideBarMix";
 
 function StudioMain({results, title}) {
 
@@ -52,7 +53,8 @@ function StudioMain({results, title}) {
                 </Box>
             </div>
             <div className={styles.sidebar}>
-                <StudioSideBar sides={results[1]}/>
+                {/*<StudioSideBar sides={results[1]}/>*/}
+                <SideBarMix prods={results[1]} studs={results[2]} articles={results[3]} />
             </div>
         </div>
     )
