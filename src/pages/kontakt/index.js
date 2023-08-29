@@ -3,10 +3,89 @@ import {Box, Container, Typography} from "@mui/material";
 import ContactForm from "@/components/ContactForm";
 import React from "react";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import ContactMain from "@/components/ContactMain";
+
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+
+export async function getServerSideProps() {
+
+    const prodsTeaser = await prisma.typy.findMany({
+        where: {
+            OK: '1',
+        },
+        select: {
+            ID_typy: true,
+            nazwa_marka: true,
+            nazwa_typ: true,
+            typ_lata: true,
+            img_typ: true,
+        },
+    });
+
+    const prodsTeaserArray = [];
+
+    for (let i = 0; i < 2; i++) {
+        const number = Math.round(Math.random() * prodsTeaser.length);
+        prodsTeaserArray.push(prodsTeaser[number]);
+    }
+
+    const studsTeaser = await prisma.stud.findMany({
+        select: {
+            ID: true,
+            marka: true,
+            model: true,
+            rok: true,
+            picture: true,
+        },
+    });
+
+    const studsTeaserArray = [];
+
+    for (let i = 0; i < 2; i++) {
+        const number = Math.round(Math.random() * studsTeaser.length);
+        studsTeaserArray.push(studsTeaser[number]);
+    }
+
+
+    const articlesTeaser = await prisma.articles.findMany({
+        select: {
+            art_id: true,
+            art_title: true,
+            art_picture: true,
+            art_author: true,
+            art_date: true,
+        },
+    });
+
+    const articlesTempArray = [];
+
+    for (let i = 0; i < 2; i++) {
+        const number = Math.round(Math.random() * articlesTeaser.length);
+        articlesTempArray.push(articlesTeaser[number]);
+    }
+
+    const articlesTeaserArray = articlesTempArray.map((item) => {
+        let date = new Date(item.art_date)
+        item.art_date = date.toLocaleDateString('pl-PL',);
+        return item;
+    });
+
+    const result = [];
+
+    result.push(prodsTeaserArray);
+    result.push(studsTeaserArray);
+    result.push(articlesTeaserArray);
+
+    return {
+        props: { result },
+    };
+}
 
 const title = "Kontakt";
 
-export default function ContactHome() {
+export default function ContactHome( { result } ) {
     return (
         <>
             <Head>
@@ -16,28 +95,7 @@ export default function ContactHome() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
-                <Breadcrumbs />
-                <Box sx={{p: '20px', bgcolor: 'white'}} >
-                    <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>
-                        <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{title}</Typography>
-                    </Box>
-                    <Box sx={{display: "flex", mb: 2, py: 2, width: { xs: "100%", sm: "80%" }, borderTop: 2, borderBottom: 2, marginInline: "auto"}}>
-                        <Box sx={{marginInline: "auto"}}>
-                            <img
-                                src={`http://server090121.nazwa.pl/images/email.webp`} alt={`Zdjęcie rentgenowskie samochody wyścigowego`} style={{maxWidth: "500px", width: "100%"}}
-                            />
-                        </Box>
-                    </Box>
-                    <Typography sx={{color: '#153F1A', textAlign: "justify"}}>
-                        Chcemy ułatwić Wam kontakt z nami, aby portal ten zawierał informacje, które Was najbardziej interesują. Jeśli macie jakieś sugestie lub propozycje to chętnie dowiemy się co chcielibyście zobaczyć lub czego się dowiedzieć.<br /><br />
-                        Będziemy się starali sprostać wszelkim prośbom lub uwagom, ponieważ chcemy aby ten portal był jak najbardziej interesujący i odpowiadający Waszym potrzebom i zainteresowaniom.
-                    </Typography>
-                </Box>
-                <Box sx={{p: '30px', width: 1, bgcolor: 'white'}}>
-                    <Box sx={{width: {xs: 1, sm: '500px'} , marginInline: 'auto', p: '30px', bgcolor: 'white', border: 1, borderRadius: 5, borderColor: '##153F1A', boxShadow: 10}} >
-                        <ContactForm />
-                    </Box>
-                </Box>
+                <ContactMain results={result} title={title}/>
             </Container>
         </>
     )

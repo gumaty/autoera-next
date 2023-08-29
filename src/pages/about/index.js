@@ -2,9 +2,88 @@ import Head from 'next/head'
 import {Box, Container, Typography} from "@mui/material";
 import React from "react";
 
+import { PrismaClient } from '@prisma/client';
+import AboutMain from "@/components/AboutMain";
+
+const prisma = new PrismaClient();
+
+export async function getServerSideProps() {
+
+    const prodsTeaser = await prisma.typy.findMany({
+        where: {
+            OK: '1',
+        },
+        select: {
+            ID_typy: true,
+            nazwa_marka: true,
+            nazwa_typ: true,
+            typ_lata: true,
+            img_typ: true,
+        },
+    });
+
+    const prodsTeaserArray = [];
+
+    for (let i = 0; i < 2; i++) {
+        const number = Math.round(Math.random() * prodsTeaser.length);
+        prodsTeaserArray.push(prodsTeaser[number]);
+    }
+
+    const studsTeaser = await prisma.stud.findMany({
+        select: {
+            ID: true,
+            marka: true,
+            model: true,
+            rok: true,
+            picture: true,
+        },
+    });
+
+    const studsTeaserArray = [];
+
+    for (let i = 0; i < 2; i++) {
+        const number = Math.round(Math.random() * studsTeaser.length);
+        studsTeaserArray.push(studsTeaser[number]);
+    }
+
+
+    const articlesTeaser = await prisma.articles.findMany({
+        select: {
+            art_id: true,
+            art_title: true,
+            art_picture: true,
+            art_author: true,
+            art_date: true,
+        },
+    });
+
+    const articlesTempArray = [];
+
+    for (let i = 0; i < 2; i++) {
+        const number = Math.round(Math.random() * articlesTeaser.length);
+        articlesTempArray.push(articlesTeaser[number]);
+    }
+
+    const articlesTeaserArray = articlesTempArray.map((item) => {
+        let date = new Date(item.art_date)
+        item.art_date = date.toLocaleDateString('pl-PL',);
+        return item;
+    });
+
+    const result = [];
+
+    result.push(prodsTeaserArray);
+    result.push(studsTeaserArray);
+    result.push(articlesTeaserArray);
+
+    return {
+        props: { result },
+    };
+}
+
 const title = "O nas";
 
-export default function AboutHome() {
+export default function AboutHome( {result} ) {
     return (
         <>
             <Head>
@@ -14,25 +93,7 @@ export default function AboutHome() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
-                <Box sx={{p: '20px', bgcolor: 'white'}} >
-                    <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>
-                        <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{title}</Typography>
-                    </Box>
-                    <Box sx={{display: "flex", mb: 2, py: 2, width: { xs: "100%", sm: "80%" }, borderTop: 2, borderBottom: 2, marginInline: "auto"}}>
-                        <Box sx={{marginInline: "auto"}}>
-                            <img
-                                src={`http://server090121.nazwa.pl/images/about.webp`} alt={`Grafika - palec wskazujący punkt na cyfrowej mapie świata `} style={{maxWidth: "500px", width: "100%"}}
-                            />
-                        </Box>
-                    </Box>
-                    <Typography sx={{color: '#153F1A', textAlign: "justify"}}>
-                        Jesteśmy niewielkim zespołem ludzi, którzy interesują się motoryzacją, a swoje zainteresowania przelewają bądź na papier, bądź do komputera. Zdecydowaliśmy się uruchomić serwis ponieważ chcemy zapełnić lukę na rynku, czyli brak kompletnego katalogu samochodów produkowanych seryjnie. Oczywiście nie chcemy ograniczyć się tylko do tej wąskiej dziedziny.<br /><br />
-                        W chwili obecnej serwis zawiera katalog samochodów produkowanych seryjnie oraz katalog pojazdów prototypowych i studialnych. Przeczytać tu można również artykuły o tematyce technicznej. Nie chcemy tu powielać pomysłów większych portali i "produkować" wiadomości na temat wszystkiego co łączy się z samochodami. Będziemy się skupiać wyłącznie na informacjach związanych stricte z samochodami lub z ciekawymi wydarzeniami i Salonami Samochodowymi.<br /><br />
-                        Działamy stosunkowo niedługo i dlatego na stronie naszego serwisu można znaleźć niewielką jeszcze ilość tych materiałów.<br /><br />
-                        Właśnie uruchomiliśmy "Małą encyklopedię samochodową", która w sposób krótki i przejrzysty charakteryzuje zespoły samochodu oraz "rozszyfrowuje" podstawowe skróty stosowane w motoryzacji. Prezentujemy tu również "rozwinięcia" nazw firm, zarówno tych polskich, jak i zagranicznych, które są ściśle związane z motoryzacją.<br /><br />
-                        Wraz z upływem czasu planujemy w miarę regularne powiększanie bazy katalogowej, zarówno o pojazdy najnowsze jak i o starsze, dążąc do kompletacji poszczególnych rodzin i marek.
-                    </Typography>
-                </Box>
+                <AboutMain results={result} title={title}/>
             </Container>
         </>
     )
