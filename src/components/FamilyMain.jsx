@@ -8,11 +8,9 @@ import FamilySwiper from "@/components/FamilySwiper";
 import BrandContainer from "@/components/BrandContainer";
 import GenerationSwiper from "@/components/GenerationSwiper";
 import FamilyContainer from "@/components/FamilyContainer";
+import SideBarMix from "@/components/SideBarMix";
 
 function FamilyMain({results}) {
-
-
-    console.log(results)
 
     const generacja = results[0].generacja_typ;
 
@@ -26,7 +24,8 @@ function FamilyMain({results}) {
                 <FamilyContainer familyData={results[0]} gallery={results[2]} models={results[4]}/>
             </div>
             <div className={styles.sidebar}>
-                <SideBar sides={results[5]}/>
+                {/*<SideBar sides={results[5]}/>*/}
+                <SideBarMix prods={results[5]} studs={results[6]} articles={results[7]} />
             </div>
         </div>
     )

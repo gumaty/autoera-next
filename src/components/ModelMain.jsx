@@ -10,6 +10,7 @@ import GenerationSwiper from "@/components/GenerationSwiper";
 import FamilyContainer from "@/components/FamilyContainer";
 import GenerationContainer from "@/components/GenerationContainer";
 import ModelContainer from "@/components/ModelContainer";
+import SideBarMix from "@/components/SideBarMix";
 
 function ModelMain({results, title}) {
 
@@ -19,10 +20,10 @@ function ModelMain({results, title}) {
         <div className={styles.container}>
             <div className={styles.main_container}>
                 <Breadcrumbs generacja={generation}/>
-                <ModelContainer model={results[0]} gallery={results[1]}/>
+                <ModelContainer model={results[0][0]} gallery={results[1]}/>
             </div>
             <div className={styles.sidebar}>
-                <SideBar sides={results[3]}/>
+                <SideBarMix prods={results[3]} studs={results[4]} articles={results[5]} />
             </div>
         </div>
     )

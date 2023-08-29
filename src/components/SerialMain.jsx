@@ -4,6 +4,7 @@ import LogoSwiper from "@/components/LogoSwiper";
 import {Box, Typography} from "@mui/material";
 import React from "react";
 import SideBar from "@/components/SideBar";
+import SideBarMix from "@/components/SideBarMix";
 
 function SerialMain({results, title}) {
 
@@ -31,7 +32,7 @@ function SerialMain({results, title}) {
                 </Box>
             </div>
             <div className={styles.sidebar}>
-                <SideBar sides={results[1]}/>
+                <SideBarMix prods={results[1]} studs={results[2]} articles={results[3]} />
             </div>
         </div>
     )

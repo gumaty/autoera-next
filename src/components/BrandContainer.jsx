@@ -1,19 +1,19 @@
 import {Box, Typography} from "@mui/material";
 import React, {useEffect, useState} from "react";
 
-function BrandContainer(props){
+function BrandContainer( { brandData } ){
 
-    const { brandData } = props;
+    console.log(brandData)
 
-    const descriptionArray = brandData.opis_marka.split(/\n/g);
+    const descriptionArray = brandData[0].opis_marka.split(/\n/g);
 
     return (
         <Box sx={{p: '20px', bgcolor: 'white'}} >
             <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>
-                <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>Katalog samochodów seryjnych - {brandData.nazwa_marka} ({brandData.lata_marka})</Typography>
+                <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>Katalog samochodów seryjnych - {brandData[0].nazwa_marka} ({brandData[0].lata_marka})</Typography>
             </Box>
             <img
-                src={`http://server090121.nazwa.pl/images/logos/${brandData.img_marka}.webp`} alt={`Logo ${brandData.nazwa_marka}`} style={{float: "left"}}
+                src={`http://server090121.nazwa.pl/images/logos/${brandData[0].img_marka}.webp`} alt={`Logo ${brandData[0].nazwa_marka}`} style={{float: "left"}}
             />
 
             {descriptionArray && Array.isArray(descriptionArray) && descriptionArray.map((paragraph, index) => (

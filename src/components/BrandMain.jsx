@@ -6,12 +6,11 @@ import React from "react";
 import SideBar from "@/components/SideBar";
 import FamilySwiper from "@/components/FamilySwiper";
 import BrandContainer from "@/components/BrandContainer";
+import SideBarMix from "@/components/SideBarMix";
 
-function BrandMain({results}) {
+function BrandMain( {results}) {
 
-
-
-    const brands = results[0];
+    console.log(results);
 
     return (
         <div className={styles.container}>
@@ -21,7 +20,7 @@ function BrandMain({results}) {
                 <BrandContainer brandData={results[0]}/>
             </div>
             <div className={styles.sidebar}>
-                <SideBar sides={results[2]}/>
+                <SideBarMix prods={results[2]} studs={results[3]} articles={results[4]} />
             </div>
         </div>
     )
