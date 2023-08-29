@@ -74,6 +74,7 @@ export async function getServerSideProps() {
 
     const result = [];
 
+
     result.push(prodsTeaserArray);
     result.push(studsTeaserArray);
     result.push(articlesTeaserArray);
