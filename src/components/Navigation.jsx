@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import classes from './Navigation.module.css';
 
-const pages = [{id: 1, title: 'Strona główna', link: '/'}, {id: 2, title: 'Samochody seryjne', link: '/seryjne'}, {id: 3, title:'Samochody studialne', link: '/studialne'}, {id: 4, title:'Encyklopedia', link: '/encyklopedia'}, {id: 5, title:'Artykuły', link: '/articles'}, {id: 6, title:'Kontakt', link: '/kontakt'}];
+const pages = [{id: 1, title: 'Strona główna', link: '/'}, {id: 2, title: 'Samochody seryjne', link: '/seryjne'}, {id: 3, title:'Samochody studialne', link: '/studialne'}, {id: 4, title:'Encyklopedia', link: '/encyklopedia'}, {id: 5, title:'Artykuły', link: '/articles'}];
 
 function Navigation() {
 
@@ -72,7 +72,7 @@ function Navigation() {
                         <Button
                                 key={page.id}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2, px: '6px', color: '#99CC99', fontSize: '14px', textDecoration: 'none', textTransform: 'none', display: 'block', borderRight: 1, borderRadius: 0, borderColor: '#99CC99' }}
+                                sx={{ my: 2, px: '6px', color: '#c9ffc9', fontSize: '15px', textDecoration: 'none', textTransform: 'none', display: 'block', borderRight: 1, borderRadius: 0, borderColor: '#99CC99' }}
                             >
                                 {page.title}
                             </Button>

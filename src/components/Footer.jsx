@@ -13,6 +13,9 @@ function Footer() {
                 <Box sx={{my:0.5, py: 0}}>
                     <Link href={'/about'} style={{textDecoration: 'none'}}><Typography textAlign="center" sx={{color: '#99CC99', textDecoration: 'none', fontSize: '12px'}}>O nas</Typography></Link>
                 </Box>
+                <Box sx={{my:0.5, py: 0}}>
+                    <Link href={'/kontakt'} style={{textDecoration: 'none'}}><Typography textAlign="center" sx={{color: '#99CC99', textDecoration: 'none', fontSize: '12px'}}>Kontakt</Typography></Link>
+                </Box>
             </Container>
         </Container>
     )
