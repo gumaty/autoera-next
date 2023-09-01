@@ -1,9 +1,7 @@
 import styles from "@/components/SerialMain.module.css";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import LogoSwiper from "@/components/LogoSwiper";
 import {Box, Typography} from "@mui/material";
 import React from "react";
-import SideBar from "@/components/SideBar";
 import SideBarMix from "@/components/SideBarMix";
 import CardContainer from "@/components/CardContainer";
 
@@ -30,7 +28,6 @@ function HomeMain({results}) {
                 </Box>
             </div>
             <div className={styles.sidebar}>
-                {/*<SideBar sides={results[2]}/>*/}
                 <SideBarMix prods={results[2]} studs={results[3]} articles={results[4]} />
             </div>
         </div>

@@ -1,9 +1,6 @@
 import Head from 'next/head'
 import {Box, Container, Typography} from "@mui/material";
-import MainCard from "@/components/MainCard";
-import CardContainer from "@/components/CardContainer";
 import { PrismaClient } from '@prisma/client';
-import Breadcrumbs from "@/components/Breadcrumbs";
 import React from "react";
 import HomeMain from "@/components/HomeMain";
 

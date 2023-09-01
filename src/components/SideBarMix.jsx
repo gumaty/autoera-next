@@ -12,9 +12,8 @@ function SideBarMix( {prods, studs, articles} ) {
                 <h3>Polecamy również:</h3>
                 <h4>Seryjne</h4>
                 <div  className={styles.inner}>
-
                     {prods.map((item) => (
-                            <SideCard key={item.ID} cardSql={item}/>
+                            <SideCard key={item.ID_typy} cardSql={item}/>
                         )
                     )}
                 </div>

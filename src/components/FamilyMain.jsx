@@ -12,9 +12,7 @@ import SideBarMix from "@/components/SideBarMix";
 
 function FamilyMain({results}) {
 
-    const generacja = results[0].generacja_typ;
-
-
+    const generacja = results[0][0].generacja_typ;
 
     return (
         <div className={styles.container}>
@@ -24,7 +22,6 @@ function FamilyMain({results}) {
                 <FamilyContainer familyData={results[0]} gallery={results[2]} models={results[4]}/>
             </div>
             <div className={styles.sidebar}>
-                {/*<SideBar sides={results[5]}/>*/}
                 <SideBarMix prods={results[5]} studs={results[6]} articles={results[7]} />
             </div>
         </div>

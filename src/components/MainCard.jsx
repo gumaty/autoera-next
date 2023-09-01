@@ -5,8 +5,6 @@ function MainCard(props) {
 
     const {cardSql} =props;
 
-
-
     const titleArray = cardSql.update_link.split("/");
 
     let updateTitle = titleArray[2];

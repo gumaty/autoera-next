@@ -11,3 +11,24 @@
 
     width: 20%;
 }
+
+@media (max-width: 960px) {
+    .main_container {
+        width: 70%;
+    }
+
+    .sidebar {
+        width: 30%;
+    }
+}
+
+@media (max-width: 700px) {
+    .main_container {
+        width: 100%;
+    }
+
+    .sidebar {
+
+        display: none;
+    }
+}

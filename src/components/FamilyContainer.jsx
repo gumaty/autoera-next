@@ -8,7 +8,7 @@ function FamilyContainer(props){
 
     let { familyData, gallery, models } = props;
 
-    if (familyData.generacja_typ === "1") gallery = [];
+    if (familyData[0].generacja_typ === "1") gallery = [];
 
     const descriptionArray = familyData[0].opis_typ.split(/\n/g);
 
@@ -26,7 +26,7 @@ function FamilyContainer(props){
                 </Box>
             </Box>
             <Box>
-                {familyData.generacja_typ === "0" ? <ModelsAccordion models={ models }/> : null}
+                {familyData[0].generacja_typ === "0" ? <ModelsAccordion models={ models }/> : null}
             </Box>
             <Box>
                 {descriptionArray && Array.isArray(descriptionArray) && descriptionArray.map((paragraph, index) => (

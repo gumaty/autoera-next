@@ -1,16 +1,13 @@
 .container {
     max-width: 1400px;
-    /*margin: 2rem auto;*/
     gap: 2rem;
 }
 .outer {
     max-width: 1400px;
-    /*margin: 1rem auto;*/
     display: flex;
     flex-direction: column;
     padding: 20px 0;
     border-top: 2px solid red;
-    /*border-bottom: 2px solid red;*/
 }
 
 .outer h2 {
@@ -22,7 +19,12 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    /*flex-wrap: wrap;*/
     gap: 2rem;
     padding-top: 10px;
+}
+
+@media (max-width: 960px) {
+    .inner {
+        flex-direction: column;
+    }
 }
