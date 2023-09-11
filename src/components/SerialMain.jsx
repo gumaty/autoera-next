@@ -21,6 +21,13 @@ function SerialMain({results, title}) {
                     <Box sx={{mb:2, px: 2, py: 1, display:'block', borderLeft: 10, borderColor: 'red'}}>
                         <Typography variant='h5' component='h1' sx={{color: '#153F1A', fontWeight: '700'}}>{title}</Typography>
                     </Box>
+                    <Box sx={{display: "flex", mb: 2, py: 2, width: { xs: "100%", sm: "90%" }, borderTop: 2, borderBottom: 2, marginInline: "auto"}}>
+                        <Box sx={{marginInline: "auto"}}>
+                            <img
+                                src={`http://server090121.nazwa.pl/images/linia-czasu.webp`} alt={`Linia czasu samochodów seryjnych`} style={{maxWidth: "850px", width: "100%"}}
+                            />
+                        </Box>
+                    </Box>
                     <Typography sx={{color: '#153F1A', textAlign: "justify"}}>
                         Baza danych umieszczona na naszym portalu stanowi ogromny zbiór informacji ogólnych i technicznych o samochodach osobowych. Nasz zbiór z pewnością zainteresuje zarówno nabywców i użytkowników samochodów, miłośników pojazdów tego rodzaju (w tym także o charakterze zabytkowym) jak i profesjonalistów związanych z tą dziedziną techniki. <br /><br />
                         Oprócz danych technicznych zamieszczamy krótkie opisy poszczególnych marek i rodzin pojazdów oraz odpowiednie ilustracje. W odróżnieniu od wielu innych portali można tu znaleźć informacje nie tylko o pojazdach aktualnie oferowanych w Polsce, ale również o modelach dostępnych na innych rynkach (w tym także spoza Europy). Kolejną szczególną cechą tej bazy danych jest zamieszczenie w niej także starszych pojazdów, a więc z okresu wielu dziesięcioleci. Takie zestawienie pozwala na ocenę zmian w konstrukcji samochodów, jakie dokonały się w tym czasie.<br /><br />
