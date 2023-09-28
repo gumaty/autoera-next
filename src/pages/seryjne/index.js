@@ -104,7 +104,6 @@ export async function getServerSideProps() {
 
 export default function SerialHome( {result} ) {
 
-    console.log(result)
 
     return (
         <>

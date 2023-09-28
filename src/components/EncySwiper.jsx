@@ -44,12 +44,12 @@ export default function EncySwiper({ letters }) {
                 slidesPerView={numberSlidesPerView}
                 coverflowEffect={{
                     rotate: 0,
-                    stretch: -10,
+                    stretch: -45,
                     depth: 0,
                     modifier: 1,
                     slideShadows: false,
                 }}
-                pagination={true}
+                pagination={false}
                 modules={[EffectCoverflow, Pagination]}
                 className={classes.swiper}
             >

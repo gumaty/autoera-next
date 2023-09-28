@@ -37,7 +37,7 @@ function FamilyContainer(props){
             </Box>
             <Box sx={{display: "flex", flexDirection: "row", justifyContent: "center", flexWrap: "wrap"}}>
                 {gallery && Array.isArray(gallery) && gallery.map((image) => (
-                    <Box key={image.image_ID} sx={{margin: 1}}>
+                    <Box key={image.image_ID} sx={{margin: 1, '&:hover': {cursor: 'pointer'} }}>
                         <GalleryModal image={image}/>
                     </Box>
 

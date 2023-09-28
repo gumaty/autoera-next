@@ -53,12 +53,13 @@ export default function FamilySwiper(props) {
                 slidesPerView={numberSlidesPerView}
                 coverflowEffect={{
                     rotate: 0,
-                    stretch: -20,
+                    stretch: -50,
                     depth: 0,
                     modifier: 1,
                     slideShadows: false,
                 }}
-                pagination={true}
+                pagination={false}
+                navigation={true}
                 modules={[EffectCoverflow, Pagination]}
                 className={classes.swiper}
             >
@@ -73,7 +74,7 @@ export default function FamilySwiper(props) {
                                 <img
                                     src={`http://server090121.nazwa.pl/images/family/tn/${rodzina.img_typ}.webp`} alt={`Miniatura ${rodzina.nazwa_marka} ${rodzina.nazwa_typ}`}
                                 />
-                                <Typography sx={{position: "absolute", bottom: 70, left: 10, mb: 2, color: 'red', fontWeight: 'bold'}}>
+                                <Typography sx={{position: "absolute", top: 5, left: -15, mb: 2, px: 1, background: '#ffffff88', borderRadius: 2, color: 'red', fontWeight: 'bold'}}>
                                     {rodzina.nazwa_typ}
                                 </Typography>
                             </a>

@@ -117,8 +117,6 @@ export async function getServerSideProps(context) {
 
 export default function BrandsHome({result}) {
 
-    console.log(result)
-
     const router = useRouter();
 
     const [loadedBrands, setLoadedBrands] = useState(result);

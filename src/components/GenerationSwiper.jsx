@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 import classes from "./LogoSwiper.module.css";
 
 // import required modules
-import { EffectCoverflow, Pagination } from "swiper";
+import { EffectCoverflow, Pagination, Navigation } from "swiper";
 import Link from "next/link";
 import { useMediaQuery } from 'react-responsive';
 import {Box, Typography} from "@mui/material";
@@ -50,12 +50,14 @@ export default function GenerationSwiper(props) {
                 slidesPerView={numberSlidesPerView}
                 coverflowEffect={{
                     rotate: 0,
-                    stretch: -10,
+                    stretch: -50,
                     depth: 0,
                     modifier: 1,
                     slideShadows: false,
                 }}
-                pagination={true}
+                // pagination={{
+                //     clickable: true,
+                // }}
                 modules={[EffectCoverflow, Pagination]}
                 className={classes.swiper}
             >
@@ -70,7 +72,7 @@ export default function GenerationSwiper(props) {
                                 <img
                                     src={`http://server090121.nazwa.pl/images/family/tn/${generacja.img_gener}.webp`} alt={`Miniatura ${generacja.marka_gener} ${generacja.typ_gener} ${generacja.gen_gener}`}
                                 />
-                                <Typography sx={{position: "absolute", bottom: 70, left: 10, mb: 2, color: 'red', fontWeight: 'bold'}}>
+                                <Typography sx={{position: "absolute", top: 5, left: -15, mb: 2, px: 1, background: '#ffffff88', borderRadius: 2, color: 'red', fontWeight: 'bold'}}>
                                     {generacja.typ_gener} {generacja.gen_gener}
                                 </Typography>
                             </a>

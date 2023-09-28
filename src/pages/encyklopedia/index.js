@@ -121,7 +121,7 @@ export default function EncyklopediaHome({result}) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container maxWidth="xl" sx={{bgcolor: '#FFFECC', color: '#153F1A'}}>
-                <EncyMain results={result}/>
+                <EncyMain results={result} title={title}/>
             </Container>
         </>
     )
