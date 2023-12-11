@@ -81,7 +81,7 @@ function FamilyContainer(props) {
 					descriptionArray.map((paragraph, index) => (
 						<Typography
 							key={index}
-							sx={{ mb: 2, color: '#153F1A', textAlign: 'justify' }}
+							sx={{ mb: 2, color: '#153F1A', textAlign: 'left' }}
 						>
 							{paragraph}
 						</Typography>
