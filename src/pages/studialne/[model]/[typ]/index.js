@@ -54,6 +54,9 @@ export async function getServerSideProps(context) {
     }
 
     const studsTeaser = await prisma.stud.findMany({
+        where: {
+            OK: '1',
+        },
         select: {
             ID: true,
             marka: true,

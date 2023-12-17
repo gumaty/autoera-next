@@ -44,6 +44,24 @@ export async function getServerSideProps() {
         take: 3,
     });
 
+    const articles = await prisma.updatesy.findMany({
+        where: {
+            update_strona: "article"
+        },
+        select: {
+            update_ID: true,
+            update_tresc: true,
+            update_image: true,
+            update_link: true,
+            update_data: true,
+            update_strona: true,
+        },
+        orderBy:{
+            update_data: "desc",
+        },
+        take: 3,
+    });
+
     const prodsArray = prods.map((item) => {
         let date = new Date(item.update_data)
         item.update_data = date.toLocaleDateString('pl-PL',);
@@ -51,6 +69,12 @@ export async function getServerSideProps() {
     });
 
     const studsArray = studs.map((item) => {
+        let date = new Date(item.update_data)
+        item.update_data = date.toLocaleDateString('pl-PL',);
+        return item;
+    });
+
+    const articlesArray = articles.map((item) => {
         let date = new Date(item.update_data)
         item.update_data = date.toLocaleDateString('pl-PL',);
         return item;
@@ -77,6 +101,9 @@ export async function getServerSideProps() {
     }
 
     const studsTeaser = await prisma.stud.findMany({
+        where: {
+            OK: '1',
+        },
         select: {
             ID: true,
             marka: true,
@@ -124,6 +151,7 @@ export async function getServerSideProps() {
     result.push(prodsTeaserArray);
     result.push(studsTeaserArray);
     result.push(articlesTeaserArray);
+    result.push(articlesArray);
 
     return {
         props: { result },

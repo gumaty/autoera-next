@@ -1,4 +1,5 @@
 import styles from '@/components/SerialMain.module.css';
+import imgstyles from '@/components/Images.module.css';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import LogoSwiper from '@/components/LogoSwiper';
 import { Box, Typography } from '@mui/material';
@@ -46,6 +47,7 @@ function ArticlesMain({ results, title }) {
 					>
 						<Box sx={{ marginInline: 'auto' }}>
 							<img
+								className={imgstyles.imgstyle}
 								src={`http://server090121.nazwa.pl/images/articles.webp`}
 								alt={`Laptop i notatnik`}
 								style={{ maxWidth: '500px', width: '100%' }}

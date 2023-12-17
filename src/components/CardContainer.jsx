@@ -7,7 +7,7 @@ function CardContainer(props) {
     return(
         <div className={styles.container}>
             <div className={styles.outer}>
-                <h2>Samochody {category} - warto zobaczyć</h2>
+                <h2> {category} - warto zobaczyć</h2>
                 <div  className={styles.inner}>
 
                     {cardsSql.map((item) => (
