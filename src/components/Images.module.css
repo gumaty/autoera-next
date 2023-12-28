@@ -5,3 +5,8 @@
 .tnstyle {
 	border-radius: 10px;
 }
+
+.mnstyle {
+	border-radius: 5px;
+	margin-right: 5px;
+}

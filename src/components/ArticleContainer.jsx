@@ -33,6 +33,13 @@ function ArticleContainer(props) {
 				>
 					{article.art_title}
 				</Typography>
+				<Typography
+					variant='h6'
+					component='h1'
+					sx={{ color: '#153F1A', fontWeight: '700', textAlign: 'right' }}
+				>
+					({article.art_author}, {article.art_date})
+				</Typography>
 			</Box>
 
 			<Box>
