@@ -65,12 +65,16 @@ function ArticlesMain({ results, title }) {
 						celu publikujemy regularnie artykuły i felietony związane z tematykę
 						motoryzacyjną skupiając się nie tylko na kontekście historycznym,
 						ale również na nowych technologiach i trendach rozwoju motoryzacji.
+						<br />
+						<br />
 						Przybliżamy historię marek samochodowych, ważnych postaci dla świata
 						motoryzacji oraz rozwiązań inżynierskich, które miały wpływ na
 						rozwój motoryzacji zarówno z perspektywy technicznej jak i
-						społecznej, ekonomicznej i geopolitycznej. Jesteśmy również otwarci
-						na opracowywanie tematów i tekstów proponowanych przez naszych
-						Czytelników.
+						społecznej, ekonomicznej i geopolitycznej.
+						<br />
+						<br />
+						Jesteśmy również otwarci na opracowywanie tematów i tekstów
+						proponowanych przez naszych Czytelników.
 					</Typography>
 				</Box>
 			</div>
