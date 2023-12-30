@@ -1,10 +1,9 @@
 import Head from 'next/head';
-import { Box, Container, Typography } from '@mui/material';
-import LogoSwiper from '@/components/LogoSwiper';
+import { Container } from '@mui/material';
 import { PrismaClient } from '@prisma/client';
 import React from 'react';
-import Breadcrumbs from '@/components/Breadcrumbs';
 import SerialMain from '@/components/SerialMain';
+import GoogleTag from '@/components/GoogleTag';
 
 const prisma = new PrismaClient();
 

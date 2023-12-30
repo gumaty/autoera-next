@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Box, Container, Typography } from '@mui/material';
+import { Container } from '@mui/material';
 import { PrismaClient } from '@prisma/client';
 import React from 'react';
 import HomeMain from '@/components/HomeMain';

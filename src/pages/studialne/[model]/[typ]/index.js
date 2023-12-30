@@ -1,13 +1,10 @@
 import Head from 'next/head';
-import { Box, Container, Typography } from '@mui/material';
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import StudioModelContainer from '@/components/StudioModelContainer';
+import { Container } from '@mui/material';
+import React, { useState } from 'react';
 
 import { PrismaClient } from '@prisma/client';
-import Breadcrumbs from '@/components/Breadcrumbs';
-import StudioMain from '@/components/StudioMain';
 import StudioModelMain from '@/components/StudioModelMain';
+import GoogleTag from '@/components/GoogleTag';
 
 const prisma = new PrismaClient();
 

@@ -1,13 +1,10 @@
 import Head from 'next/head';
-import { Box, Container, Typography } from '@mui/material';
+import { Container } from '@mui/material';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import GenerationSwiper from '@/components/GenerationSwiper';
-import FamilyContainer from '@/components/FamilyContainer';
+import React, { useState } from 'react';
 import { PrismaClient } from '@prisma/client';
-import FamilySwiper from '@/components/FamilySwiper';
-import Breadcrumbs from '@/components/Breadcrumbs';
 import FamilyMain from '@/components/FamilyMain';
+import GoogleTag from '@/components/GoogleTag';
 
 const prisma = new PrismaClient();
 

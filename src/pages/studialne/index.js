@@ -1,11 +1,10 @@
 import Head from 'next/head';
-import { Box, Container, Typography } from '@mui/material';
-import StudioAccordion from '@/components/StudioAcordion';
+import { Container } from '@mui/material';
 import React from 'react';
 
 import { PrismaClient } from '@prisma/client';
-import Breadcrumbs from '@/components/Breadcrumbs';
 import StudioMain from '@/components/StudioMain';
+import GoogleTag from '@/components/GoogleTag';
 
 const prisma = new PrismaClient();
 

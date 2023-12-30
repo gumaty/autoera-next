@@ -1,12 +1,10 @@
 import Head from 'next/head';
-import { Box, Container, Typography } from '@mui/material';
+import { Container } from '@mui/material';
 import React from 'react';
-import EncyAccordion from '@/components/EncyAcordion';
-import EncySwiper from '@/components/EncySwiper';
 
 import { PrismaClient } from '@prisma/client';
-import Breadcrumbs from '@/components/Breadcrumbs';
 import EncyMain from '@/components/EncyMain';
+import GoogleTag from '@/components/GoogleTag';
 
 const prisma = new PrismaClient();
 

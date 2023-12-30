@@ -1,9 +1,10 @@
 import Head from 'next/head';
-import { Box, Container, Typography } from '@mui/material';
+import { Container } from '@mui/material';
 import React from 'react';
 
 import { PrismaClient } from '@prisma/client';
 import AboutMain from '@/components/AboutMain';
+import GoogleTag from '@/components/GoogleTag';
 
 const prisma = new PrismaClient();
 

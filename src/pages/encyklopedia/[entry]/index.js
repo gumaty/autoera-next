@@ -1,12 +1,11 @@
 import Head from 'next/head';
-import { Box, Container, Typography } from '@mui/material';
+import { Container } from '@mui/material';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import EncyContainer from '@/components/EncyContainer';
+import React, { useState } from 'react';
 
 import { PrismaClient } from '@prisma/client';
-import Breadcrumbs from '@/components/Breadcrumbs';
 import EncyLetterMain from '@/components/EncyLetterMain';
+import GoogleTag from '@/components/GoogleTag';
 
 const prisma = new PrismaClient();
 
