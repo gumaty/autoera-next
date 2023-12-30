@@ -231,6 +231,7 @@ export default function FamilyHome({ result }) {
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
+			<GoogleTag />
 			<Container maxWidth='xl' sx={{ bgcolor: '#FFFECC', color: '#153F1A' }}>
 				<FamilyMain results={result} />
 			</Container>
