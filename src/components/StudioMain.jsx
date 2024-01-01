@@ -60,24 +60,19 @@ function StudioMain({ results, title }) {
 					<Typography sx={{ color: '#153F1A', textAlign: 'left' }}>
 						Oprócz seryjnych samochodów osobowych prezentowane są pojazdy, które
 						nigdy nie były produkowane seryjnie. Pojazdy te powstały jako
-						prototypy lub w formie samochodów studialnych (concept cars).
-						<br />
-						<br />
-						W pierwszej grupie znajdują się samochody, które z różnych względów
+						prototypy lub w formie samochodów studialnych (concept cars). W
+						pierwszej grupie znajdują się samochody, które z różnych względów
 						nigdy nie doczekały się wdrożenia do produkcji lub takie których
 						późniejsze wersje produkcyjne zostały istotnie zmienione (np. Ford
 						Ka).
 						<br />
 						<br />
 						Samochody studialne są z założenia przeznaczone do badań
-						poznawczych, sprawdzenia nowych rozwiązań konstrukcyjnych czy
-						technologicznych lub celów marketingowych. W tym ostatnim przypadku
-						celem budowy takich pojazdów jest sondaż opinii publicznej w
-						zakresie funkcji użytkowej oraz zewnętrznej formy nadwozia.
-						<br />
-						<br />
-						Część zastosowanych w tych pojazdach rozwiązań technicznych trafiała
-						w późniejszym okresie do pojazdów seryjnych, a z niektórych
+						poznawczych, sprawdzenia nowych rozwiązań technicznych lub celów
+						marketingowych. W tym ostatnim przypadku celem budowy jest sondaż
+						opinii publicznej w zakresie funkcji użytkowej oraz zewnętrznej
+						formy nadwozia. Część zastosowanych w tych pojazdach rozwiązań
+						trafiała w późniejszym okresie do pojazdów seryjnych, a z niektórych
 						prezentowanych pojazdów wykorzystywano tylko nazwę (np. Renault
 						Laguna).
 						<br />
