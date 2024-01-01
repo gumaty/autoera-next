@@ -1,5 +1,4 @@
 import styles from "@/components/SideBar.module.css";
-import SideCard from "@/components/SideCard";
 import StudioSideCard from "@/components/StudioSideCard";
 
 

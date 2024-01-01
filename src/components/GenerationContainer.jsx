@@ -1,7 +1,6 @@
 import imgstyles from '@/components/Images.module.css';
 import { Box, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
 import GalleryModal from '@/components/GalleryModal';
 import ModelsAccordion from '@/components/ModelsAcordion';
 

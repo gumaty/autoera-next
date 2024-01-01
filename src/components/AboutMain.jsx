@@ -1,13 +1,9 @@
 import styles from '@/components/SerialMain.module.css';
 import imgstyles from '@/components/Images.module.css';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import LogoSwiper from '@/components/LogoSwiper';
 import { Box, Typography } from '@mui/material';
 import React from 'react';
-import SideBar from '@/components/SideBar';
 import SideBarMix from '@/components/SideBarMix';
-import CardContainer from '@/components/CardContainer';
-import ContactForm from '@/components/ContactForm';
 
 function AboutMain({ results, title }) {
 	return (

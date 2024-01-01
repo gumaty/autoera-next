@@ -1,18 +1,9 @@
 import styles from '@/components/SerialMain.module.css';
 import imgstyles from '@/components/Images.module.css';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import LogoSwiper from '@/components/LogoSwiper';
 import { Box, Typography } from '@mui/material';
 import React from 'react';
-import SideBar from '@/components/SideBar';
-import FamilySwiper from '@/components/FamilySwiper';
-import BrandContainer from '@/components/BrandContainer';
-import GenerationSwiper from '@/components/GenerationSwiper';
-import FamilyContainer from '@/components/FamilyContainer';
-import GenerationContainer from '@/components/GenerationContainer';
-import ModelContainer from '@/components/ModelContainer';
 import StudioAccordion from '@/components/StudioAcordion';
-import StudioSideBar from '@/components/StudioSideBar';
 import SideBarMix from '@/components/SideBarMix';
 
 function StudioMain({ results, title }) {

@@ -4,7 +4,6 @@ import {
     Toolbar,
 } from "@mui/material";
 
-import Logo from "@/components/Logo";
 import Navigation from "@/components/Navigation";
 
 
