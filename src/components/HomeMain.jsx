@@ -49,6 +49,7 @@ function HomeMain({ results }) {
 						cardsSql={results[1]}
 					/>
 					<CardContainer category={'Artykuły'} cardsSql={results[5]} />
+					<CardContainer category={'Encyklopedia'} cardsSql={results[6]} />
 				</Box>
 			</div>
 			<div className={styles.sidebar}>
