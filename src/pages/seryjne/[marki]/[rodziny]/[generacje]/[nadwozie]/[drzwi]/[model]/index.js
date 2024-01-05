@@ -199,7 +199,7 @@ export default function ModelHome({ result }) {
 		liczba_drzwi,
 		rok_uruch,
 		rok_zakoncz,
-	} = loadedBrands[0];
+	} = loadedBrands[0][0];
 
 	const title = `AUTO-ERA - Twój profesjonalny portal motoryzacyjny - Katalog samochodów seryjnych - ${marka} ${rodzina} ${generacja} ${model} ${typ_nadwozia} ${liczba_drzwi}-drzwiowy (${rok_uruch}-${rok_zakoncz})`;
 

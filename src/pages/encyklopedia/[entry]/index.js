@@ -110,9 +110,9 @@ export default function encyItemHome({ result }) {
 
 	const { entry } = router.query;
 
-	const { tytul, tresc, image } = loadedBrands[0];
+	const { tytul, tresc, image } = loadedBrands[0][0];
 
-	const title = `Hasła encyklopedii - ${tytul}`;
+	const title = `Hasła encyklopedii - litera ${entry}`;
 
 	return (
 		<>

@@ -213,7 +213,8 @@ export default function FamilyHome({ result }) {
 
 	const { marki, rodziny } = router.query;
 
-	const { nazwa_marka, nazwa_typ, typ_lata, generacja_typ } = loadedBrands[0];
+	const { nazwa_marka, nazwa_typ, typ_lata, generacja_typ } =
+		loadedBrands[0][0];
 
 	const mainText = `AUTO-ERA - Twój profesjonalny portal motoryzacyjny - Katalog samochodów seryjnych - ${nazwa_marka} ${nazwa_typ} (${typ_lata})`;
 

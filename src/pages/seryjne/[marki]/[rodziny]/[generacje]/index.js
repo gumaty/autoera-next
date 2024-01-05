@@ -228,7 +228,7 @@ export default function GenerationHome({ result }) {
 
 	const { marki, rodziny, generacje } = router.query;
 
-	const { marka_gener, typ_gener, lata, gen_gener } = loadedBrands[0];
+	const { marka_gener, typ_gener, lata, gen_gener } = loadedBrands[0][0];
 
 	const title = `AUTO-ERA - Twój profesjonalny portal motoryzacyjny - Katalog samochodów seryjnych - ${marka_gener} ${typ_gener} ${gen_gener} (${lata})`;
 

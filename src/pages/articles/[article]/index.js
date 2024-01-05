@@ -115,7 +115,7 @@ export default function ArticleDetailHome({ result }) {
 
 	const { article } = router.query;
 
-	const { art_title, art_content, art_author } = loadedBrands[0];
+	const { art_title, art_content, art_author } = loadedBrands[0][0];
 
 	const title = `AUTO-ERA - Twój profesjonalny portal motoryzacyjny - Artykuły - ${art_title}`;
 
