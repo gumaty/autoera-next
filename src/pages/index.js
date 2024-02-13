@@ -191,6 +191,10 @@ export default function Home({ result }) {
 					content='Portal AUTO-ERA to motoryzacyjny serwis, zawierający najważniejsze wiadomości z dziedziny motoryzacji, katalog samochodów produkcyjnych, katalog samochodów studialnych oraz encyklopedię pojęć motoryzacyjnych bogato ilustrowane zdjęciami.'
 				/>
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
+				<meta
+					name='google-site-verification'
+					content='81Fq-2lqnqWjUI3nLq134hfTxbD2yS1p1ZdaiC2j6H0'
+				/>
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<GoogleTag />
