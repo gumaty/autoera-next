@@ -32,12 +32,7 @@ module.exports = {
 				source: '/kontakt.php3:path*',
 				destination: '/kontakt',
 				permanent: false,
-			},
-			{
-				source: 'https://www.auto-era.pl/:path*',
-				destination: 'https://auto-era.pl/:path*',
-				permanent: false,
-			},
+			},			
 		];
 	},
 };
