@@ -8,7 +8,7 @@ function SiteMapModels({ results }) {
 			{records.map((record) => (
 				<url key={record.model_ID}>
 					<loc>
-						https://www.auto-era.pl/seryjne/{record.marka}/{record.rodzina}/
+						https://auto-era.pl/seryjne/{record.marka}/{record.rodzina}/
 						{record.generacja}/{record.typ_nadwozia}/{record.liczba_drzwi}/
 						{record.model}
 					</loc>

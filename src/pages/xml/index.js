@@ -149,7 +149,7 @@ export default function SerialHome({ result }) {
 				<xml version='1.0' encoding='UTF-8' />
 				<urlset xmlns='http://www.google.com/schemas/sitemap/0.9'>
 					<url>
-						<loc>https://www.auto-era.pl/</loc>
+						<loc>https://auto-era.pl/</loc>
 						<changefreq>daily</changefreq>
 						<priority>0.8</priority>
 					</url>

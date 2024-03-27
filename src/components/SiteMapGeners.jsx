@@ -8,7 +8,7 @@ function SiteMapGeners({ results }) {
 			{records.map((record) => (
 				<url key={record.gener_ID}>
 					<loc>
-						https://www.auto-era.pl/seryjne/{record.marka_gener}/{record.typ_gener}/{record.gen_gener}
+						https://auto-era.pl/seryjne/{record.marka_gener}/{record.typ_gener}/{record.gen_gener}
 					</loc>
 					<changefreq>weekly</changefreq>
 					<priority>0.5</priority>

@@ -8,7 +8,7 @@ function SiteMapTrades({ results }) {
 			
 			{brands.map((brand) => (
 				<url key={brand.marki_ID}>
-					<loc>https://www.auto-era.pl/seryjne/{brand.nazwa_marka}</loc>
+					<loc>https://auto-era.pl/seryjne/{brand.nazwa_marka}</loc>
 					<changefreq>weekly</changefreq>
 					<priority>0.5</priority>
 				</url>

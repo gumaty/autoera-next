@@ -7,7 +7,7 @@ function SiteMapArticles({ results }) {
 		<>
 			{records.map((record) => (
 				<url key={record.art_id}>
-					<loc>https://www.auto-era.pl/articles/{record.art_title}</loc>
+					<loc>https://auto-era.pl/articles/{record.art_title}</loc>
 					<changefreq>weekly</changefreq>
 					<priority>0.5</priority>
 				</url>

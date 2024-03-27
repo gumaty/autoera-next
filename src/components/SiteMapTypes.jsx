@@ -8,7 +8,7 @@ function SiteMapTypes({ results }) {
 			{records.map((record) => (
 				<url key={record.ID_type}>
 					<loc>
-						https://www.auto-era.pl/seryjne/{record.nazwa_marka}/
+						https://auto-era.pl/seryjne/{record.nazwa_marka}/
 						{record.nazwa_typ}
 					</loc>
 					<changefreq>weekly</changefreq>

@@ -7,7 +7,7 @@ function SiteMapEncy({ results }) {
 		<>
 			{records.map((record) => (
 				<url key={record}>
-					<loc>https://www.auto-era.pl/encyklopedia/{record}</loc>
+					<loc>https://auto-era.pl/encyklopedia/{record}</loc>
 					<changefreq>weekly</changefreq>
 					<priority>0.5</priority>
 				</url>

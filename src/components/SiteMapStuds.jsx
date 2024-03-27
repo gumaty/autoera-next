@@ -8,7 +8,7 @@ function SiteMapStuds({ results }) {
 			{records.map((record) => (
 				<url key={record.ID}>
 					<loc>
-						https://www.auto-era.pl/studialne/{record.marka}/{record.model}
+						https://auto-era.pl/studialne/{record.marka}/{record.model}
 					</loc>
 					<changefreq>weekly</changefreq>
 					<priority>0.5</priority>
