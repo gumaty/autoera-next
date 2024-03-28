@@ -46,7 +46,7 @@ function StudioMain({ results, title }) {
 						<Box sx={{ marginInline: 'auto' }}>
 							<img
 								className={imgstyles.imgstyle}
-								src={`https://auto-era.pl/images/studialne.webp`}
+								src={`http://server090121.nazwa.pl/images/studialne.webp`}
 								alt={`Szkic samochodu studialnego Nissan IMq`}
 								style={{ maxWidth: '500px', width: '100%' }}
 							/>

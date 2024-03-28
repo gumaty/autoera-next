@@ -14,7 +14,7 @@ function StudioSideCard({ cardSql }) {
 				<div className={styles.cardContainer}>
 					<img
 						className={imgstyles.tnstyle}
-						src={`https://auto-era.pl/images/studio/${cardSql.picture}.webp`}
+						src={`http://server090121.nazwa.pl/images/studio/${cardSql.picture}.webp`}
 						alt={updateTitle}
 						loading='lazy'
 					/>

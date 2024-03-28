@@ -14,7 +14,7 @@ function SideCard({ cardSql }) {
 				<div className={styles.cardContainer}>
 					<img
 						className={imgstyles.tnstyle}
-						src={`https://auto-era.pl/images/family/${cardSql.img_typ}.webp`}
+						src={`http://server090121.nazwa.pl/images/family/${cardSql.img_typ}.webp`}
 						alt={updateTitle}
 						loading='lazy'
 					/>
