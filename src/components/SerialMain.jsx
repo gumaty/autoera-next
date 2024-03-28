@@ -47,7 +47,7 @@ function SerialMain({ results, title }) {
 						<Box sx={{ marginInline: 'auto' }}>
 							<img
 								className={imgstyles.imgstyle}
-								src={`https://www.auto-era.pl/images/linia-czasu.webp`}
+								src={`https://server090121.nazwa.pl/images/linia-czasu.webp`}
 								alt={`Linia czasu samochodów seryjnych`}
 								style={{ maxWidth: '850px', width: '100%' }}
 							/>
