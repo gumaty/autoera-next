@@ -18,7 +18,7 @@ function MainCard(props) {
 				<div className={styles.cardContainer}>
 					<img
 						className={imgstyles.tnstyle}
-						src={`http://server090121.nazwa.pl/images/updatesy/${cardSql.update_image}.webp`}
+						src={`https://auto-era.pl/images/updatesy/${cardSql.update_image}.webp`}
 						alt={updateTitle}
 						loading='lazy'
 					/>
