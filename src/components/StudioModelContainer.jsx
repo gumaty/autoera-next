@@ -56,7 +56,7 @@ function StudioModelContainer(props) {
 				<Box sx={{ marginInline: 'auto' }}>
 					<img
 						className={imgstyles.imgstyle}
-						src={`http://server090121.nazwa.pl/images/studio/${modelData.picture}.webp`}
+						src={`https://auto-era.pl/images/studio/${modelData.picture}.webp`}
 						alt={`Miniatura ${modelData.marka} ${modelData.model}`}
 						style={{ maxWidth: '500px', width: '100%' }}
 					/>
